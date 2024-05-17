@@ -13,7 +13,8 @@ class EventController extends Controller
      */
     public function index()
     {
-        //
+        $event = Event::all();
+        return view('event.index', compact('event'));
     }
 
     /**
@@ -59,9 +60,12 @@ class EventController extends Controller
             'id_kategori' => $request->input('id_kategori'),
             'id_penyelenggara' => $request->input('id_penyelenggara'),
         ];
-        event::create($data);
+
+        Event::create($data);
+
         return redirect()->route('events.create')->with('success', 'Event created successfully.');
     }
+
 
     /**
      * Display the specified resource.
