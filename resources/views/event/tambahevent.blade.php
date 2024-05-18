@@ -1,4 +1,3 @@
-<!-- resources/views/event/tambahevent.blade.php -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,9 +21,8 @@
                     @endforeach
                 </ul>
             </div>
-            
         @endif
-        <form action="{{ route('events.store') }}" method="POST" enctype="multipart/form-data" class="mb-3">
+        <form action="{{ route('event.store') }}" method="POST" enctype="multipart/form-data" class="mb-3">
             @csrf
             <div class="form-group">
                 <label for="nama_event">Nama Event</label>
@@ -43,7 +41,7 @@
                 <input type="time" class="form-control" id="jam_event" name="jam_event" required>
             </div>
             <div class="form-group">
-                <label for="event_dates">Tanggal Event</label>
+                <label for="tgl_event">Tanggal Event</label>
                 <input type="date" class="form-control" id="tgl_event" name="tgl_event" required>
             </div>
             <div class="form-group">
@@ -60,15 +58,29 @@
             </div>
             <div class="form-group">
                 <label for="status">Status</label>
-                <input type="text" class="form-control" id="status" name="status" required>
+                <select class="form-control" id="status" name="status" required>
+                    <option value="">Pilih Status</option>
+                    <option value="1">On Going</option>
+                    <option value="0">Selesai</option>
+                </select>
             </div>
             <div class="form-group">
-                <label for="id_kategori">ID Kategori</label>
-                <input type="number" class="form-control" id="id_kategori" name="id_kategori" required>
+                <label for="id_kategori">Kategori</label>
+                <select class="form-control" id="id_kategori" name="id_kategori" required>
+                    <option value="">Pilih Kategori</option>
+                    @foreach($kategori as $kat)
+                        <option value="{{ $kat->id }}">{{ $kat->nama_kategori }}</option>
+                    @endforeach
+                </select>
             </div>
             <div class="form-group">
-                <label for="id_penyelenggara">ID Penyelenggara</label>
-                <input type="number" class="form-control" id="id_penyelenggara" name="id_penyelenggara" required>
+                <label for="id_penyelenggara">Penyelenggara</label>
+                <select class="form-control" id="id_penyelenggara" name="id_penyelenggara" required>
+                    <option value="">Pilih Penyelenggara</option>
+                    @foreach($penyelenggara as $penyel)
+                        <option value="{{ $penyel->id }}">{{ $penyel->nama_penyelenggara }}</option>
+                    @endforeach
+                </select>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
