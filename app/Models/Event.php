@@ -23,4 +23,14 @@ class Event extends Model
         'id_penyelenggara'
     ];  
     
+    public function kategori()
+    {
+        return $this->belongsTo(Kategori::class, 'id_kategori', 'id_kategori');
+    }
+
+    public function penyelenggara()
+    {
+        return $this->belongsTo(Penyelenggara::class, 'id_penyelenggara', 'id_penyelenggara');
+    }
+
 }

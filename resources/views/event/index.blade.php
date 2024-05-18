@@ -46,7 +46,7 @@
                         <td>{{ $event->jml_ticket }}</td>
                         <td>{{ $event->hrg_ticket }}</td>
                         <td>{{ $event->status }}</td>
-                        <td>{{ $event->id_kategori }}</td>
+                        <td>{{ $event->kategori->nama_kategori}}</td>
                         <td>{{ $event->id_penyelenggara }}</td>
                     </tr>
                 @endforeach
