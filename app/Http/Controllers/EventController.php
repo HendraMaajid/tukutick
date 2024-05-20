@@ -70,7 +70,7 @@ class EventController extends Controller
 
         Event::create($data);
 
-        return redirect()->route('events.create')->with('success', 'Event created successfully.');
+        return redirect()->route('event.create')->with('success', 'Event created successfully.');
     }
 
 

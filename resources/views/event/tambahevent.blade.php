@@ -68,7 +68,7 @@
                 <select class="form-control" id="id_kategori" name="id_kategori" required>
                     <option value="">Pilih Kategori</option>
                     @foreach($kategori as $kat)
-                        <option value="{{ $kat->id }}">{{ $kat->nama_kategori }}</option>
+                        <option value="{{ $kat->id_kategori }}">{{ $kat->nama_kategori }}</option>
                     @endforeach
                 </select>
             </div>
@@ -77,7 +77,7 @@
                 <select class="form-control" id="id_penyelenggara" name="id_penyelenggara" required>
                     <option value="">Pilih Penyelenggara</option>
                     @foreach($penyelenggara as $penyel)
-                        <option value="{{ $penyel->id }}">{{ $penyel->nama_penyelenggara }}</option>
+                        <option value="{{ $penyel->id_penyelenggara }}">{{ $penyel->nama_penyelenggara }}</option>
                     @endforeach
                 </select>
             </div>

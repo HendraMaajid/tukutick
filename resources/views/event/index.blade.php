@@ -47,7 +47,7 @@
                         <td>{{ $event->hrg_ticket }}</td>
                         <td>{{ $event->status }}</td>
                         <td>{{ $event->kategori->nama_kategori}}</td>
-                        <td>{{ $event->id_penyelenggara }}</td>
+                        <td>{{ $event->penyelenggara->nama_penyelenggara }}</td>
                     </tr>
                 @endforeach
             </tbody>
