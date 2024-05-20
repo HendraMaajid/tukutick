@@ -141,7 +141,7 @@ class EventController extends Controller
 
         $event->update($data);
 
-        return redirect()->route('event.edit', $id)->with('success', 'Event updated successfully.');
+        return redirect()->route('event.index')->with('success', 'Event updated successfully.');
     }
 
 
@@ -150,6 +150,14 @@ class EventController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $event = Event::findOrFail($id);
+
+        // Hapus gambar dari storage
+        Storage::delete('public/events/' . $event->gambar);
+
+        // Hapus event dari database
+        $event->delete();
+
+        return redirect()->route('event.index')->with('success', 'Event deleted successfully.');
     }
 }

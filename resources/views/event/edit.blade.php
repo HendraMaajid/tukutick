@@ -16,7 +16,7 @@
                         </div>
                     @endif
 
-                    <form method="POST" action="{{ route('events.update', $event->id) }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('event.update', $event->id_event) }}" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
 
@@ -122,7 +122,7 @@
                             <select class="form-control @error('id_kategori') is-invalid @enderror" id="id_kategori" name="id_kategori" required>
                                 <option value="">Pilih Kategori</option>
                                 @foreach($kategori as $kategori)
-                                    <option value="{{ $kategori->id }}" {{ old('id_kategori', $event->id_kategori) == $kategori->id ? 'selected' : '' }}>{{ $kategori->nama_kategori }}</option>
+                                    <option value="{{ $kategori->id_kategori}}" {{ old('id_kategori', $event->id_kategori) == $kategori->id_kategori ? 'selected' : '' }}>{{ $kategori->nama_kategori }}</option>
                                 @endforeach
                             </select>
                             @error('id_kategori')
@@ -137,7 +137,7 @@
                             <select class="form-control @error('id_penyelenggara') is-invalid @enderror" id="id_penyelenggara" name="id_penyelenggara" required>
                                 <option value="">Pilih Penyelenggara</option>
                                 @foreach($penyelenggara as $penyelenggara)
-                                    <option value="{{ $penyelenggara->id }}" {{ old('id_penyelenggara', $event->id_penyelenggara) == $penyelenggara->id ? 'selected' : '' }}>{{ $penyelenggara->nama_penyelenggara }}</option>
+                                    <option value="{{ $penyelenggara->id_penyelenggara }}" {{ old('id_penyelenggara', $event->id_penyelenggara) == $penyelenggara->id_penyelenggara ? 'selected' : '' }}>{{ $penyelenggara->nama_penyelenggara }}</option>
                                 @endforeach
                             </select>
                             @error('id_penyelenggara')

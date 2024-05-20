@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kategori;
 use Illuminate\Http\Request;
 
 class KategoriController extends Controller
@@ -11,7 +12,9 @@ class KategoriController extends Controller
      */
     public function index()
     {
-        //
+        $kategori=Kategori::all();
+        return view('kategori.index', compact('kategori'));
+
     }
 
     /**
@@ -19,7 +22,7 @@ class KategoriController extends Controller
      */
     public function create()
     {
-        //
+        return view('kategori.create');
     }
 
     /**
@@ -27,7 +30,13 @@ class KategoriController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         $request->validate([
+            'nama_kategori' => 'required'
+        ]);
+        $data = $request->all();
+        Kategori::create($data);
+        return redirect()->route('kategori.index')
+            ->with('success', 'Kategori berhasil ditambahkan.');
     }
 
     /**
@@ -43,7 +52,8 @@ class KategoriController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $kategori = Kategori::findOrFail($id);
+        return view('kategori.edit', compact('kategori'));
     }
 
     /**
@@ -51,14 +61,25 @@ class KategoriController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'nama_kategori' => 'required'
+        ]);
+        $kategori = Kategori::findOrFail($id);
+        $kategori->update($request->all());
+        return redirect()->route('kategori.index')
+            ->with('success', 'Kategori berhasil diupdate.');
+
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        $kategori = Kategori::findOrFail($id);
+        $kategori->delete();
+
+        return redirect()->route('kategori.index')
+            ->with('success', 'Kategori berhasil dihapus.');
     }
 }

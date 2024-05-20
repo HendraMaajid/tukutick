@@ -9,6 +9,7 @@ class Event extends Model
 {
     use HasFactory;
     protected $table = 'event';
+     protected $primaryKey = 'id_event'; // Menentukan primary key
     protected $fillable = [
         'nama_event',
         'deskripsi_event',
