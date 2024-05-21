@@ -50,7 +50,7 @@ class PenyelenggaraController extends Controller
             'username' => $request->input('username'),
             'email' => $request->input('email_penyelenggara'),
             'password' => Hash::make($request->input('password')),
-            'role' => 'penyelenggara'
+            'role' => 'penyelenggara',
         ];
 
         // Extract data for insertion into penyelenggara table
