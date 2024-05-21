@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Penyelenggara;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class PenyelenggaraController extends Controller
 {
@@ -11,7 +14,8 @@ class PenyelenggaraController extends Controller
      */
     public function index()
     {
-        //
+        $penyelenggara = Penyelenggara::all();
+        return view('penyelenggara.index', compact('penyelenggara'));
     }
 
     /**
@@ -19,7 +23,7 @@ class PenyelenggaraController extends Controller
      */
     public function create()
     {
-        //
+        return view('penyelenggara.tambahpenyelenggara');
     }
 
     /**
@@ -27,7 +31,49 @@ class PenyelenggaraController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validate form inputs
+        $request->validate([
+            'username' => 'required|unique:users',
+            'email_penyelenggara' => 'required|email|unique:users,email',
+            'password' => 'required',
+            'nama_penyelenggara' => 'required',
+            'alamat_kantor' => 'required',
+            'lisensi' => 'required',
+            'kontak' => 'required',
+        ], [
+            'username.unique' => 'Username telah terdaftar.',
+            'email_penyelenggara.unique' => 'Email telah terdaftar.',
+        ]);
+
+        // Extract data for insertion into users table
+        $userData = [
+            'username' => $request->input('username'),
+            'email' => $request->input('email_penyelenggara'),
+            'password' => Hash::make($request->input('password')),
+            'role' => 'penyelenggara'
+        ];
+
+        // Extract data for insertion into penyelenggara table
+        $penyelenggaraData = [
+            'nama_penyelenggara' => $request->input('nama_penyelenggara'),
+            'email_penyelenggara' => $request->input('email_penyelenggara'),
+            'alamat_kantor' => $request->input('alamat_kantor'),
+            'kontak' => $request->input('kontak'),
+            'lisensi' => $request->input('lisensi'),
+            'username' => $request->input('username'),
+        ];
+
+        try {
+            // Attempt to create a new user and penyelenggara
+            User::create($userData);
+            Penyelenggara::create($penyelenggaraData);
+
+            // Redirect with success message
+            return redirect()->route('penyelenggara.index')->with('success', 'Penyelenggara berhasil disimpan.');
+        } catch (\Exception $e) {
+            // If there's an error, redirect back with error message
+            return redirect()->back()->withInput()->withErrors(['error' => 'Terjadi kesalahan. Silakan coba lagi.']);
+        }
     }
 
     /**
@@ -43,7 +89,10 @@ class PenyelenggaraController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $penyelenggara = Penyelenggara::findOrFail($id);
+
+        return view('penyelenggara.edit', compact('penyelenggara'));
+
     }
 
     /**
@@ -51,14 +100,34 @@ class PenyelenggaraController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $penyelenggara = Penyelenggara::findOrFail($id);
+
+        $request->validate([
+            'nama_penyelenggara' => 'required',
+            'alamat_kantor' => 'required',
+            'lisensi' => 'required',
+            'kontak' => 'required',
+        ]);
+
+        $penyelenggara->update([
+            'nama_penyelenggara' => $request->input('nama_penyelenggara'),
+            'alamat_kantor' => $request->input('alamat_kantor'),
+            'lisensi' => $request->input('lisensi'),
+            'kontak' => $request->input('kontak'),
+        ]);
+
+        return redirect()->route('penyelenggara.index')->with('success', 'Penyelenggara updated successfully.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        $penyelenggara = Penyelenggara::findOrFail($id);
+        $penyelenggara->delete();
+
+        return redirect()->route('penyelenggara.index')->with('success', 'Penyelenggara berhasil dihapus');
     }
+
 }

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\PenyelenggaraController;
 
 Route::get('/event', [EventController::class, 'index'])->name('event.index');
 Route::get('/event/create', [EventController::class, 'create'])->name('event.create');
@@ -19,3 +20,5 @@ Route::put('/kategori/update/{id}', [KategoriController::class, 'update'])->name
 Route::delete('/kategori/destroy/{id}', [KategoriController::class, 'destroy'])->name('kategori.destroy');
 
 
+//routing untuk penyelenggara
+Route::resource('/penyelenggara', PenyelenggaraController::class);

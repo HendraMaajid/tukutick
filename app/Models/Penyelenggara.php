@@ -17,4 +17,5 @@ class Penyelenggara extends Model
         'lisensi',
         'username',
     ];
+    protected $primaryKey = 'id_penyelenggara';
 }
