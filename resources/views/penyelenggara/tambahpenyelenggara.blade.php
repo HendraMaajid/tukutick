@@ -20,7 +20,7 @@
                 </ul>
             </div>
         @endif
-        <form action="{{ route('penyelenggara.store') }}" method="POST" class="mb-3">
+        <form action="{{ route('penyelenggara.store') }}" method="POST" class="mb-3" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
                 <label for="nama_penyelenggara" class="form-label">Nama Penyelenggara</label>
@@ -44,7 +44,7 @@
             </div>
             <div class="mb-3">
                 <label for="lisensi" class="form-label">Lisensi</label>
-                <input type="text" class="form-control" id="lisensi" name="lisensi" required>
+                <input type="file" class="form-control" id="lisensi" name="lisensi" required>
             </div>
             <div class="mb-3">
                 <label for="username" class="form-label">Username</label>

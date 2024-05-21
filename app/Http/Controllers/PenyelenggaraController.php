@@ -6,6 +6,7 @@ use App\Models\Penyelenggara;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class PenyelenggaraController extends Controller
 {
@@ -38,12 +39,15 @@ class PenyelenggaraController extends Controller
             'password' => 'required',
             'nama_penyelenggara' => 'required',
             'alamat_kantor' => 'required',
-            'lisensi' => 'required',
+            'lisensi' => 'required|file|mimes:pdf',
             'kontak' => 'required',
         ], [
             'username.unique' => 'Username telah terdaftar.',
             'email_penyelenggara.unique' => 'Email telah terdaftar.',
         ]);
+
+        $lisensi = $request->file('lisensi');
+        $lisensi->storeAs('public/lisensi', $lisensi->hashName());
 
         // Extract data for insertion into users table
         $userData = [
@@ -59,7 +63,7 @@ class PenyelenggaraController extends Controller
             'email_penyelenggara' => $request->input('email_penyelenggara'),
             'alamat_kantor' => $request->input('alamat_kantor'),
             'kontak' => $request->input('kontak'),
-            'lisensi' => $request->input('lisensi'),
+            'lisensi' => $lisensi->hashName(),
             'username' => $request->input('username'),
         ];
 
@@ -105,16 +109,28 @@ class PenyelenggaraController extends Controller
         $request->validate([
             'nama_penyelenggara' => 'required',
             'alamat_kantor' => 'required',
-            'lisensi' => 'required',
+            'lisensi' => '',
             'kontak' => 'required',
         ]);
 
-        $penyelenggara->update([
+
+        $data = ([
             'nama_penyelenggara' => $request->input('nama_penyelenggara'),
             'alamat_kantor' => $request->input('alamat_kantor'),
-            'lisensi' => $request->input('lisensi'),
             'kontak' => $request->input('kontak'),
         ]);
+
+        if ($request->hasFile('lisensi')) {
+            // Hapus gambar lama
+            Storage::delete('public/lisensi/' . $penyelenggara->lisensi);
+
+            // Simpan gambar baru
+            $lisensi = $request->file('lisensi');
+            $lisensi->storeAs('public/lisensi', $lisensi->hashName());
+            $data['lisensi'] = $lisensi->hashName();
+        }
+
+        $penyelenggara->update($data);
 
         return redirect()->route('penyelenggara.index')->with('success', 'Penyelenggara updated successfully.');
     }

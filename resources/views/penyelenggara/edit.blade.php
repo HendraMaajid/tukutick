@@ -18,7 +18,7 @@
                         </div>
                     @endif
 
-                    <form method="POST" action="{{ route('penyelenggara.update', $penyelenggara->id_penyelenggara) }}">
+                    <form method="POST" action="{{ route('penyelenggara.update', $penyelenggara->id_penyelenggara) }}" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
 
@@ -54,7 +54,7 @@
 
                         <div class="mb-3">
                             <label for="lisensi" class="form-label">Lisensi</label>
-                            <input type="text" class="form-control @error('lisensi') is-invalid @enderror" id="lisensi" name="lisensi" value="{{ old('lisensi', $penyelenggara->lisensi) }}" required>
+                            <input type="file" class="form-control @error('lisensi') is-invalid @enderror" id="lisensi" name="lisensi" value="{{ old('lisensi', $penyelenggara->lisensi) }}">
                             @error('lisensi')
                                 <div class="invalid-feedback">
                                     {{ $message }}

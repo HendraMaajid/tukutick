@@ -29,7 +29,10 @@
                     <td>{{ $penyel->nama_penyelenggara }}</td>
                     <td>{{ $penyel->alamat_kantor }}</td>
                     <td>{{ $penyel->kontak }}</td>
-                    <td>{{ $penyel->lisensi }}</td>
+                    <td>
+                        <a href="{{ asset('storage/lisensi/' . $penyel->lisensi) }}" target="_blank">Download PDF</a>
+                    </td>
+
                     <td>
                         <a href="{{ route('penyelenggara.edit', $penyel->id_penyelenggara) }}" class="btn btn-warning btn-sm">Update</a>
                         <form action="{{ route('penyelenggara.destroy', $penyel->id_penyelenggara) }}" method="POST" style="display:inline;">
