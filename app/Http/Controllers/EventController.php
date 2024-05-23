@@ -16,7 +16,7 @@ class EventController extends Controller
      */
     public function index()
     {
-        $event = Event::all();
+        $event = Event::paginate(5);
         return view('event.index', compact('event'));
     }
 
@@ -70,7 +70,7 @@ class EventController extends Controller
 
         Event::create($data);
 
-        return redirect()->route('event.create')->with('success', 'Event created successfully.');
+        return redirect()->route('event.index')->with('success', 'Event created successfully.');
     }
 
 

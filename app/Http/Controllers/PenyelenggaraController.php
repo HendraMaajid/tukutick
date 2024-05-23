@@ -15,7 +15,7 @@ class PenyelenggaraController extends Controller
      */
     public function index()
     {
-        $penyelenggara = Penyelenggara::all();
+        $penyelenggara = Penyelenggara::paginate(5);
         return view('penyelenggara.index', compact('penyelenggara'));
     }
 

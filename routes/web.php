@@ -5,6 +5,10 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\PenyelenggaraController;
 
+Route::get('/', function () {
+  return view('dashboard');
+});
+
 Route::get('/event', [EventController::class, 'index'])->name('event.index');
 Route::get('/event/create', [EventController::class, 'create'])->name('event.create');
 Route::post('/event/store', [EventController::class, 'store'])->name('event.store');
