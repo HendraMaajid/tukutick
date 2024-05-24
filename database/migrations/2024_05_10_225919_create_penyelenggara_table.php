@@ -12,13 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('penyelenggara', function (Blueprint $table) {
-             $table->id('id_penyelenggara');
+            $table->id('id_penyelenggara');
             $table->string('nama_penyelenggara');
             $table->string('email_penyelenggara');
             $table->text('alamat_kantor');
             $table->string('kontak');
             $table->string('lisensi');
-            $table->string('username');
+            $table->string('username'); //ini foreign key dari tabel users
+            $table->foreign('username')->references('username')->on('users');
             $table->timestamps();
         });
     }

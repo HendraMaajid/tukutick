@@ -22,8 +22,10 @@ return new class extends Migration
             $table->integer('jml_ticket');
             $table->float('hrg_ticket');
             $table->string('status');
-            $table->integer('id_kategori');
-            $table->integer('id_penyelenggara');
+            $table->unsignedBigInteger('id_kategori'); //foreign key dari tabel kategori
+            $table->foreign('id_kategori')->references('id_kategori')->on('kategori');
+            $table->unsignedBigInteger('id_penyelenggara'); //foreign key dari tabel penyelenggara
+            $table->foreign('id_penyelenggara')->references('id_penyelenggara')->on('penyelenggara');
             $table->timestamps();
         });
     }

@@ -18,7 +18,8 @@ return new class extends Migration
             $table->date('tgl_lahir');
             $table->string('no_hp_customer');
             $table->text('alamat_customer');
-            $table->string('username');
+            $table->string('username'); // foreign key dari tabel users
+            $table->foreign('username')->references('username')->on('users');
             $table->timestamps();
         });
     }

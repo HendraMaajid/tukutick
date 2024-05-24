@@ -14,9 +14,13 @@ return new class extends Migration
         Schema::create('pemenang', function (Blueprint $table) {
             $table->id('id_pemenang');
             $table->string('status_transaksi');
-            $table->integer('id_transaksi');
-            $table->integer('id_customer');
-            $table->integer('id_event');
+            $table->unsignedBigInteger('id_transaksi')->nullable(); //foreign key dari tabel transaksi, ini boleh null karna 
+            //saat membuat isi dari tabel pemenang otomasi belum ada transaksi yang dilakukan
+            //$table->foreign('id_transaksi')->references('id_transaksi')->on('transaksi');
+            $table->unsignedBigInteger('id_customer'); //foreign key dari tabel customer
+            $table->foreign('id_customer')->references('id_customer')->on('customer');
+            $table->unsignedBigInteger('id_event'); //foreign key dari tabel event
+            $table->foreign('id_event')->references('id_event')->on('event');
             $table->timestamps();
         });
     }

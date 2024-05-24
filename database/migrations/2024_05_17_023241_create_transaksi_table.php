@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('transaksi', function (Blueprint $table) {
             $table->id('id_transaksi');
             $table->float('jml_transaksi');
-            $table->integer('id_pemenang');
+            $table->unsignedBigInteger('id_pemenang'); //foreign key dari tabel pemenang
+            $table->foreign('id_pemenang')->references('id_pemenang')->on('pemenang');
             $table->timestamps();
         });
     }
