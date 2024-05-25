@@ -14,4 +14,6 @@ class Transaksi extends Model
         'jml_transaksi',
         'id_pemenang'
     ];
+
+    
 }

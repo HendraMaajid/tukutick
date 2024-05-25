@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Penyelenggara extends Model
 {
@@ -18,4 +19,10 @@ class Penyelenggara extends Model
         'username',
     ];
     protected $primaryKey = 'id_penyelenggara';
+
+
+    //satu penyelenggara bisa memiliki lebih dari satu event
+    function event() : HasMany {
+        return $this->hasMany(Event::class, 'id_penyelenggara');
+    }
 }
