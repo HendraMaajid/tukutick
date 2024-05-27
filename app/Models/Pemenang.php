@@ -13,7 +13,6 @@ class Pemenang extends Model
     protected $primaryKey = 'id_pemenang'; // Menentukan primary key
     protected $fillable = [
         'status_transaksi',
-        'id_transaksi',
         'id_customer',
         'id_event',
     ];
