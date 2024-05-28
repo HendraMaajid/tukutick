@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AppsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\KategoriController;
@@ -26,3 +27,6 @@ Route::delete('/kategori/destroy/{id}', [KategoriController::class, 'destroy'])-
 
 //routing untuk penyelenggara
 Route::resource('/penyelenggara', PenyelenggaraController::class);
+
+//routing untuk coba navbar
+Route::get('/apps', [AppsController::class, 'index'])->name('apps.index');
