@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Event;
 use Illuminate\Http\Request;
 
 class AppsController extends Controller
@@ -33,9 +34,10 @@ class AppsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        $event = Event::findOrFail($id);
+        return view('layouts.templateApps', compact('event'));
     }
 
     /**

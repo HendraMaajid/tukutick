@@ -26,3 +26,6 @@
 
 <!-- Page Specific JS File -->
 <script src="{{ asset('../assets/js/page/index.js') }}"></script>
+
+<!-- TinyMCE -->
+<script src="https://cdn.tiny.cloud/1/kve5ti8lvci9jztixazgvi2vhycfezp40ebxaqo2qr3x1wgc/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>

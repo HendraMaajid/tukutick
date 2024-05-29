@@ -30,3 +30,4 @@ Route::resource('/penyelenggara', PenyelenggaraController::class);
 
 //routing untuk coba navbar
 Route::get('/apps', [AppsController::class, 'index'])->name('apps.index');
+

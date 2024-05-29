@@ -22,6 +22,7 @@
     </div>
   </div>
   @include('layouts.app.script')
+  @yield('script')
 </body>
 
 </html>
