@@ -1,14 +1,23 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AppsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\PenyelenggaraController;
+use Illuminate\Support\Facades\Auth;
 
+/*Route::get('/', function () {
+  return view('admin.dashboard');
+});*/
+
+
+//halaman awal masuk ke login
 Route::get('/', function () {
-  return view('dashboard');
+  return redirect('/login');
 });
+
 
 Route::get('/event', [EventController::class, 'index'])->name('event.index');
 Route::get('/event/create', [EventController::class, 'create'])->name('event.create');
@@ -28,6 +37,14 @@ Route::delete('/kategori/destroy/{id}', [KategoriController::class, 'destroy'])-
 //routing untuk penyelenggara
 Route::resource('/penyelenggara', PenyelenggaraController::class);
 
+//routing untuk admin
+Route::resource('/admin', AdminController::class);
+
+
 //routing untuk coba navbar
 Route::get('/apps', [AppsController::class, 'index'])->name('apps.index');
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

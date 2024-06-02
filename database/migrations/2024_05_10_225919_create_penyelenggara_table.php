@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('email_penyelenggara');
             $table->text('alamat_kantor');
             $table->string('kontak');
-            $table->string('lisensi');
+            $table->string('lisensi')->nullable();
             $table->string('username'); //ini foreign key dari tabel users
             $table->foreign('username')->references('username')->on('users');
             $table->timestamps();

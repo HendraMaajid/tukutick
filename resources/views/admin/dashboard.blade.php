@@ -1,4 +1,4 @@
-@extends('layouts.sign')
+@extends('layouts.app')
 @section('title', 'Dashboard Admin')
 @section('content')
 <div class="main-content">
