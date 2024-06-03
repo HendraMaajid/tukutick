@@ -8,7 +8,7 @@
           <ul class="sidebar-menu">
             <li class="menu-header">Dashboard</li>
             <li>
-              <a href="{{url('/')}}"><i class="fas fa-fire"></i><span>Dashboard</span></a>
+              <a href="{{url('admin')}}"><i class="fas fa-fire"></i><span>Dashboard</span></a>
             </li>
             <li class="menu-header">Master</li>
             <li>

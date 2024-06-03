@@ -9,11 +9,7 @@
   <section class="section">
     <div class="section-header">
       <h1>Daftar Penyelenggara</h1>
-      @if(session('success'))
-      <div class="alert alert-success">
-        {{ session('success') }}
-      </div>
-      @endif
+      @include('../layouts.app.successAlert')
     </div>
     <div class="section-body">
       <a href="{{route('penyelenggara.create')}}" class="btn btn-primary mb-4">Tambah Penyelenggara

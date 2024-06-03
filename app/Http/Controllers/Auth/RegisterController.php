@@ -54,7 +54,7 @@ class RegisterController extends Controller
             'username' => ['required', 'string', 'max:255', 'unique:users'],
             'tgl_lahir' => ['required', 'date'],
             'no_hp_customer' => ['required', 'string', 'max:15'],
-            'alamat_customer' => ['required', 'string', 'max:255'],
+            // 'alamat_customer' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
@@ -80,7 +80,7 @@ class RegisterController extends Controller
             'email_customer' => $data['email'],
             'tgl_lahir' => $data['tgl_lahir'],
             'no_hp_customer' => $data['no_hp_customer'],
-            'alamat_customer' => $data['alamat_customer'],
+            // 'alamat_customer' => $data['alamat_customer'],
             'username' => $data['username'],
         ]);
 

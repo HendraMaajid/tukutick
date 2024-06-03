@@ -45,11 +45,22 @@ class LoginController extends Controller
         if ($user->role == 'admin') {
             return redirect('/admin');
         } elseif ($user->role == 'customer') {
-            return redirect('/customer');
+            return redirect('/home');
         } elseif ($user->role == 'penyelenggara') {
             return redirect('/penyelenggara');
         } else {
             return redirect('/home');
         }
+    }
+
+    public function logout(Request $request)
+    {
+        $this->guard()->logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect('/');
     }
 }

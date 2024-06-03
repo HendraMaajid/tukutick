@@ -13,3 +13,13 @@
  <!-- Template CSS -->
  <link rel="stylesheet" href="{{ asset('../assets/css/style.css') }}">
  <link rel="stylesheet" href="{{ asset('../assets/css/components.css') }}">
+
+ <style>
+.alert {
+  transition: opacity 0.5s linear;
+}
+
+.alert.hidden {
+  opacity: 0;
+}
+ </style>

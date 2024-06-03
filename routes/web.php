@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\PenyelenggaraController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 
 /*Route::get('/', function () {
@@ -13,9 +14,9 @@ use Illuminate\Support\Facades\Auth;
 });*/
 
 
-//halaman awal masuk ke login
+//halaman awal masuk ke landingpage
 Route::get('/', function () {
-  return redirect('/login');
+  return view('tukutick.landingpage');
 });
 
 
@@ -40,11 +41,6 @@ Route::resource('/penyelenggara', PenyelenggaraController::class);
 //routing untuk admin
 Route::resource('/admin', AdminController::class);
 
-
-//routing untuk coba navbar
-Route::get('/apps', [AppsController::class, 'index'])->name('apps.index');
-
-
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index']);

@@ -8,21 +8,8 @@
   <section class="section">
     <div class="section-header">
       <h1>Tambah Kategori Baru</h1>
-      @if (session('success'))
-      <div class="alert alert-success">
-        {{ session('success') }}
-      </div>
-      @endif
-      @if ($errors->any())
-      <div class="alert alert-danger">
-        <strong>Whoops!</strong> Terdapat kesalahan saat input data.<br><br>
-        <ul>
-          @foreach ($errors->all() as $error)
-          <li>{{ $error }}</li>
-          @endforeach
-        </ul>
-      </div>
-      @endif
+      @include('../layouts.app.successAlert')
+      @include('../layouts.app.failedAlert')
     </div>
     <div class="card">
       <div class="card-header">

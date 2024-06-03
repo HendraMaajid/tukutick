@@ -10,12 +10,7 @@
         <div class="card-header">Update Event</div>
 
         <div class="card-body">
-          @if (session('success'))
-          <div class="alert alert-success" role="alert">
-            {{ session('success') }}
-          </div>
-          @endif
-
+          @include('../layouts.app.successAlert')
           <form method="POST" action="{{ route('event.update', $event->id_event) }}" enctype="multipart/form-data">
             @csrf
             @method('PUT')

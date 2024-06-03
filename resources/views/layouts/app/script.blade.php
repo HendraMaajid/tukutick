@@ -28,4 +28,16 @@
 <script src="{{ asset('../assets/js/page/index.js') }}"></script>
 
 <!-- TinyMCE -->
-<script src="https://cdn.tiny.cloud/1/kve5ti8lvci9jztixazgvi2vhycfezp40ebxaqo2qr3x1wgc/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+<script src="https://cdn.tiny.cloud/1/kve5ti8lvci9jztixazgvi2vhycfezp40ebxaqo2qr3x1wgc/tinymce/7/tinymce.min.js"
+  referrerpolicy="origin"></script>
+
+<script>
+// Function to hide the alert after 3 seconds
+setTimeout(function() {
+  var alertBox = document.getElementById('alertBox');
+  alertBox.classList.add('hidden');
+  setTimeout(function() {
+    alertBox.style.display = 'none';
+  }, 500); // Wait for the transition to complete
+}, 1000); // 1  seconds
+</script>
