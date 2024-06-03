@@ -103,90 +103,39 @@
 </section>
 
 <!-- Section Upcoming Event -->
+
+@php
+  use App\Models\Event;
+
+  $events = Event::all();
+@endphp
 <section id="event" class="" style="background-color:#EEF7FF;margin-top:-4rem;">
   <div class="container" style="padding:7rem">
     <p class="h2 fw-bold mb-5">Upcoming Events</p>
     <div class="row row-cols-1 row-cols-md-3 g-4">
+      @foreach($events as $event)
+      <a class="text-decoration-none" href="{{route('event.show', $event->id_event)}}">
       <div class="col">
+
         <div class="card h-100 rounded-4">
-          <img src="{{asset('assets/img/img_tukutick/NOAH.png')}}" class="card-img-top rounded-top-4" alt="...">
-          <div class="card-body row">
-            <div class="col-2">
-              <p class="fw-bold" style="color:#3D37F1">Nov</p>
-              <p class="h3 fw-bolder" style="margin-top:-1.2rem">15</p>
-            </div>
-            <div class="col-10">
-              <h5 class="card-title">Konser NOAH </h5>
-              <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional
-                content. This content is a little bit longer.</p>
-            </div>
+        <img src="{{ asset('storage/events/' . $event->gambar) }}" class="card-img-top rounded-top-4"
+          alt="{{ $event->nama_event }}">
+        <div class="card-body row">
+          <div class="col-2">
+          <p class="fw-bold" style="color:#3D37F1">{{ \Carbon\Carbon::parse($event->tgl_event)->format('M') }}
+          </p>
+          <p class="h5 fw-bolder" style="margin-top:-1.2rem">
+            {{ \Carbon\Carbon::parse($event->tgl_event)->format('d') }}</p>
+          </div>
+          <div class="col-10">
+          <h5 class="card-title">{{ $event->nama_event }}</h5>
+          <p class="card-text">{{ $event->deskripsi_event }}</p>
           </div>
         </div>
-      </div>
-      <div class="col">
-        <div class="card h-100 rounded-4">
-          <img src="{{asset('assets/img/img_tukutick/NOAH.png')}}" class="card-img-top rounded-top-4" alt="...">
-          <div class="card-body row">
-            <div class="col-2">
-              <p class="fw-bold" style="color:#3D37F1">Nov</p>
-              <p class="h3 fw-bolder" style="margin-top:-1.2rem">15</p>
-            </div>
-            <div class="col-10">
-              <h5 class="card-title">Konser NOAH </h5>
-              <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional
-                content. This content is a little bit longer.</p>
-            </div>
-          </div>
         </div>
       </div>
-      <div class="col">
-        <div class="card h-100 rounded-4">
-          <img src="{{asset('assets/img/img_tukutick/NOAH.png')}}" class="card-img-top rounded-top-4" alt="...">
-          <div class="card-body row">
-            <div class="col-2">
-              <p class="fw-bold" style="color:#3D37F1">Nov</p>
-              <p class="h3 fw-bolder" style="margin-top:-1.2rem">15</p>
-            </div>
-            <div class="col-10">
-              <h5 class="card-title">Konser NOAH </h5>
-              <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional
-                content. This content is a little bit longer.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card h-100 rounded-4">
-          <img src="{{asset('assets/img/img_tukutick/NOAH.png')}}" class="card-img-top rounded-top-4" alt="...">
-          <div class="card-body row">
-            <div class="col-2">
-              <p class="fw-bold" style="color:#3D37F1">Nov</p>
-              <p class="h3 fw-bolder" style="margin-top:-1.2rem">15</p>
-            </div>
-            <div class="col-10">
-              <h5 class="card-title">Konser NOAH </h5>
-              <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional
-                content. This content is a little bit longer.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card h-100 rounded-4">
-          <img src="{{asset('assets/img/img_tukutick/NOAH.png')}}" class="card-img-top rounded-top-4" alt="...">
-          <div class="card-body row">
-            <div class="col-2">
-              <p class="fw-bold" style="color:#3D37F1">Nov</p>
-              <p class="h3 fw-bolder" style="margin-top:-1.2rem">15</p>
-            </div>
-            <div class="col-10">
-              <h5 class="card-title">Konser NOAH </h5>
-              <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional
-                content. This content is a little bit longer.</p>
-            </div>
-          </div>
-        </div>
-      </div>
+      </a>
+    @endforeach
     </div>
   </div>
 

@@ -26,7 +26,7 @@ class EventController extends Controller
     public function create()
     {
         $kategori = Kategori::all(); // 
-        $penyelenggara = Penyelenggara::all(); 
+        $penyelenggara = Penyelenggara::all();
 
         return view('event.tambahevent', compact('kategori', 'penyelenggara'));
     }
@@ -41,7 +41,7 @@ class EventController extends Controller
             'nama_event' => 'required',
             'deskripsi_event' => 'required',
             'gambar' => 'required|image|mimes:jpeg,jpg,png',
-            'jam_event' => 'required',       
+            'jam_event' => 'required',
             'tgl_event' => 'required',
             'lokasi' => 'required',
             'jml_ticket' => 'required',
@@ -79,7 +79,8 @@ class EventController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $event = Event::find($id);
+        return view('tukutick.detailEvent', compact('event'));
     }
 
     /**
@@ -88,8 +89,8 @@ class EventController extends Controller
     public function edit(string $id)
     {
         $event = Event::findOrFail($id);
-        $kategori = Kategori::all(); 
-        $penyelenggara = Penyelenggara::all(); 
+        $kategori = Kategori::all();
+        $penyelenggara = Penyelenggara::all();
 
         return view('event.edit', compact('event', 'kategori', 'penyelenggara'));
     }
@@ -104,7 +105,7 @@ class EventController extends Controller
             'nama_event' => 'required',
             'deskripsi_event' => 'required',
             'gambar' => 'nullable|image|mimes:jpeg,jpg,png',
-            'jam_event' => 'required',       
+            'jam_event' => 'required',
             'tgl_event' => 'required',
             'lokasi' => 'required',
             'jml_ticket' => 'required',

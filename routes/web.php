@@ -23,6 +23,10 @@ Route::get('/', function () {
 });
 
 
+
+//untuk event
+Route::resource('/event', EventController::class);
+
 Route::get('/event', [EventController::class, 'index'])->name('event.index');
 Route::get('/event/create', [EventController::class, 'create'])->name('event.create');
 Route::post('/event/store', [EventController::class, 'store'])->name('event.store');
@@ -46,11 +50,4 @@ Route::resource('/admin', AdminController::class);
 
 Auth::routes();
 
-Route::get('/home', [HomeController::class, 'index']);
-
-
-//routing untuk ghaca
-Route::get('gacha/{id_event}/{jml_ticket}/{jml_po}', [GachaController::class, 'store'])->name('gacha');
-
-//routing untuk pemenang
-Route::resource('/pemenang', PemenangController::class);
+Route::resource('/home', HomeController::class);
