@@ -9,6 +9,7 @@ use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\PenyelenggaraController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PemenangController;
+use App\Http\Controllers\PreorderController;
 use App\Models\Pemenang;
 use Illuminate\Support\Facades\Auth;
 
@@ -57,3 +58,7 @@ Route::get('gacha/{id_event}/{jml_ticket}/{jml_po}', [GachaController::class, 's
 
 //routing untuk pemenang
 Route::resource('/pemenang', PemenangController::class);
+
+
+//routing untuk melakukan preorder
+Route::resource('/preorder', PreorderController::class);

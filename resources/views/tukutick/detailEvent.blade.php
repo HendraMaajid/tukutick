@@ -130,9 +130,20 @@
       <a href="#" class="btn-outline-blue text-decoration-none">
         Pengumuman
       </a>
-      <a href="#" class="btn-blue text-decoration-none">
-        Pre-Order
-      </a>
+      <form action="{{ route('preorder.store') }}" method="post">
+        @csrf
+        <input type="hidden" name="id_customer" value="{{ $customer->id_customer }}">
+        <input type="hidden" name="id_event" value="{{ $event->id_event }}">
+        <!-- Jika Anda memiliki lebih banyak input fields, tambahkan di sini -->
+        <button type="submit" class="btn-blue text-decoration-none" style="
+            border: none;
+            padding: 10px 20px;
+            text-decoration: none;
+            cursor: pointer;
+            /* Tambahkan properti width dan height */
+            width: 160px;
+            height: 45px;">Pre-Order</button>
+        </form>
     </div>
   </div>
 </div>
