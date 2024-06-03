@@ -22,14 +22,14 @@
         </div>
       </div>
       <div class="carousel-item">
-        <img src="..." class="d-block w-100">
+        <img src="{{asset('assets/img/img_tukutick/coldplay.jpg')}}" class="d-block w-100">
         <div class="carousel-caption d-none d-md-block">
           <h5>Second slide label</h5>
           <p>Some representative placeholder content for the second slide.</p>
         </div>
       </div>
       <div class="carousel-item">
-        <img src="..." class="d-block w-100">
+        <img src="{{asset('assets/img/img_tukutick/miku.svg')}}" class="d-block w-100">
         <div class="carousel-caption d-none d-md-block">
           <h5>Third slide label</h5>
           <p>Some representative placeholder content for the third slide.</p>
@@ -105,9 +105,9 @@
 <!-- Section Upcoming Event -->
 
 @php
-  use App\Models\Event;
+use App\Models\Event;
 
-  $events = Event::all();
+$events = Event::all();
 @endphp
 <section id="event" class="" style="background-color:#EEF7FF;margin-top:-4rem;">
   <div class="container" style="padding:7rem">
@@ -115,27 +115,26 @@
     <div class="row row-cols-1 row-cols-md-3 g-4">
       @foreach($events as $event)
       <a class="text-decoration-none" href="{{route('event.show', $event->id_event)}}">
-      <div class="col">
-
-        <div class="card h-100 rounded-4">
-        <img src="{{ asset('storage/events/' . $event->gambar) }}" class="card-img-top rounded-top-4"
-          alt="{{ $event->nama_event }}">
-        <div class="card-body row">
-          <div class="col-2">
-          <p class="fw-bold" style="color:#3D37F1">{{ \Carbon\Carbon::parse($event->tgl_event)->format('M') }}
-          </p>
-          <p class="h5 fw-bolder" style="margin-top:-1.2rem">
-            {{ \Carbon\Carbon::parse($event->tgl_event)->format('d') }}</p>
-          </div>
-          <div class="col-10">
-          <h5 class="card-title">{{ $event->nama_event }}</h5>
-          <p class="card-text">{{ $event->deskripsi_event }}</p>
+        <div class="col">
+          <div class="card h-100 rounded-4">
+            <img src="{{ asset('storage/events/' . $event->gambar) }}" class="card-img-top rounded-top-4"
+              alt="{{ $event->nama_event }}">
+            <div class="card-body row">
+              <div class="col-2">
+                <p class="fw-bold" style="color:#3D37F1">{{ \Carbon\Carbon::parse($event->tgl_event)->format('M') }}
+                </p>
+                <p class="h5 fw-bolder" style="margin-top:-1.2rem">
+                  {{ \Carbon\Carbon::parse($event->tgl_event)->format('d') }}</p>
+              </div>
+              <div class="col-10">
+                <h5 class="card-title">{{ $event->nama_event }}</h5>
+                <p class="card-text">{{ $event->deskripsi_event }}</p>
+              </div>
+            </div>
           </div>
         </div>
-        </div>
-      </div>
       </a>
-    @endforeach
+      @endforeach
     </div>
   </div>
 
