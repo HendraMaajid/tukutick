@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->string('email_customer');
             $table->date('tgl_lahir');
             $table->string('no_hp_customer');
-            // $table->text('alamat_customer');
+            $table->text('alamat_customer');
             $table->string('username'); // foreign key dari tabel users
             $table->foreign('username')->references('username')->on('users');
             $table->timestamps();
