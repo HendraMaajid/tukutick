@@ -59,7 +59,7 @@ class UserSeeder extends Seeder
             'email_customer' => 'customer@example.com',
             'tgl_lahir' => '1990-01-01',
             'no_hp_customer' => '081234567890',
-            'alamat_customer' => 'Jl. Contoh No. 123',
+            //'alamat_customer' => 'Jl. Contoh No. 123',
             'username' => 'customeruser',
         ]);
     }
