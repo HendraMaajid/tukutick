@@ -33,6 +33,7 @@
                       <th>Lokasi</th>
                       <th>Jumlah Ticket</th>
                       <th>Harga Ticket</th>
+                      <th>Jumlah PO</th>
                       <th>Status</th>
                       <th>Kategori</th>
                       <th>Penyelenggara</th>
@@ -50,13 +51,17 @@
                       <td>{{ $item->lokasi }}</td>
                       <td>{{ $item->jml_ticket }}</td>
                       <td>{{ $item->hrg_ticket }}</td>
+                      @php
+                        $jml_po = \App\Models\Preorder::where('id_event', $item->id_event)->count();
+                      @endphp
+                      <th>{{ $jml_po }}</th>
                       <td>{{ $item->status }}</td>
                       <td>{{ $item->kategori->nama_kategori }}</td>
                       <td>{{ $item->penyelenggara->nama_penyelenggara }}</td>
                       <td>
                         <a href="{{ route('event.edit', $item->id_event) }}" class="btn btn-warning btn-sm">Update</a>
-                        <a href="" class="btn btn-info btn-sm">Pemenang</a>
-                        <a href="" class="btn btn-secondary btn-sm">Pre
+                        <a href="{{ route('pemenang.show', $item->id_event) }}" class="btn btn-info btn-sm">Pemenang</a>
+                        <a href="{{ route('gacha', ['id_event'=>$item->id_event, 'jml_ticket'=>$item->jml_ticket, 'jml_po'=>$jml_po]) }}" class="btn btn-secondary btn-sm">Pre
                           Order</a>
                         <form action="{{ route('event.destroy', $item->id_event) }}" method="POST"
                           style="display:inline;">

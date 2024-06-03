@@ -4,9 +4,12 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AppsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\GachaController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\PenyelenggaraController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PemenangController;
+use App\Models\Pemenang;
 use Illuminate\Support\Facades\Auth;
 
 /*Route::get('/', function () {
@@ -44,3 +47,10 @@ Route::resource('/admin', AdminController::class);
 Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index']);
+
+
+//routing untuk ghaca
+Route::get('gacha/{id_event}/{jml_ticket}/{jml_po}', [GachaController::class, 'store'])->name('gacha');
+
+//routing untuk pemenang
+Route::resource('/pemenang', PemenangController::class);
