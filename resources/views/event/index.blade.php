@@ -55,6 +55,9 @@
                       <td>{{ $item->penyelenggara->nama_penyelenggara }}</td>
                       <td>
                         <a href="{{ route('event.edit', $item->id_event) }}" class="btn btn-warning btn-sm">Update</a>
+                        <a href="" class="btn btn-info btn-sm">Pemenang</a>
+                        <a href="" class="btn btn-secondary btn-sm">Pre
+                          Order</a>
                         <form action="{{ route('event.destroy', $item->id_event) }}" method="POST"
                           style="display:inline;">
                           @csrf

@@ -106,6 +106,7 @@
 
 @php
 use App\Models\Event;
+
 $events = Event::all();
 @endphp
 <section id="event" class="" style="background-color:#EEF7FF;margin-top:-4rem;">
@@ -115,11 +116,14 @@ $events = Event::all();
       @foreach($events as $event)
       <div class="col">
         <div class="card h-100 rounded-4">
-          <img src="{{ asset('storage/events/' . $event->gambar) }}" class="card-img-top rounded-top-4" alt="{{ $event->nama_event }}">
+          <img src="{{ asset('storage/events/' . $event->gambar) }}" class="card-img-top rounded-top-4"
+            alt="{{ $event->nama_event }}">
           <div class="card-body row">
             <div class="col-2">
-              <p class="fw-bold" style="color:#3D37F1">{{ \Carbon\Carbon::parse($event->tgl_event)->format('M') }}</p>
-              <p class="h3 fw-bolder" style="margin-top:-1.2rem">{{ \Carbon\Carbon::parse($event->tgl_event)->format('d') }}</p>
+              <p class="fw-bold" style="color:#3D37F1">{{ \Carbon\Carbon::parse($event->tgl_event)->format('M') }}
+              </p>
+              <p class="h5 fw-bolder" style="margin-top:-1.2rem">
+                {{ \Carbon\Carbon::parse($event->tgl_event)->format('d') }}</p>
             </div>
             <div class="col-10">
               <h5 class="card-title">{{ $event->nama_event }}</h5>
@@ -128,7 +132,7 @@ $events = Event::all();
           </div>
         </div>
       </div>
-    @endforeach
+      @endforeach
     </div>
   </div>
 
