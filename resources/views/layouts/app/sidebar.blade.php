@@ -31,12 +31,12 @@
             <li>
               <a href="{{url('transaksi')}}"><i class="fas fa-dollar-sign"></i><span>Transaksi</span></a>
             </li>
-            <li>
-              <a href="{{url('preorder')}}"><i class="fas fa-shopping-basket"></i><span>Pre Order</span></a>
-            </li>
-            <li>
-              <a href="{{url('pemenang')}}"><i class="fas fa-ticket-alt"></i><span>Pemenang</span></a>
-            </li>
+            <!-- <li>
+      <a href="{{url('preorder')}}"><i class="fas fa-shopping-basket"></i><span>Pre Order</span></a>
+    </li>
+    <li>
+      <a href="{{url('pemenang')}}"><i class="fas fa-ticket-alt"></i><span>Pemenang</span></a>
+    </li> -->
             <li>
               <a href="{{url('tiket')}}"><i class="fas fa-ticket-alt"></i><span>Tiket</span></a>
             </li>

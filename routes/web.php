@@ -51,3 +51,9 @@ Route::resource('/admin', AdminController::class);
 Auth::routes();
 
 Route::resource('/home', HomeController::class);
+
+//routing untuk ghaca
+Route::get('gacha/{id_event}/{jml_ticket}/{jml_po}', [GachaController::class, 'store'])->name('gacha');
+
+//routing untuk pemenang
+Route::resource('/pemenang', PemenangController::class);
