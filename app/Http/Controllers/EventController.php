@@ -82,19 +82,28 @@ class EventController extends Controller
      */
     public function show(string $id)
     {
-        //mengambil data user yang sedang login
-        $user = Auth::user();
-        $username = $user->username;
-        $customer = Customer::where('username', $username)->first();
-        //dd($customer->id_customer);
-        
-        //mengambil data event yang dipilih
-        $event = Event::find($id);
+        if (!Auth::guest()) {
+            //mengambil data user yang sedang login
+            $user = Auth::user();
+            $username = $user->username;
+            $customer = Customer::where('username', $username)->first();
+            //dd($customer->id_customer);
+            //mengambil data event yang dipilih
+            $event = Event::find($id);
 
-        //mengubah tgl dan jam ke format carbon
-        $event->tgl_event = Carbon::parse($event->tgl_event);
-        $event->jam_event = Carbon::parse($event->jam_event);
-        return view('tukutick.detailEvent', compact('event', 'customer'));
+            //mengubah tgl dan jam ke format carbon
+            $event->tgl_event = Carbon::parse($event->tgl_event);
+            $event->jam_event = Carbon::parse($event->jam_event);
+            return view('tukutick.detailEvent', compact('event', 'customer'));
+        } else {
+            //mengambil data event yang dipilih
+            $event = Event::find($id);
+
+            //mengubah tgl dan jam ke format carbon
+            $event->tgl_event = Carbon::parse($event->tgl_event);
+            $event->jam_event = Carbon::parse($event->jam_event);
+            return view('tukutick.detailEvent', compact('event'));
+        }
     }
 
     /**

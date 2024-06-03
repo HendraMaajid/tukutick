@@ -5,20 +5,20 @@
 
 @section('content')
 <div class="d-flex p-3" style="background-color: #094067;">
-  <a href="{{route('home.index')}}" class="text-decoration-none btn-outline-white"
+  <a href="{{ Auth::guest() ? url('/') : route('home.index')}}" class="text-decoration-none btn-outline-white"
     style="padding: 0.75rem 2rem; font-size: 1rem;float-left">
     Back</a>
   <p class=" h1 fw-bolder d-block mx-auto text-light">{{ $event->nama_event }}</p>
 </div>
 <section style="max-width: 100%; height: 100vh; overflow: hidden;">
-  <img src="{{ asset('storage/events/miku.svg') }}" alt="">
+  <img src="{{ asset('storage/events/' . $event->gambar)}}" alt="">
 </section>
 <div class="w-100 h-100 p-lg-5" style="margin-top:-1rem">
   <p class="h1 fw-bolder">{{ $event->nama_event }}</p>
   <div class="row d-flex justify-content-start border-bottom mb-4">
     <div class="col-2 d-flex">
       <i class="fa-regular fa-calendar fs-5 p-1"></i>
-      <p class="fs-5 fw-bold ms-1">{{ $event->tgl_event }}</p>
+      <p class="fs-5 fw-bold ms-1">{{ $event->tgl_event->translatedFormat(' d F Y') }}</p>
     </div>
     <div class="col-2 d-flex ">
       <i class="fa-solid fa-location-dot fs-5 p-1"></i>
@@ -41,7 +41,7 @@
             </tr>
             <tr>
               <th id="row" scope="row" class="text-light" style="background-color:#094067">Waktu</th>
-              <td class="ps-3">{{ $event->jam_event->translatedFormat('H.i') }}  WIB</td>
+              <td class="ps-3">{{ $event->jam_event->translatedFormat('H.i') }} WIB</td>
             </tr>
             <tr>
               <th id="row" scope="row" class="text-light" style="background-color:#094067">Lokasi</th>
@@ -127,23 +127,33 @@
   </div>
   <div class="">
     <div class="container mt-5 d-flex justify-content-center gap-5 mb-5">
+      @guest
       <a href="#" class="btn-outline-blue text-decoration-none">
-        Pengumuman
+      Pengumuman
+      </a>
+      <a href="{{route('login')}}" class="btn-blue text-decoration-none">
+      Pre-Order
+      </a>
+    @else
+      <a href="#" class="btn-outline-blue text-decoration-none">
+      Pengumuman
       </a>
       <form action="{{ route('preorder.store') }}" method="post">
-        @csrf
-        <input type="hidden" name="id_customer" value="{{ $customer->id_customer }}">
-        <input type="hidden" name="id_event" value="{{ $event->id_event }}">
-        <!-- Jika Anda memiliki lebih banyak input fields, tambahkan di sini -->
-        <button type="submit" class="btn-blue text-decoration-none" style="
-            border: none;
-            padding: 10px 20px;
-            text-decoration: none;
-            cursor: pointer;
-            /* Tambahkan properti width dan height */
-            width: 160px;
-            height: 45px;">Pre-Order</button>
-        </form>
+      @csrf
+      <input type="hidden" name="id_customer" value="{{ $customer->id_customer }}">
+      <input type="hidden" name="id_event" value="{{ $event->id_event }}">
+      <!-- Jika Anda memiliki lebih banyak input fields, tambahkan di sini -->
+      <button type="submit" class="btn-blue text-decoration-none" style="
+      border: none;
+      padding: 10px 20px;
+      text-decoration: none;
+      cursor: pointer;
+      width: 160px;
+      height: 45px;
+      border: 2px solid #007AFF;;  
+      ">Pre-Order</button>
+      </form>
+    @endguest
     </div>
   </div>
 </div>
