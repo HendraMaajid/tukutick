@@ -11,6 +11,9 @@ class GachaController extends Controller
 {
     public function store($id_event, $jml_ticket, $jml_po)
     {
+        //dd($id_event, $jml_ticket, $jml_po);
+
+
         // Ambil data event
         $event = Event::findOrFail($id_event);
 
@@ -32,8 +35,10 @@ class GachaController extends Controller
             $data = [
                 'id_event' => $id_event,
                 'id_customer' => $gatcha->id_customer,
-                'status_pembayaran' => 'belum dibayar'
+                'status_transaksi' => 'belum dibayar'
             ];
+
+            //dd($data);
 
             Pemenang::create($data);
         }
