@@ -29,7 +29,8 @@
             <label for="deskripsi_event" class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Deskripsi
               Event</label>
             <div class="col-sm-12 col-md-7">
-              <textarea name="deskripsi_event" id="deskripsi_event" cols="30" rows="10" class="form-control"></textarea>
+              <input type="text" name="deskripsi_event" id="deskripsi_event" cols="30" rows="10"
+                class="form-control"></input>
             </div>
           </div>
           <div class="form-group row mb-4">
@@ -86,8 +87,8 @@
             <div class="col-sm-12 col-md-7">
               <select class="form-control" id="kategori_id" name="id_kategori" required>
                 @foreach($kategori as $item)
-                <option value="{{ $item->id_kategori }}">{{ $item->nama_kategori }}</option>
-                @endforeach
+          <option value="{{ $item->id_kategori }}">{{ $item->nama_kategori }}</option>
+        @endforeach
               </select>
             </div>
           </div>
@@ -98,8 +99,8 @@
               <select class="form-control" id="id_penyelenggara" name="id_penyelenggara" required>
                 <option value="">Pilih Penyelenggara</option>
                 @foreach($penyelenggara as $penyel)
-                <option value="{{ $penyel->id_penyelenggara }}">{{ $penyel->nama_penyelenggara }}</option>
-                @endforeach
+          <option value="{{ $penyel->id_penyelenggara }}">{{ $penyel->nama_penyelenggara }}</option>
+        @endforeach
               </select>
             </div>
 
