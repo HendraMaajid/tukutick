@@ -8,63 +8,26 @@
   <a href="{{route('home.index')}}" class="text-decoration-none btn-outline-white"
     style="padding: 0.75rem 2rem; font-size: 1rem;float-left">
     Back</a>
-  <p class=" h1 fw-bolder d-block mx-auto text-light">Hatsune Miku Magical Mirai</p>
-
+  <p class=" h1 fw-bolder d-block mx-auto text-light">{{ $event->nama_event }}</p>
 </div>
 <section style="max-width: 100%; height: 100vh; overflow: hidden;">
   <img src="{{ asset('storage/events/miku.svg') }}" alt="">
 </section>
 <div class="w-100 h-100 p-lg-5" style="margin-top:-1rem">
-  <p class="h1 fw-bolder">Hatsune Miku Magical Mirai</p>
+  <p class="h1 fw-bolder">{{ $event->nama_event }}</p>
   <div class="row d-flex justify-content-start border-bottom mb-4">
     <div class="col-2 d-flex">
       <i class="fa-regular fa-calendar fs-5 p-1"></i>
-      <p class="fs-5 fw-bold ms-1">29 Juni 2024</p>
+      <p class="fs-5 fw-bold ms-1">{{ $event->tgl_event }}</p>
     </div>
     <div class="col-2 d-flex ">
       <i class="fa-solid fa-location-dot fs-5 p-1"></i>
-      <p class="fs-5 fw-bold ms-1">Gelora Bung Karno</p>
+      <p class="fs-5 fw-bold ms-1">{{ $event->lokasi }}</p>
     </div>
   </div>
   <div class="mt-3">
     <p class="h3 fw-bold">Deskripsi</p>
-    <p>A live show and exhibition, connecting with Hatsune Miku through creativity!
-      Hatsune Miku “Magical Mirai”
-      Hatsune Miku "Magical Mirai" is a combined event of 3DCG live concert of virtual singers such as Hatsune Miku, and
-      an exhibition where you will be able to experience the creative culture surrounding Hatsune Miku.
-      By making Hatsune Miku and her friends a creative hub, we are hoping to make space for people to gather and have
-      fun tied together with the keyword “creativity”.
-      Held every year since 2013.
-
-      A live show and exhibition, connecting with Hatsune Miku through creativity!
-      Hatsune Miku “Magical Mirai”
-      Hatsune Miku "Magical Mirai" is a combined event of 3DCG live concert of virtual singers such as Hatsune Miku, and
-      an exhibition where you will be able to experience the creative culture surrounding Hatsune Miku.
-      By making Hatsune Miku and her friends a creative hub, we are hoping to make space for people to gather and have
-      fun tied together with the keyword “creativity”.
-      Held every year since 2013.A live show and exhibition, connecting with Hatsune Miku through creativity!
-      Hatsune Miku “Magical Mirai”
-      Hatsune Miku "Magical Mirai" is a combined event of 3DCG live concert of virtual singers such as Hatsune Miku, and
-      an exhibition where you will be able to experience the creative culture surrounding Hatsune Miku.
-      By making Hatsune Miku and her friends a creative hub, we are hoping to make space for people to gather and have
-      fun tied together with the keyword “creativity”.
-      Held every year since 2013.
-
-      A live show and exhibition, connecting with Hatsune Miku through creativity!
-      Hatsune Miku “Magical Mirai”
-      Hatsune Miku "Magical Mirai" is a combined event of 3DCG live concert of virtual singers such as Hatsune Miku, and
-      an exhibition where you will be able to experience the creative culture surrounding Hatsune Miku.
-      By making Hatsune Miku and her friends a creative hub, we are hoping to make space for people to gather and have
-      fun tied together with the keyword “creativity”.
-      Held every year since 2013.
-
-      A live show and exhibition, connecting with Hatsune Miku through creativity!
-      Hatsune Miku “Magical Mirai”
-      Hatsune Miku "Magical Mirai" is a combined event of 3DCG live concert of virtual singers such as Hatsune Miku, and
-      an exhibition where you will be able to experience the creative culture surrounding Hatsune Miku.
-      By making Hatsune Miku and her friends a creative hub, we are hoping to make space for people to gather and have
-      fun tied together with the keyword “creativity”.
-      Held every year since 2013.</p>
+    <p>{{ $event->deskripsi_event }}</p>
   </div>
   <div class="mt-5">
     <p class="h3 fw-bold">Detail Event</p>
@@ -74,15 +37,15 @@
           <tbody style="border-radius: 10px">
             <tr>
               <th id="row" scope="row" class="text-light" style="background-color:#094067;">Tanggal Event</th>
-              <td class="ps-3">Sabtu, 29 Juni 2024</td>
+              <td class="ps-3">{{ $event->tgl_event->translatedFormat('l, d F Y') }}</td>
             </tr>
             <tr>
               <th id="row" scope="row" class="text-light" style="background-color:#094067">Waktu</th>
-              <td class="ps-3">19.30 WIB</td>
+              <td class="ps-3">{{ $event->jam_event->translatedFormat('H.i') }}  WIB</td>
             </tr>
             <tr>
               <th id="row" scope="row" class="text-light" style="background-color:#094067">Lokasi</th>
-              <td class="ps-3">Stadio Gelora Bung Karno, Jakarta</td>
+              <td class="ps-3">{{ $event->lokasi }}</td>
             </tr>
             <tr>
               <th id="row" scope="row" class="text-light" style="background-color:#094067">Pre-Order</th>
@@ -90,7 +53,7 @@
             </tr>
             <tr>
               <th id="row" scope="row" class="text-light" style="background-color:#094067">Harga Tiket</th>
-              <td class="ps-3">S seat (Rp 500.000,00), A seat (Rp 250.000,00)</td>
+              <td class="ps-3">Rp{{ $event->hrg_ticket }}</td>
             </tr>
           </tbody>
         </table>

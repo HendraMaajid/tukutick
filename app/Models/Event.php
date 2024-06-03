@@ -9,7 +9,15 @@ class Event extends Model
 {
     use HasFactory;
     protected $table = 'event';
-     protected $primaryKey = 'id_event'; // Menentukan primary key
+    protected $primaryKey = 'id_event'; // Menentukan primary key
+
+    protected $dates = [
+        'created_at',
+        'updated_at',
+        'tgl_event', // Ganti dengan nama kolom tanggal di database Anda
+        'jam_event'
+    ];
+
     protected $fillable = [
         'nama_event',
         'deskripsi_event',

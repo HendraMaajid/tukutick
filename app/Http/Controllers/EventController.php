@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Event;
 use App\Models\Kategori;
 use App\Models\Penyelenggara;
+use Carbon\Carbon;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -80,6 +81,8 @@ class EventController extends Controller
     public function show(string $id)
     {
         $event = Event::find($id);
+        $event->tgl_event = Carbon::parse($event->tgl_event);
+        $event->jam_event = Carbon::parse($event->jam_event);
         return view('tukutick.detailEvent', compact('event'));
     }
 
