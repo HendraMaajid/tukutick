@@ -67,3 +67,8 @@ Route::resource('/preorder', PreorderController::class);
 Route::get('event/{id_event}/pemenang', function () {
   return view('tukutick.pemenang');
 });
+
+//url untuk menampilkan halaman transaksi
+Route::get('/pembayaran', function () {
+  return view('tukutick.pembayaran');
+});

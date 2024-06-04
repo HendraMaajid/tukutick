@@ -32,11 +32,12 @@
   <div class="mt-5">
     <p class="h3 fw-bold">Detail Event</p>
     <div class="container mt-3" style="margin-left: -10px">
-      <div class="table-responsive">
+      <div class="table-responsive col-5">
         <table class="table table-bordered table-custom">
-          <tbody style="border-radius: 10px">
+          <tbody>
             <tr>
-              <th id="row" scope="row" class="text-light" style="background-color:#094067;">Tanggal Event</th>
+              <th width="30%" id="row" scope="row" class="text-light" style="background-color:#094067;">Tanggal Event
+              </th>
               <td class="ps-3">{{ $event->tgl_event->translatedFormat('l, d F Y') }}</td>
             </tr>
             <tr>

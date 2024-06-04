@@ -3,6 +3,10 @@
   integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 <script src="https://kit.fontawesome.com/44604b8181.js" crossorigin="anonymous"></script>
 <style>
+body {
+  background-color: #EEF7FF !important;
+}
+
 .btn-custom-width {
   width: 100px;
   /* Atur sesuai kebutuhan */
@@ -141,5 +145,112 @@
   background-color: #007AFF;
   color: #ffffff;
   border-style: none;
+}
+
+/* dropdown notification */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  margin-left: -300px;
+  background-color: #f9f9f9;
+  width: 350px;
+  max-height: 400px;
+  white-space: nowrap;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.notification-header {
+  padding: 10px 16px;
+  font-weight: bold;
+  border-bottom: 1px solid #ddd;
+  position: sticky;
+  width: 350px;
+  background: white;
+}
+
+.notification-content {
+  width: 350px;
+  max-height: 360px;
+  overflow-y: scroll;
+
+}
+
+.notification-item {
+  max-width: 100%;
+  vertical-align: top;
+  padding: 10px 16px;
+  text-decoration: none;
+  color: black;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.notification-item:hover {
+  background-color: #f1f1f1;
+}
+
+.notification-item img {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
+
+.notification-item div {
+  max-width: 100%;
+  word-wrap: break-word;
+  display: flex;
+  flex-direction: column;
+  /* Ensure text stays inline with image */
+  vertical-align: top;
+}
+
+.notification-item p {
+  word-wrap: break-word;
+  /* Memecah kata yang panjang */
+  overflow: hidden;
+  /* Menyembunyikan overflow */
+  white-space: normal;
+}
+
+.notification-item span {
+  display: block;
+  font-size: 12px;
+  color: gray;
+}
+
+.notification-footer {
+  padding: 10px 16px;
+  text-align: center;
+}
+
+.notification-footer a {
+  text-decoration: none;
+  color: blue;
+}
+
+#bellIcon {
+  cursor: pointer;
+}
+
+.notification-content::-webkit-scrollbar {
+  width: 0.3rem;
+}
+
+.notification-content::-webkit-scrollbar-track {
+  background: lightgrey;
+  border-radius: 10px;
+}
+
+.notification-content::-webkit-scrollbar-thumb {
+  background: #094067;
+  border-radius: 10px;
 }
 </style>
