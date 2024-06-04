@@ -42,4 +42,9 @@ class Event extends Model
         return $this->belongsTo(Penyelenggara::class, 'id_penyelenggara', 'id_penyelenggara');
     }
 
+    public function pemenang()
+    {
+        return $this->hasMany(Pemenang::class, 'id_event');
+    }
+
 }

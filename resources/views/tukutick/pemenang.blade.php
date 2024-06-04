@@ -17,9 +17,8 @@
   <p class=" h1 fw-bolder d-block mx-auto text-light">Pemenang</p>
 </div>
 <div class="container p-5">
-  <p class="h1 fw-bold mb-5">Hatsune Miku Magical Mirai</p>
-  <p class="fs-5 fw-normal">Berikut merupakan list pemenang untuk pre-order tiket <span>&nbsp;Hatsune Miku
-      Magical Mirai</span>.</p>
+  <p class="h1 fw-bold mb-5">{{ $event->nama_event }}</p>
+  <p class="fs-5 fw-normal">Berikut merupakan list pemenang untuk pre-order tiket <span>&nbsp;{{$event->nama_event}}</span>.</p>
   <div class="col-10 mx-auto">
     <table id="example1" class="table table-striped" style="width:100%">
       <thead>
@@ -30,46 +29,15 @@
         </tr>
       </thead>
       <tbody>
+        <?php $nomor=1; ?>
+        @foreach ($pemenang as $menang)
         <tr>
-          <td>Tiger Nixon</td>
-          <td>System Architect</td>
-          <td>Edinburgh</td>
+          <td>{{ $nomor }}</td>
+          <td>{{ $menang->customer->username }}</td>
+          <td>{{ $menang->customer->id_customer }}</td>
         </tr>
-        <tr>
-          <td>Garrett Winters</td>
-          <td>Accountant</td>
-          <td>Tokyo</td>
-        </tr>
-        <tr>
-          <td>Ashton Cox</td>
-          <td>Junior Technical Author</td>
-          <td>San Francisco</td>
-        </tr>
-        <tr>
-          <td>Cedric Kelly</td>
-          <td>Senior Javascript Developer</td>
-          <td>Edinburgh</td>
-        </tr>
-        <tr>
-          <td>Airi Satou</td>
-          <td>Accountant</td>
-          <td>Tokyo</td>
-        </tr>
-        <tr>
-          <td>Brielle Williamson</td>
-          <td>Integration Specialist</td>
-          <td>New York</td>
-        </tr>
-        <tr>
-          <td>Herrod Chandler</td>
-          <td>Sales Assistant</td>
-          <td>San Francisco</td>
-        </tr>
-        <tr>
-          <td>Rhona Davidson</td>
-          <td>Integration Specialist</td>
-          <td>Tokyo</td>
-        </tr>
+        <?php $nomor++; ?>
+        @endforeach
     </table>
   </div>
 

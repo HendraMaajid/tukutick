@@ -128,14 +128,14 @@
   <div class="">
     <div class="container mt-5 d-flex justify-content-center gap-5 mb-5">
       @guest
-      <a href="{{url("event/$event->id_event/pemenang")}}" class="btn-outline-blue text-decoration-none">
+      <a href="{{route('pemenang.show', $event->id_event)}}" class="btn-outline-blue text-decoration-none">
       Pengumuman
       </a>
       <a href="{{route('login')}}" class="btn-blue text-decoration-none">
       Pre-Order
       </a>
     @else
-      <a href="{{url("event/$event->id_event/pemenang")}}" class="btn-outline-blue text-decoration-none">
+      <a href="{{route('pemenang.show', $event->id_event)}}" class="btn-outline-blue text-decoration-none">
       Pengumuman
       </a>
       <form action="{{ route('preorder.store') }}" method="post">

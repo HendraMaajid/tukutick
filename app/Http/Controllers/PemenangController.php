@@ -12,10 +12,17 @@ class PemenangController extends Controller
         return view('pemenang.index');
     }*/
 
-    function show($id){
-       $id_event = $id;
-       //$event = Event::findOrFail($id_event);
-       $winners = Pemenang::findOrFail($id_event);
-       return view('pemenang.index', compact('winners'));
+    public function show($id)
+    {
+        // Asumsikan 'id' di sini adalah 'id_event' di model Pemenang
+        $pemenang = Pemenang::where('id_event', $id)->get();
+
+        $event = Event::find($id);
+
+        //dd($event->nama_event);
+
+        //dd($pemenang);
+
+        return view('tukutick.pemenang', compact('pemenang', 'event'));
     }
 }

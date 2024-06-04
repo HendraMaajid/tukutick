@@ -18,4 +18,9 @@ class Customer extends Model
         'alamat_customer',
         'username'
     ];
+
+    public function pemenang()
+    {
+        return $this->hasMany(Pemenang::class, 'id_customer');
+    }
 }
