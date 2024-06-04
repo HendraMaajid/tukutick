@@ -1,7 +1,7 @@
 <div class="container-fluid" style="background-color:#094067">
   <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-5 px-5 pt-3 justify-content-center text-light">
     <div class="col mb-3">
-      <a href="#" class="navbar-brand text-light d-flex align-items-center mb-3  text-decoration-none ">
+      <a href="#" class="navbar-brand text-light d-flex align-items-center mb-3  text-decoration-none fs-3 ">
         TukuTick
       </a>
       <p class="w-full" style="width:170%">TukuTick is a global self-service ticketing platform for live experiences
@@ -15,7 +15,7 @@
     </div>
 
     <div class="col mb-3">
-      <h5>Plan Events</h5>
+      <h5 class="fw-bold">Plan Events</h5>
       <ul class="nav flex-column mt-3">
         <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Create and Set Up</a></li>
         <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light ">Sell Tickets</a></li>
@@ -25,7 +25,7 @@
     </div>
 
     <div class="col mb-3">
-      <h5>TukuTick</h5>
+      <h5 class="fw-bold">TukuTick</h5>
       <ul class="nav flex-column mt-3">
         <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light ">About Us</a></li>
         <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light ">Features</a></li>
@@ -37,7 +37,7 @@
     </div>
 
     <div id="contact" class="col mb-3">
-      <h5>Contact</h5>
+      <h5 class="fw-bold">Contact</h5>
       <ul class="nav flex-row mt-3 gap-2">
         <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light "><img
               src="{{asset('assets/img/img_tukutick/Instagram.svg')}}" alt=""></a>

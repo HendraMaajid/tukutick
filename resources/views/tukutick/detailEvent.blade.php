@@ -128,14 +128,14 @@
   <div class="">
     <div class="container mt-5 d-flex justify-content-center gap-5 mb-5">
       @guest
-      <a href="#" class="btn-outline-blue text-decoration-none">
+      <a href="{{url("event/$event->id_event/pemenang")}}" class="btn-outline-blue text-decoration-none">
       Pengumuman
       </a>
       <a href="{{route('login')}}" class="btn-blue text-decoration-none">
       Pre-Order
       </a>
     @else
-      <a href="#" class="btn-outline-blue text-decoration-none">
+      <a href="{{url("event/$event->id_event/pemenang")}}" class="btn-outline-blue text-decoration-none">
       Pengumuman
       </a>
       <form action="{{ route('preorder.store') }}" method="post">
@@ -144,14 +144,14 @@
       <input type="hidden" name="id_event" value="{{ $event->id_event }}">
       <!-- Jika Anda memiliki lebih banyak input fields, tambahkan di sini -->
       <button type="submit" class="btn-blue text-decoration-none" style="
-      border: none;
-      padding: 10px 20px;
-      text-decoration: none;
-      cursor: pointer;
-      width: 160px;
-      height: 45px;
-      border: 2px solid #007AFF;;  
-      ">Pre-Order</button>
+    border: none;
+    padding: 10px 20px;
+    text-decoration: none;
+    cursor: pointer;
+    width: 160px;
+    height: 45px;
+    border: 2px solid #007AFF;;  
+    ">Pre-Order</button>
       </form>
     @endguest
     </div>

@@ -62,3 +62,8 @@ Route::resource('/pemenang', PemenangController::class);
 
 //routing untuk melakukan preorder
 Route::resource('/preorder', PreorderController::class);
+
+//url untuk menampilkan halaman pemenang
+Route::get('event/{id_event}/pemenang', function () {
+  return view('tukutick.pemenang');
+});
