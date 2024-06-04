@@ -4,7 +4,7 @@
         <a class="navbar-brand fs-2 ms-2" href="{{ Auth::guest() ? url('/') : route('home.index')}}">TukuTick</a>
       </div>
       <div class="d-flex gap-5">
-        <div class="navbar-nav d-flex flex-row gap-4">
+        <div class="navbar-nav d-flex flex-row gap-4 my-auto">
           @guest
         <a class="nav-link" href="#home">Home</a>
         <a class="nav-link" href="#about">About</a>
@@ -27,9 +27,54 @@
       <a class="btn btn-outline-primary btn-custom-width rounded-pill" href="{{ route('register') }}">Sign Up</a>
     @endif
       @else
-        <div class="navbar-nav d-flex flex-row gap-4 pt-1">
-        <a href="#" class="text-dark"><i class="fa-solid fa-bell fs-2 "></i></a>
-        <div class="dropdown text-end">
+        <div class="navbar-nav d-flex flex-row gap-2 pt-1" style="margin-left: -20px">
+        <!-- notification -->
+        <div class="dropdown">
+          <i class="fa-solid fa-bell fs-2" id="bellIcon"></i>
+          <div class="dropdown-content" id="dropdownContent">
+          <div class="notification-header">Notifications</div>
+          <div class="notification-content">
+            <div class="notification-item">
+            <a href="{{url('/pembayaran')}}" class="text-decoration-none text-dark">
+              <p class="fw-bold">[Sistem]</p>
+              <div>
+              <p>You and Dedik Sugiharto are now friends</p>
+              <span>10 hours ago</span>
+              </div>
+            </a>
+
+            </div>
+            <div class="notification-item">
+            <a href="" class="text-decoration-none text-dark">
+              <p class="fw-bold">[Sistem]</p>
+              <div>
+              <p>Kusnaedi has moved task Fix bug header to Done</p>
+              <span>12 hours ago</span>
+              </div>
+            </a>
+            </div>
+            <div class="notification-item">
+            <a href="" class="text-decoration-none text-dark">
+              <p class="fw-bold">[Sistem]</p>
+              <div>
+              <p>Low disk space. Let's clean it!</p>
+              <span>17 hours ago</span>
+              </div>
+            </a>
+            </div>
+            <div class="notification-item">
+            <a href="" class="text-decoration-none text-dark">
+              <p class="fw-bold">[Sistem]</p>
+              <div>
+              <p>Welcome to Stisla template!</p>
+              <span>Yesterday</span>
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+        <!-- notif end -->
+        <div class="dropdown text-end pt-0">
           <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle"
           data-bs-toggle="dropdown" aria-expanded="false">
           <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
@@ -41,7 +86,7 @@
             <hr class="dropdown-divider">
           </li>
           <li><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-       document.getElementById('logout-form').submit();">
+     document.getElementById('logout-form').submit();">
             {{ __('Logout') }}</a>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
             @csrf
@@ -57,3 +102,22 @@
     </div>
     </div>
   </nav>
+  <script>
+document.addEventListener('DOMContentLoaded', (event) => {
+  const bellIcon = document.getElementById('bellIcon');
+  const dropdownContent = document.getElementById('dropdownContent');
+
+  // Toggle dropdown visibility when bell icon is clicked
+  bellIcon.addEventListener('click', (event) => {
+    event.stopPropagation();
+    dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
+  });
+
+  // Close the dropdown when clicking outside of it
+  document.addEventListener('click', (event) => {
+    if (event.target !== bellIcon && !dropdownContent.contains(event.target)) {
+      dropdownContent.style.display = 'none';
+    }
+  });
+});
+  </script>
