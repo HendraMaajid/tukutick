@@ -35,40 +35,18 @@
           <div class="notification-header">Notifications</div>
           <div class="notification-content">
             <div class="notification-item">
-            <a href="{{url('/pembayaran')}}" class="text-decoration-none text-dark">
-              <p class="fw-bold">[Sistem]</p>
-              <div>
-              <p>You and Dedik Sugiharto are now friends</p>
-              <span>10 hours ago</span>
-              </div>
-            </a>
-
-            </div>
-            <div class="notification-item">
-            <a href="" class="text-decoration-none text-dark">
-              <p class="fw-bold">[Sistem]</p>
-              <div>
-              <p>Kusnaedi has moved task Fix bug header to Done</p>
-              <span>12 hours ago</span>
-              </div>
-            </a>
-            </div>
-            <div class="notification-item">
-            <a href="" class="text-decoration-none text-dark">
-              <p class="fw-bold">[Sistem]</p>
-              <div>
-              <p>Low disk space. Let's clean it!</p>
-              <span>17 hours ago</span>
-              </div>
-            </a>
-            </div>
-            <div class="notification-item">
-            <a href="" class="text-decoration-none text-dark">
-              <p class="fw-bold">[Sistem]</p>
-              <div>
-              <p>Welcome to Stisla template!</p>
-              <span>Yesterday</span>
-              </div>
+              @forelse ($notifikasi as $notif)
+                <a href="{{url('/pembayaran')}}" class="text-decoration-none text-dark">
+                  <p class="fw-bold">[Sistem]</p>
+                  <div>
+                  <p>Selamat anda berhasil memenangkan tiket {{ $notif->event->nama_event }}
+                  </p>
+                  <span>{{ $notif->created_at->diffForHumans() }}</span>
+                  </div>
+                </a>
+              @empty
+                
+              @endforelse
             </div>
           </div>
           </div>

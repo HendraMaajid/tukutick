@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Customer;
+use App\Models\Pemenang;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -23,6 +26,18 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('tukutick.home');
+        //mendapatkan data tiket yang didapatkan oleh customer yang sedang login
+        $user = Auth::user();
+        $username = $user->username;
+        //dd($username);
+        $customer = Customer::where('username', $username)->first();
+        //dd($customer);
+        $id_customer = $customer->id_customer;
+        //dd($id_customer);
+        $notifikasi = Pemenang::where('id_customer', $id_customer)->get();
+
+        //dd($notifikasi);
+
+        return view('tukutick.home', compact('notifikasi'));
     }
 }
