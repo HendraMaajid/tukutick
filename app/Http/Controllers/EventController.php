@@ -51,11 +51,18 @@ class EventController extends Controller
             'hrg_ticket' => 'required',
             'status' => 'required',
             'id_kategori' => 'required',
-            'id_penyelenggara' => 'required',
+            //'id_penyelenggara' => 'required',
         ]);
 
         $image = $request->file('gambar');
         $image->storeAs('public/events', $image->hashName());
+
+
+        //mendapatkan id_penyelenggara yang sedang login
+        $user = Auth::user();
+        $username = $user->username;
+        $penyelenggara = Penyelenggara::where('username', $username)->first();
+        $id_penyelenggara = $penyelenggara->id_penyelenggara;
 
         $data = [
             'nama_event' => $request->input('nama_event'),
@@ -68,8 +75,10 @@ class EventController extends Controller
             'hrg_ticket' => $request->input('hrg_ticket'),
             'status' => $request->input('status'),
             'id_kategori' => $request->input('id_kategori'),
-            'id_penyelenggara' => $request->input('id_penyelenggara'),
+            'id_penyelenggara' => $id_penyelenggara,
         ];
+
+        //dd($data);
 
         Event::create($data);
 
@@ -135,10 +144,16 @@ class EventController extends Controller
             'hrg_ticket' => 'required',
             'status' => 'required',
             'id_kategori' => 'required',
-            'id_penyelenggara' => 'required',
+            //'id_penyelenggara' => 'required',
         ]);
 
         $event = Event::findOrFail($id);
+
+        //mendapatkan id_penyelenggara yang sedang login
+        $user = Auth::user();
+        $username = $user->username;
+        $penyelenggara = Penyelenggara::where('username', $username)->first();
+        $id_penyelenggara = $penyelenggara->id_penyelenggara;
 
         $data = [
             'nama_event' => $request->input('nama_event'),
@@ -150,7 +165,7 @@ class EventController extends Controller
             'hrg_ticket' => $request->input('hrg_ticket'),
             'status' => $request->input('status'),
             'id_kategori' => $request->input('id_kategori'),
-            'id_penyelenggara' => $request->input('id_penyelenggara'),
+            'id_penyelenggara' => $id_penyelenggara,
         ];
 
         if ($request->hasFile('gambar')) {

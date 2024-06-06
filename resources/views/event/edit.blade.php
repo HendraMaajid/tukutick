@@ -139,23 +139,6 @@
               @enderror
             </div>
 
-            <div class="mb-3">
-              <label for="id_penyelenggara" class="form-label">Penyelenggara</label>
-              <select class="form-control @error('id_penyelenggara') is-invalid @enderror" id="id_penyelenggara"
-                name="id_penyelenggara" required>
-                <option value="">Pilih Penyelenggara</option>
-                @foreach($penyelenggara as $penyelenggara)
-                <option value="{{ $penyelenggara->id_penyelenggara }}"
-                  {{ old('id_penyelenggara', $event->id_penyelenggara) == $penyelenggara->id_penyelenggara ? 'selected' : '' }}>
-                  {{ $penyelenggara->nama_penyelenggara }}</option>
-                @endforeach
-              </select>
-              @error('id_penyelenggara')
-              <div class="invalid-feedback">
-                {{ $message }}
-              </div>
-              @enderror
-            </div>
 
             <button type="submit" class="btn btn-primary">Update Event</button>
           </form>

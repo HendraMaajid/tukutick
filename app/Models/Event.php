@@ -31,6 +31,20 @@ class Event extends Model
         'id_kategori',
         'id_penyelenggara'
     ];  
+
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($event) {
+            // Hapus preorder terkait
+            $event->preorder()->delete();
+
+            // Hapus pemenang terkait
+            $event->pemenang()->delete();
+        });
+    }
     
     public function kategori()
     {
@@ -44,7 +58,11 @@ class Event extends Model
 
     public function pemenang()
     {
-        return $this->hasMany(Pemenang::class, 'id_event');
+        return $this->hasMany(Pemenang::class, 'id_event', 'id_event');
+    }
+
+    public function preorder(){
+        return $this->hasMany(Preorder::class, 'id_event', 'id_event');
     }
 
 }
