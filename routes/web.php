@@ -72,3 +72,15 @@ Route::get('event/{id_event}/pemenang', function () {
 Route::get('/pembayaran', function () {
   return view('tukutick.pembayaran');
 });
+
+Route::get('/tiket', [HomeController::class, 'myTicket'])->name('myticket');
+
+//url untuk menampilkan halaman detailtiket
+Route::get('/detailtiket', function () {
+  return view('tukutick.detailTiket');
+});
+
+//url untuk menampilkan halaman profile
+Route::get('/profile', function () {
+  return view('tukutick.profile');
+});

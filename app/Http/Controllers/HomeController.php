@@ -40,4 +40,15 @@ class HomeController extends Controller
 
         return view('tukutick.home', compact('notifikasi'));
     }
+
+    public function myTicket()
+    {
+        $user = Auth::user();
+        $username = $user->username;
+        $customer = Customer::where('username', $username)->first();
+        $id_customer = $customer->id_customer;
+        $notifikasi = Pemenang::where('id_customer', $id_customer)->get();
+
+        return view('tukutick.tiket', compact('notifikasi'));
+    }
 }
