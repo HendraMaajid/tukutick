@@ -63,15 +63,19 @@
             <div class="form-group">
               <label for="nama">Nama :</label>
               <input type="text" class="form-control" id="nama" value="Pak Ustadz">
-            </div>
+            </div><br>
             <div class="form-group">
               <label for="username">Username :</label>
               <input type="text" class="form-control" id="username" value="Ahlisurga" disabled>
-            </div>
+            </div><br>
+            <div class="form-group">
+              <label for="imageUpload">Profile Picture:</label>
+              <input type="file" class="form-control-file" id="imageUpload" accept="image/*">
+            </div><br>
             <div class="form-group">
               <label for="tanggalLahir">Tanggal Lahir:</label>
               <input type="date" class="form-control" id="tanggalLahir" value="2000-03-03">
-            </div>
+            </div><br>
             <div class="form-group">
               <label for="email">Email:</label>
               <input type="email" class="form-control" id="email" value="pakustadz@gmail.com">
