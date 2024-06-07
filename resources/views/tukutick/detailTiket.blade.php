@@ -74,9 +74,10 @@
 @endsection
 @section('content')
 <div class="d-flex p-3" style="background-color: #094067;">
-  <a href="{{route(tiket.show)}}" class="text-decoration-none btn-outline-white"
-    style="padding: 0.75rem 2rem; font-size: 1rem;float-left">
-    Back</a>
+  <a href="javascript:window.history.back();" class="text-decoration-none btn-outline-white"
+    style="padding: 0.75rem 2rem; font-size: 1rem; float-left">
+    Back
+  </a>
   <h1 class="h1 fw-bolder d-block mx-auto text-light">Ticket Detail</h1>
 </div>
 
@@ -89,15 +90,15 @@
     <div class="qrcodeArea">
       <!--<h3>QR Code:</h3> -->
       <br> <img class="logo" src="{{asset('assets/img/img_tukutick/barcode.jpg')}}"><br><br>
-      <p>Ticket ID: <b>[Ticket_id]</b></p>
-      <p>Ticket Price: [paid_tickets]</p>
+      <p>Ticket ID: <b>{{ $tiket->id_pemenang }}</b></p>
+      <p>Ticket Price: {{ $tiket->event->hrg_ticket }}</p>
     </div>
 
     <div class="attendeeTable">
       <table style="width:100%">
         <tr>
-          <td style="width:70%"><b>[customer_name]</b></td>
-          <td>ID: [Customer_id]</td>
+          <td style="width:70%"><b>{{ $tiket->customer->nama_customer }}</b></td>
+          <td>ID: {{ $tiket->customer->id_customer }}</td>
         </tr>
       </table>
     </div>
@@ -108,29 +109,29 @@
       <div class="eventTable">
         <table style="width:100%">
           <tr>
-            <td style="width:50%" " font-size: 30px">Date: <br><b>[event_start_date]</b></td>
-            <td style="width:50%">Time: <br><b>[event_start_time]</b></td>
+            <td style="width:50%" " font-size: 30px">Date: <br><b>{{ \Carbon\Carbon::parse($tiket->event->tanggal_event)->format('d F Y') }}</b></td>
+            <td style="width:50%">Time: <br><b>{{ \Carbon\Carbon::parse($tiket->event->jam_event)->format('H.i') }}</b></td>
           </tr>
         </table>
       </div><br>
-      <h2>[event_title]</h2>
-      <p>Location: [event_location]</p>
+      <h2>{{ $tiket->event->nama_event }}</h2>
+      <p>Location: {{ $tiket->event->lokasi }}</p>
     </div>
 
     <div class="separator"></div>
 
     <div class="organizerArea">
       <h3>Organizer Information:</h3>
-      <p>Organizer: [organizer_name]</p>
-      <p>Email: <a href="mailto:[organizer_email]">[organizer_email]</a></p>
+      <p>Organizer: {{ $tiket->event->penyelenggara->nama_penyelenggara }}</p>
+      <p>Email: <a href="mailto:[organizer_email]">{{ $tiket->event->penyelenggara->email_penyelenggara }}</a></p>
     </div>
 
     <div class="separator1"></div>
 
     <div class="cutArea">
-      <h3>[event_title]</h3>
-      <p>Ticket ID: [ticket_id]</p>
-      <p>[event_start_date]/[event_start_time]</p>
+      <h3>{{ $tiket->event->nama_event }}</h3>
+      <p>Ticket ID: {{ $tiket->id_pemenang }}</p>
+      <p>{{ \Carbon\Carbon::parse($tiket->event->tanggal_event)->format('d F Y') }}/{{ \Carbon\Carbon::parse($tiket->event->jam_event)->format('H.i') }}</p>
     </div>
   </div>
 </div>

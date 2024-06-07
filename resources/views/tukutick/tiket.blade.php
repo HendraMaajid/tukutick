@@ -496,10 +496,11 @@
 @endsection
 @section('content')
 <div class="w-full vh-100 p-5">
-  <p class="fs-4 fw-bold text-end me-5" style="color:#094067">Total: 2</p>
+  <p class="fs-4 fw-bold text-end me-5" style="color:#094067">Total: {{ count($tiketku) }}</p>
   <!-- Ticket -->
+  @foreach ($tiketku as $tiket)
   <div class="d-flex justify-content-center p-3">
-    <a href="{{url('/detailtiket')}}">
+    <a href="{{ route('tiket.show', ['tiket' => $tiket->id_pemenang]) }}">
       <div class="box">
         <ul class="left">
           <li></li>
@@ -539,19 +540,19 @@
           <span class="airline airlineslip">TukuTick</span>
           <span class="boarding">Event Ticket</span>
           <div class="content">
-            <span class="jfk">NAMA EVENT</span>
+            <span class="jfk">{{ $tiket->event->nama_event }}</span>
 
-            <span class="jfk jfkslip">NAMA EVENT</span>
+            <span class="jfk jfkslip">{{ $tiket->event->nama_event }}</span>
             <div class="sub-content">
               <span class="watermark">TukuTick</span>
-              <span class="name">ID TICKET<br><span>0001</span></span>
-              <span class="flight">TIME<br><span>18:00</span></span>
-              <span class="gate">LOCATION<br><span>PURWOKERTO</span></span>
-              <span class="boardingtime">DATE<br><span>11 AUGUST 2024</span></span>
+              <span class="name">ID TICKET<br><span>{{ $tiket->id_pemenang }}</span></span>
+              <span class="flight">TIME<br><span>{{ \Carbon\Carbon::parse($tiket->event->jam_event)->format('H.i') }}</span></span>
+              <span class="gate">LOCATION<br><span>{{ $tiket->event->lokasi }}</span></span>
+              <span class="boardingtime">DATE<br><span>{{ \Carbon\Carbon::parse($tiket->event->tanggal_event)->format('d F Y') }}</span></span>
 
               <span class="flight flightslip">ID TICKET<br><span>0001</span></span>
-              <span class="seat seatslip">TIME<br><span>18:00</span></span>
-              <span class="name nameslip">LOCATION<br><span>PURWOKERTO</span></span>
+              <span class="seat seatslip">TIME<br><span>{{ \Carbon\Carbon::parse($tiket->event->jam_event)->format('H.i') }}</span></span>
+              <span class="name nameslip">LOCATION<br><span>{{ $tiket->event->lokasi }}</span></span>
             </div>
           </div>
           <div class="barcode"></div>
@@ -561,69 +562,8 @@
     </a>
 
   </div>
+  @endforeach
   <!-- End Ticket -->
-  <div class="d-flex justify-content-center p-3">
-    <a href="{{url('/detailtiket')}}">
-      <div class="box">
-        <ul class="left">
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-        </ul>
-
-        <ul class="right">
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-        </ul>
-        <div class="ticket">
-          <span class="airline">TukuTick</span>
-          <span class="airline airlineslip">TukuTick</span>
-          <span class="boarding">Event Ticket</span>
-          <div class="content">
-            <span class="jfk">NAMA EVENT</span>
-
-            <span class="jfk jfkslip">NAMA EVENT</span>
-            <div class="sub-content">
-              <span class="watermark">TukuTick</span>
-              <span class="name">ID TICKET<br><span>0001</span></span>
-              <span class="flight">TIME<br><span>18:00</span></span>
-              <span class="gate">LOCATION<br><span>PURWOKERTO</span></span>
-              <span class="boardingtime">DATE<br><span>11 AUGUST 2024</span></span>
-
-              <span class="flight flightslip">ID TICKET<br><span>0001</span></span>
-              <span class="seat seatslip">TIME<br><span>18:00</span></span>
-              <span class="name nameslip">LOCATION<br><span>PURWOKERTO</span></span>
-            </div>
-          </div>
-          <div class="barcode"></div>
-          <div class="barcode slip"></div>
-        </div>
-      </div>
-    </a>
-
-  </div>
+  
 </div>
 @endsection
