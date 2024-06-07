@@ -12,8 +12,13 @@ class Transaksi extends Model
     protected $primaryKey = 'id_transaksi'; // Menentukan primary key
     protected $fillable = [
         'jml_transaksi',
-        'id_pemenang'
+        'id_pemenang',
+        'metode_pembayaran'
     ];
 
+    public function pemenang()
+    {
+        return $this->hasOne(Pemenang::class, 'id_pemenang', 'id_pemenang');
+    }    
     
 }

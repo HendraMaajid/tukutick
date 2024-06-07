@@ -27,4 +27,9 @@ class Pemenang extends Model
     function event() : BelongsTo {
         return $this->belongsTo(Event::class, 'id_event');
     }
+
+    public function transaksi()
+    {
+        return $this->belongsTo(Transaksi::class, 'id_pemenang', 'id_pemenang');
+    }
 }

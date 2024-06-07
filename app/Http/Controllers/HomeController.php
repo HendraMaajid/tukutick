@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Customer;
 use App\Models\Pemenang;
+use App\Models\Transaksi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -36,9 +37,9 @@ class HomeController extends Controller
         //dd($id_customer);
         $notifikasi = Pemenang::where('id_customer', $id_customer)->get();
 
-        //dd($notifikasi);
 
-        return view('tukutick.home', compact('notifikasi'));
+
+        return view('tukutick.home', compact('notifikasi', 'id_customer'));
     }
 
     public function myTicket()
@@ -47,8 +48,8 @@ class HomeController extends Controller
         $username = $user->username;
         $customer = Customer::where('username', $username)->first();
         $id_customer = $customer->id_customer;
-        $notifikasi = Pemenang::where('id_customer', $id_customer)->get();
+        $tiketku = Pemenang::where('id_customer', $id_customer)->where('status_transaksi', 'sudah dibayar')->get();
 
-        return view('tukutick.tiket', compact('notifikasi'));
+        return view('tukutick.tiket', compact('tiketku'));
     }
 }

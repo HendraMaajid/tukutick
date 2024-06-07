@@ -10,6 +10,13 @@ class Customer extends Model
     use HasFactory;
     protected $table = 'customer';
     protected $primaryKey = 'id_customer'; // Menentukan primary key
+
+    protected $dates = [
+        'created_at',
+        'updated_at',
+        'tgl_lahir',
+    ];
+
     protected $fillable = [
         'nama_customer',
         'email_customer',

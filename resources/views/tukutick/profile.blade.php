@@ -5,7 +5,7 @@
 
 @section('content')
 <div class="d-flex p-3" style="background-color: #094067;">
-  <a href="{{url('/home')}}" class="text-decoration-none btn-outline-white"
+  <a href="{{route('home.index')}}" class="text-decoration-none btn-outline-white"
     style="padding: 0.75rem 2rem; font-size: 1rem;float-left">
     Back</a>
   <h1 class="h1 fw-bolder d-block mx-auto text-light">Profile</h1>
@@ -16,26 +16,26 @@
       <img src="{{asset('assets/img/avatar/avatar-1.png')}}" class="rounded-start-4" width="300" alt="">
     </div>
     <div class="col-8 p-3">
-      <p class="fs-5 fw-bold">Halo Pak Ustadz!</p>
+      <p class="fs-5 fw-bold">Halo {{ $customer->nama_customer }}</p>
       <div class="d-flex justify-content-start col">
         <p class="col-3 fs-5">Nama</p>
         <p class="me-3 fs-5">:</p>
-        <p class="col-4 fs-5">Pak Ustadz</p>
+        <p class="col-4 fs-5">{{ $customer->nama_customer }}</p>
       </div>
       <div class="d-flex justify-content-start col">
         <p class="col-3 fs-5">Username</p>
         <p class="me-3 fs-5">:</p>
-        <p class="col-4 fs-5">Ahlisurga</p>
+        <p class="col-4 fs-5">{{ $customer->username }}</p>
       </div>
       <div class="d-flex justify-content-start col">
         <p class="col-3 fs-5">Tanggal Lahir</p>
         <p class="me-3 fs-5">:</p>
-        <p class="col-4 fs-5">30 Februari 2000</p>
+        <p class="col-4 fs-5">{{ \Carbon\Carbon::parse($customer->tgl_lahir)->locale('id')->isoFormat('D MMMM YYYY') }}</p>
       </div>
       <div class="d-flex justify-content-start col">
         <p class="col-3 fs-5">Email</p>
         <p class="me-3 fs-5">:</p>
-        <p class="col-4 fs-5">pakustadz@gmail.com</p>
+        <p class="col-4 fs-5">{{ $customer->email_customer }}</p>
       </div>
       <div class="d-flex justify-content-start col">
         <p class="col-9"></p>
@@ -59,10 +59,11 @@
 
         <!-- Modal Body dengan form -->
         <div class="modal-body">
-          <form>
+          <form method="POST" action="">
+            @csrf
             <div class="form-group">
               <label for="nama">Nama :</label>
-              <input type="text" class="form-control" id="nama" value="Pak Ustadz">
+              <input type="text" class="form-control" id="nama" value="{{ $customer->nama_customer }}">
             </div><br>
             <div class="form-group">
               <label for="username">Username :</label>

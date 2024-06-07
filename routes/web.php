@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AppsController;
+use App\Http\Controllers\CustomerController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\GachaController;
@@ -10,6 +11,8 @@ use App\Http\Controllers\PenyelenggaraController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PemenangController;
 use App\Http\Controllers\PreorderController;
+use App\Http\Controllers\TiketController;
+use App\Http\Controllers\TransaksiController;
 use App\Models\Pemenang;
 use Illuminate\Support\Facades\Auth;
 
@@ -68,12 +71,21 @@ Route::get('event/{id_event}/pemenang', function () {
   return view('tukutick.pemenang');
 });
 
+
+
+//routing untuk transaksi
+Route::resource('/transaksi', TransaksiController::class);
+
 //url untuk menampilkan halaman transaksi
 Route::get('/pembayaran', function () {
   return view('tukutick.pembayaran');
 });
 
 Route::get('/tiket', [HomeController::class, 'myTicket'])->name('myticket');
+
+
+//route untuk controller tiket
+//Route::resource('/tiket', TiketController::class);
 
 //url untuk menampilkan halaman detailtiket
 Route::get('/detailtiket', function () {
@@ -84,3 +96,5 @@ Route::get('/detailtiket', function () {
 Route::get('/profile', function () {
   return view('tukutick.profile');
 });
+
+Route::resource('/profil', CustomerController::class);

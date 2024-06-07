@@ -12,10 +12,11 @@
   <div class="border-bottom mb-4">
     <h3 class="fw-bold">Informasi Pembayaran</h3>
   </div>
-  <form action="" id="payment-form">
+  <form action="{{ route('transaksi.store') }}" method="POST" >
+    @csrf
     <div class="mb-5">
-      <label for="metodebayar" class="form-label fw-bold" style="color:#094067">Pilih Metode Pembayaran</label>
-      <select class=" form-select shadow-sm" id="metodebayar">
+      <label for="metode_pembayaran" class="form-label fw-bold" style="color:#094067">Pilih Metode Pembayaran</label>
+      <select class=" form-select shadow-sm" id="metode_pembayaran" name="metode_pembayaran">
         <option selected>Pilih...</option>
         <option value="1">Dana</option>
         <option value="2">Gopay</option>
@@ -29,13 +30,21 @@
     </div>
     <div class=" mb-3">
       <label for="namalengkap" class="form-label fw-bold" style="color:#094067">Nama Lengkap</label>
-      <input type="text" class="form-control " placeholder="Masukkan nama lengkap Anda" />
+      <input type="text" class="form-control " value="{{ $customer->nama_customer }}"  disabled />
     </div>
     <div class="mb-5">
       <label for="email" class="form-label fw-bold" style="color:#094067">Email</label>
-      <input type="email" class="form-control" placeholder="Masukkan email Anda" />
+      <input type="email" class="form-control" value="{{ $customer->email_customer }}"  disabled/>
     </div>
-    <p class="fs-3 fw-bold mb-5" style="color:#094067">Total: Rp 500.000,00</p>
+    <div class="mb-5">
+      <label for="id_pemenang" class="form-label fw-bold" style="color:#094067" hidden>ID_Pemenang</label>
+      <input type="number" name="id_pemenang" class="form-control" value="{{ $id_pemenang }}"  hidden/>
+    </div>
+    <div class="mb-5">
+      <label for="jml_transaksi" class="form-label fw-bold" style="color:#094067" hidden>jml_transaksi</label>
+      <input type="number" name="jml_transaksi" class="form-control" value="{{ $id_pemenang }}"  hidden/>
+    </div>
+    <p class="fs-3 fw-bold mb-5" style="color:#094067">Total: {{ $event->hrg_ticket }}</p>
     <div class="d-flex justify-content-center mt-5 mb-xxl-5">
       <button type="submit" class="col-12 btn btn-primary rounded-pill">Bayar</button>
     </div>
