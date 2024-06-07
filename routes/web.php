@@ -81,7 +81,7 @@ Route::get('/pembayaran', function () {
   return view('tukutick.pembayaran');
 });
 
-Route::get('/tiket', [HomeController::class, 'myTicket'])->name('myticket');
+Route::resource('/tiket', TiketController::class);
 
 
 //route untuk controller tiket
