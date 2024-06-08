@@ -27,7 +27,7 @@
   </div>
   <div class="mt-3">
     <p class="h3 fw-bold">Deskripsi</p>
-    <p>{{ $event->deskripsi_event }}</p>
+    <p>{!! $event->deskripsi_event !!}</p>
   </div>
   <div class="mt-5">
     <p class="h3 fw-bold">Detail Event</p>
