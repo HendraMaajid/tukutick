@@ -29,8 +29,8 @@
             <label for="deskripsi_event" class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Deskripsi
               Event</label>
             <div class="col-sm-12 col-md-7">
-              <input type="text" name="deskripsi_event" id="deskripsi_event" cols="30" rows="10"
-                class="form-control"></input>
+              <textarea type="text" name="deskripsi_event" id="deskripsi_event" cols="30" rows="10"
+                class="form-control"></textarea>
             </div>
           </div>
           <div class="form-group row mb-4">

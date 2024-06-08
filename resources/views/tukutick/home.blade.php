@@ -127,7 +127,7 @@
             {{ \Carbon\Carbon::parse($event->tgl_event)->format('d') }}</p>
           </div>
           <div class="col-10">
-          <h5 class="card-title">{{ $event->nama_event }}</h5>
+          <h5 class="card-title fw-bold">{{ $event->nama_event }}</h5>
           <p class="card-text">{{ $event->deskripsi_event }}</p>
           </div>
         </div>
