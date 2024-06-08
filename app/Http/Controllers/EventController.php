@@ -19,7 +19,16 @@ class EventController extends Controller
      */
     public function index()
     {
-        $event = Event::paginate(5);
+
+        
+        $user = Auth::user();
+        $username = $user->username;
+        
+        $penyelenggara = Penyelenggara::where('username', $username)->first();
+        
+        $id_penyelenggara = $penyelenggara->id_penyelenggara;
+        
+        $event = Event::where('id_penyelenggara', $id_penyelenggara)->paginate(5);
         return view('event.index', compact('event'));
     }
 

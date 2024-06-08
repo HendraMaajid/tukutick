@@ -47,7 +47,7 @@ class LoginController extends Controller
         } elseif ($user->role == 'customer') {
             return redirect('/home');
         } elseif ($user->role == 'penyelenggara') {
-            return redirect('/penyelenggara');
+            return redirect('/event');
         } else {
             return redirect('/home');
         }
