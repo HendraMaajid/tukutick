@@ -6,7 +6,7 @@
 <div class="main-content">
   <section class="section">
     <div class="section-header">
-      <h1>Kategori List</h1>
+      <h1>Kategori</h1>
       @include('../layouts.app.successAlert')
     </div>
     <div class="section-body">
@@ -15,7 +15,7 @@
         <div class="col-12  w-100">
           <div class="card">
             <div class="card-header">
-              <h4>List Kategori</h4>
+              <h4>Daftar Kategori</h4>
             </div>
             <div class="card-body p-0">
               <div class="table-responsive">
@@ -34,13 +34,14 @@
                       <td>{{ $item->created_at->format('d M Y') }}</td>
                       <td>
                         <a href="{{ route('kategori.edit', $item->id_kategori) }}"
-                          class="btn btn-warning btn-sm">Update</a>
+                          class="btn btn-icon btn-warning btn-sm"><i class="far fa-edit"></i></a>
                         <form action="{{ route('kategori.destroy', $item->id_kategori) }}" method="POST"
                           style="display:inline;">
                           @csrf
                           @method('DELETE')
-                          <button type="submit" class="btn btn-danger btn-sm ml-2"
-                            onclick="return confirm('Are you sure you want to delete this kategori?')">Delete</button>
+                          <button type="submit" class="btn btn-icon btn-danger btn-sm ml-2"
+                            onclick="return confirm('Are you sure you want to delete this kategori?')"><i
+                              class="fas fa-times"></i></button>
                         </form>
 
                       </td>

@@ -98,3 +98,29 @@ Route::get('/profile', function () {
 });
 
 Route::resource('/profil', CustomerController::class);
+
+//url untuk menuju ke dashboard penyelenggara
+Route::get('/dashboard_penyelenggara', function () {
+  return view('admin.dashboardPenyelenggara');
+});
+
+//url untuk menuju ke transactions penyelenggara
+Route::get('/transactions', function () {
+  return view('menu.transaksi');
+});
+//url untuk menuju ke preorders penyelenggara
+Route::get('/preorders', function () {
+  return view('menu.pre-order');
+});
+//url untuk menuju ke winners penyelenggara
+Route::get('/winners', function () {
+  return view('menu.pemenang');
+});
+//url untuk menuju ke preorders penyelenggara
+Route::get('/users', function () {
+  return view('menu.users');
+});
+//url untuk menuju ke winners penyelenggara
+Route::get('/customers', function () {
+  return view('menu.customers');
+});

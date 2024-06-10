@@ -1,5 +1,3 @@
-<!-- resources/views/event/index.blade.php -->
-
 @extends('layouts.app')
 
 @section('title', 'List Event')
@@ -40,27 +38,30 @@
                       <th>Aksi</th>
                     </tr>
                     @foreach($event as $item)
-                    <tr class="text-center">
-                      <td>{{ ($event->currentPage() - 1) * $event->perPage() + $loop->iteration }}</td>
-                      <td>{{ $item->nama_event }}</td>
-                      <td>{{ $item->deskripsi_event }}</td>
-                      <td><img src="{{ asset('storage/events/' . $item->gambar) }}" alt="{{ $item->nama_event }}"
+                        <tr class="text-center">
+                        <td>{{ ($event->currentPage() - 1) * $event->perPage() + $loop->iteration }}</td>
+                        <td>{{ $item->nama_event }}</td>
+                        <td class="description-cell" data-full-text="{{ $item->deskripsi_event }}">
+                        {{ \Illuminate\Support\Str::limit($item->deskripsi_event, 10) }}
+                        </td>
+                        <td><img src="{{ asset('storage/events/' . $item->gambar) }}" alt="{{ $item->nama_event }}"
                           width="100"></td>
-                      <td>{{ $item->jam_event }}</td>
-                      <td>{{ $item->tgl_event }}</td>
-                      <td>{{ $item->lokasi }}</td>
-                      <td>{{ $item->jml_ticket }}</td>
-                      <td>{{ $item->hrg_ticket }}</td>
-                      @php
-                      $jml_po = \App\Models\Preorder::where('id_event', $item->id_event)->count();
-                      @endphp
-                      <th>{{ $jml_po }}</th>
-                      <td>{{ $item->status }}</td>
-                      <td>{{ $item->kategori->nama_kategori }}</td>
-                      <td>{{ $item->penyelenggara->nama_penyelenggara }}</td>
-                      <td>
-                        <a href="{{ route('event.edit', $item->id_event) }}" class="mb-2 btn btn-warning btn-sm"
-                          style="width:80px">Update</a>
+                        <td>{{ $item->jam_event }}</td>
+                        <td>{{ $item->tgl_event }}</td>
+                        <td>{{ $item->lokasi }}</td>
+                        <td>{{ $item->jml_ticket }}</td>
+                        <td>{{ $item->hrg_ticket }}</td>
+                        @php
+                $jml_po = \App\Models\Preorder::where('id_event', $item->id_event)->count();
+              @endphp
+                        <th>{{ $jml_po }}</th>
+                        <td>{{ $item->status }}</td>
+                        <td>{{ $item->kategori->nama_kategori }}</td>
+                        <td>{{ $item->penyelenggara->nama_penyelenggara }}</td>
+                        <td>
+                        <a href="{{ route('event.edit', $item->id_event) }}"
+                          class="mb-2 btn btn-icon btn-warning btn-sm" style="width:30px"><i
+                          class="far fa-edit"></i></a>
                         <a href="{{ route('pemenang.show', $item->id_event) }}" class="mb-2 btn btn-success btn-sm"
                           style="width:80px">Pemenang</a>
                         <a href="{{ route('gacha', ['id_event' => $item->id_event, 'jml_ticket' => $item->jml_ticket, 'jml_po' => $jml_po]) }}"
@@ -70,12 +71,12 @@
                           style="display:inline;">
                           @csrf
                           @method('DELETE')
-                          <button type="submit" class="btn btn-danger btn-sm"
-                            onclick="return confirm('Are you sure you want to delete this event?')"
-                            style="width:80px">Delete</button>
+                          <button type="submit" class="btn btn-icon btn-danger btn-sm"
+                          onclick="return confirm('Are you sure you want to delete this event?')"
+                          style="width:30px"><i class="fas fa-times"></i></button>
                         </form>
-                      </td>
-                      @endforeach
+                        </td>
+          @endforeach
                   </tbody>
                 </table>
               </div>
@@ -92,4 +93,23 @@
     </div>
   </section>
 </div>
+@endsection
+
+@section('script')
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const descriptions = document.querySelectorAll('.description-cell');
+
+  descriptions.forEach(description => {
+    const fullText = description.getAttribute('data-full-text');
+    if (fullText) {
+      const words = fullText.split(' ');
+      if (words.length > 10) {
+        const truncated = words.slice(0, 10).join(' ') + '...';
+        description.innerText = truncated;
+      }
+    }
+  });
+});
+</script>
 @endsection

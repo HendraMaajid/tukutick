@@ -8,7 +8,7 @@
 <div class="main-content">
   <section class="section">
     <div class="section-header">
-      <h1>Daftar Penyelenggara</h1>
+      <h1>Penyelenggara</h1>
       @include('../layouts.app.successAlert')
     </div>
     <div class="section-body">
@@ -18,7 +18,7 @@
         <div class="col-12  w-100">
           <div class="card">
             <div class="card-header">
-              <h4>Tabel Master Penyelenggara</h4>
+              <h4>Daftar Penyelenggara</h4>
             </div>
             <div class="card-body p-0">
               <div class="table-responsive">
@@ -33,32 +33,33 @@
                       <th>Aksi</th>
                     </tr>
                     @foreach($penyelenggara as $penyel)
-                    <tr>
-                      <td>{{ ($penyelenggara->currentPage() - 1) * $penyelenggara->perPage() + $loop->iteration }}</td>
-                      <td>{{ $penyel->nama_penyelenggara }}</td>
-                      <td>{{ $penyel->alamat_kantor }}</td>
-                      <td>{{ $penyel->kontak }}</td>
-                      <td>
-                        <a href="{{ asset('storage/lisensi/' . $penyel->lisensi) }}" target="_blank">Download PDF</a>
-                      </td>
+            <tr>
+              <td>{{ ($penyelenggara->currentPage() - 1) * $penyelenggara->perPage() + $loop->iteration }}</td>
+              <td>{{ $penyel->nama_penyelenggara }}</td>
+              <td>{{ $penyel->alamat_kantor }}</td>
+              <td>{{ $penyel->kontak }}</td>
+              <td>
+              <a href="{{ asset('storage/lisensi/' . $penyel->lisensi) }}" target="_blank">Download PDF</a>
+              </td>
 
-                      <td>
-                        <a href="{{ route('penyelenggara.edit', $penyel->id_penyelenggara) }}"
-                          class="btn btn-warning btn-sm">Update</a>
-                        <form action="{{ route('penyelenggara.destroy', $penyel->id_penyelenggara) }}" method="POST"
-                          style="display:inline;">
-                          @csrf
-                          @method('DELETE')
-                          <button type="submit" class="btn btn-danger btn-sm"
-                            onclick="return confirm('Are you sure you want to delete this penyelenggara?')">Delete</button>
-                        </form>
-                      </td>
+              <td>
+              <a href="{{ route('penyelenggara.edit', $penyel->id_penyelenggara) }}"
+                class="btn btn-icon btn-warning btn-sm"><i class="far fa-edit"></i></a>
+              <form action="{{ route('penyelenggara.destroy', $penyel->id_penyelenggara) }}" method="POST"
+                style="display:inline;">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-icon btn-danger btn-sm"
+                onclick="return confirm('Are you sure you want to delete this penyelenggara?')"><i
+                  class="fas fa-times"></i></button>
+              </form>
+              </td>
 
-                      </form>
+              </form>
 
-                      </td>
-                    </tr>
-                    @endforeach
+              </td>
+            </tr>
+          @endforeach
                   </tbody>
                 </table>
               </div>

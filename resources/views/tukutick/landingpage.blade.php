@@ -17,22 +17,22 @@
       <div class="carousel-item active">
         <img src="{{asset('assets/img/img_tukutick/NOAH.png')}}" class="d-block w-100">
         <div class="carousel-caption d-none d-md-block">
-          <h5>First slide label</h5>
-          <p>Some representative placeholder content for the first slide.</p>
+          <!-- <h5>First slide label</h5>
+          <p>Some representative placeholder content for the first slide.</p> -->
         </div>
       </div>
       <div class="carousel-item">
-        <img src="{{asset('assets/img/img_tukutick/coldplay.jpg')}}" class="d-block w-full">
+        <img src="{{asset('assets/img/img_tukutick/coldplay.jpg')}}" class="d-block w-100">
         <div class="carousel-caption d-none d-md-block">
-          <h5>Second slide label</h5>
-          <p>Some representative placeholder content for the second slide.</p>
+          <!-- <h5>Second slide label</h5>
+          <p>Some representative placeholder content for the second slide.</p> -->
         </div>
       </div>
       <div class="carousel-item">
         <img src="{{asset('assets/img/img_tukutick/miku.svg')}}" class="d-block w-100">
         <div class="carousel-caption d-none d-md-block">
-          <h5>Third slide label</h5>
-          <p>Some representative placeholder content for the third slide.</p>
+          <!-- <h5>Third slide label</h5>
+          <p>Some representative placeholder content for the third slide.</p> -->
         </div>
       </div>
     </div>
@@ -128,7 +128,8 @@
           </div>
           <div class="col-10">
           <h5 class="card-title fw-bold">{{ $event->nama_event }}</h5>
-          <p class="card-text">{!! $event->deskripsi_event !!}</p>
+          <p id="card-description" class="card-text" data-full-text="{{ $event->deskripsi_event }}">
+            {!! \Illuminate\Support\Str::limit($event->deskripsi_event, 100) !!}</p>
           </div>
         </div>
         </div>
@@ -140,4 +141,21 @@
 
 </section>
 
+@endsection
+
+@section('script')
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const descriptions = document.querySelectorAll('#card-description');
+
+  descriptions.forEach(description => {
+    const fullText = description.getAttribute('data-full-text');
+    const words = fullText.split(' ');
+    if (words.length > 20) {
+      const truncated = words.slice(0, 20).join(' ') + '...';
+      descriptscriptnerText = truncated;
+    }
+  })
+});
+</script>
 @endsection
