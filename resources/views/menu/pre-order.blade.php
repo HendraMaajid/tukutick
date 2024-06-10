@@ -27,13 +27,20 @@
                       <th>Waktu Pre-Order</th>
                     </tr>
 
-                    <tr class="text-center">
+                    @php
+                      $nomor=1;
+                    @endphp
 
-                      <td>1</td>
-                      <td>12</td>
-                      <td>Budi</td>
-                      <td>Konser NOAH</td>
-                      <td>23-2-2023 12:00</td>
+                    @foreach ($preOrders as $preOrder)
+                      <tr class="text-center">
+                        <td>{{ $nomor++ }}</td>
+                        <td>{{ $preOrder->id_preorder }}</td>
+                        <td>{{ $preOrder->customer->nama_customer }}</td>
+                        <td>{{ $preOrder->event->nama_event }}</td>
+                        <td>{{ $preOrder->created_at->format('j-n-Y H.i') }}</td>
+                      </tr>  
+                    @endforeach
+                    
 
                   </tbody>
                 </table>

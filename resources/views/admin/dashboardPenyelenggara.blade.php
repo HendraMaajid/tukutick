@@ -19,7 +19,7 @@
                 <h4>Events</h4>
               </div>
               <div class="card-body">
-                10
+                {{ $event->count() }}
               </div>
             </div>
           </div>
@@ -34,7 +34,7 @@
                 <h4>Total Transactions</h4>
               </div>
               <div class="card-body">
-                Rp. 15.000.000,00
+                Rp. {{ $totalRevenue }}
               </div>
             </div>
           </div>
@@ -49,7 +49,7 @@
                 <h4>Tickets Sold</h4>
               </div>
               <div class="card-body">
-                1,201
+                {{ $totalTicketsSold }}
               </div>
             </div>
           </div>
@@ -57,63 +57,28 @@
       </div>
 
       <h2 class="section-title">Gacha Tickets</h2>
+
+
       <div class="row">
+        @foreach ($event as $data)
         <div class="col-3">
           <div class="card">
             <div class="card-header">
-              <h4>Konser NOAH</h4>
+              <h4>{{ $data->nama_event }}</h4>
             </div>
             <div class="card-body">
-              <p>Pre-Orders: 20</p>
-              <p>Tickets: 5</p>
+              @php
+                $jml_po = \App\Models\Preorder::where('id_event', $data->id_event)->count();
+              @endphp
+              <p>Pre-Orders: {{ $jml_po }}</p>
+              <p>Tickets: {{ $data->jml_ticket }}</p>
             </div>
             <div class="card-footer d-flex justify-content-center">
               <button class="btn btn-primary">Gacha</button>
             </div>
           </div>
         </div>
-        <div class="col-3">
-          <div class="card">
-            <div class="card-header">
-              <h4>Konser NOAH</h4>
-            </div>
-            <div class="card-body">
-              <p>Pre-Orders: 20</p>
-              <p>Tickets: 5</p>
-            </div>
-            <div class="card-footer d-flex justify-content-center">
-              <button class="btn btn-primary">Gacha</button>
-            </div>
-          </div>
-        </div>
-        <div class="col-3">
-          <div class="card">
-            <div class="card-header">
-              <h4>Konser NOAH</h4>
-            </div>
-            <div class="card-body">
-              <p>Pre-Orders: 20</p>
-              <p>Tickets: 5</p>
-            </div>
-            <div class="card-footer d-flex justify-content-center">
-              <button class="btn btn-primary">Gacha</button>
-            </div>
-          </div>
-        </div>
-        <div class="col-3">
-          <div class="card">
-            <div class="card-header">
-              <h4>Konser NOAH</h4>
-            </div>
-            <div class="card-body">
-              <p>Pre-Orders: 20</p>
-              <p>Tickets: 5</p>
-            </div>
-            <div class="card-footer d-flex justify-content-center">
-              <button class="btn btn-primary">Gacha</button>
-            </div>
-          </div>
-        </div>
+        @endforeach
       </div>
     </div>
   </section>

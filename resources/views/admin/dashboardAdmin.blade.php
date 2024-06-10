@@ -19,7 +19,7 @@
                 <h4>Categories</h4>
               </div>
               <div class="card-body">
-                10
+                {{ $jumlahKategori }}
               </div>
             </div>
           </div>
@@ -34,7 +34,7 @@
                 <h4>Customer</h4>
               </div>
               <div class="card-body">
-                1203
+                {{ $jumlahCustomer }}
               </div>
             </div>
           </div>
@@ -49,7 +49,7 @@
                 <h4>Organizer</h4>
               </div>
               <div class="card-body">
-                12
+                {{ $jumlahPenyelenggara }}
               </div>
             </div>
           </div>

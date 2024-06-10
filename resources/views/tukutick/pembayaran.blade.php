@@ -42,7 +42,7 @@
     </div>
     <div class="mb-5">
       <label for="jml_transaksi" class="form-label fw-bold" style="color:#094067" hidden>jml_transaksi</label>
-      <input type="number" name="jml_transaksi" class="form-control" value="{{ $id_pemenang }}"  hidden/>
+      <input type="number" name="jml_transaksi" class="form-control" value="{{ $event->hrg_ticket }}"  hidden/>
     </div>
     <p class="fs-3 fw-bold mb-5" style="color:#094067">Total: {{ $event->hrg_ticket }}</p>
     <div class="d-flex justify-content-center mt-5 mb-xxl-5">
