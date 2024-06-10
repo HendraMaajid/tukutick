@@ -1,3 +1,6 @@
+@php
+    $user = Auth::user();
+@endphp
 <nav class="navbar bg-body-tertiary">
   <div class="container-fluid">
     <div class="d-flex">
@@ -55,7 +58,11 @@
         <div class="dropdown text-end pt-0">
         <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle"
           data-bs-toggle="dropdown" aria-expanded="false">
-          <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
+          @if ($user && $user->profile_picture)
+            <img src="{{ asset('storage/profile_pictures/' . $user->profile_picture) }}" alt="Profile Picture" width="32" height="32" class="rounded-circle">
+          @else
+            <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
+          @endif
         </a>
         <ul class="dropdown-menu text-small">
           <li><a class="dropdown-item" href="#">Change Password</a></li>
