@@ -30,4 +30,9 @@ class Customer extends Model
     {
         return $this->hasMany(Pemenang::class, 'id_customer');
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'username', 'username');
+    }
 }

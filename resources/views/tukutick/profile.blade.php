@@ -13,7 +13,12 @@
 <div class="container w-full vh-100 p-5 mx-auto ">
   <div class="w-75 d-flex justify-content-between col img-thumbnail rounded-4 m-auto mt-5">
     <div class="col-3">
-      <img src="{{asset('assets/img/avatar/avatar-1.png')}}" class="rounded-start-4" width="300" alt="">
+      <!-- Check if the user has a profile picture -->
+      @if ($customer->user->profile_picture)
+        <img src="{{ asset('storage/profile_pictures/' . $customer->user->profile_picture) }}" class="rounded-start-4" width="300" alt="Profile Picture">
+      @else
+        <img src="{{ asset('assets/img/avatar/avatar-1.png') }}" class="rounded-start-4" width="300" alt="Default Avatar">
+      @endif
     </div>
     <div class="col-8 p-3">
       <p class="fs-5 fw-bold">Halo {{ $customer->nama_customer }}</p>
@@ -58,35 +63,38 @@
         </div>
 
         <!-- Modal Body dengan form -->
+        <!-- Modal Body dengan form -->
         <div class="modal-body">
-          <form method="POST" action="">
+          <form method="POST" action="{{ route('profil.update', ['profil' => $customer->id_customer]) }}" enctype="multipart/form-data">
             @csrf
+            @method('PUT')
             <div class="form-group">
               <label for="nama">Nama :</label>
-              <input type="text" class="form-control" id="nama" value="{{ $customer->nama_customer }}">
+              <input type="text" class="form-control" id="nama" name="nama_customer" value="{{ $customer->nama_customer }}">
             </div><br>
             <div class="form-group">
               <label for="username">Username :</label>
-              <input type="text" class="form-control" id="username" value="Ahlisurga" disabled>
+              <input type="text" class="form-control" id="username" name="username" value="{{ $customer->username }}" disabled>
+              <input type="hidden" name="username" value="{{ $customer->username }}">
             </div><br>
             <div class="form-group">
               <label for="imageUpload">Profile Picture:</label>
-              <input type="file" class="form-control-file" id="imageUpload" accept="image/*">
+              <input type="file" class="form-control-file" id="imageUpload" name="profile_picture" accept="image/*">
             </div><br>
             <div class="form-group">
               <label for="tanggalLahir">Tanggal Lahir:</label>
-              <input type="date" class="form-control" id="tanggalLahir" value="2000-03-03">
+              <input type="date" class="form-control" id="tanggalLahir" name="tgl_lahir" value="{{ $customer->tgl_lahir }}">
             </div><br>
             <div class="form-group">
               <label for="email">Email:</label>
-              <input type="email" class="form-control" id="email" value="pakustadz@gmail.com">
+              <input type="email" class="form-control" id="email" name="email_customer" value="{{ $customer->email_customer }}">
             </div>
             <div class="m-auto pt-5 d-flex justify-content-center">
               <button type="submit" class="btn btn-primary">Update</button>
             </div>
-
           </form>
         </div>
+
 
       </div>
     </div>

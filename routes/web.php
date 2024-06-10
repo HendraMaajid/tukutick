@@ -96,7 +96,7 @@ Route::get('/detailtiket', function () {
 Route::get('/profile', function () {
   return view('tukutick.profile');
 });
-
+Route::put('/profil/{id}', [CustomerController::class, 'update'])->name('profil.update');
 Route::resource('/profil', CustomerController::class);
 
 //url untuk menuju ke dashboard penyelenggara
