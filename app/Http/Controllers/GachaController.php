@@ -43,6 +43,6 @@ class GachaController extends Controller
             Pemenang::create($data);
         }
 
-        return redirect()->route('event.index');
+        return redirect()->route('EO.index');
     }
 }

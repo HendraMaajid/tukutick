@@ -74,7 +74,7 @@
               <p>Tickets: {{ $data->jml_ticket }}</p>
             </div>
             <div class="card-footer d-flex justify-content-center">
-              <button class="btn btn-primary">Gacha</button>
+              <a href="{{ route('gacha', ['id_event' => $data->id_event, 'jml_ticket' => $data->jml_ticket, 'jml_po' => $jml_po]) }}"> <button class="btn btn-primary">Gacha</button> </a>
             </div>
           </div>
         </div>
