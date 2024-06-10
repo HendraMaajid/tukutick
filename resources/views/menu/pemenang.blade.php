@@ -25,10 +25,19 @@
                       <th>Username</th>
                       <th>Nama Event</th>
                     </tr>
-                    <tr class="text-center">
-                      <td>1</td>
-                      <td>12</td>
-                      <td>Budi</td>
+
+                    @php
+                      $nomor=1;
+                    @endphp
+
+                    @foreach ($pemenang as $data)
+                      <tr class="text-center">
+                        <td>{{ $nomor++ }}</td>
+                        <td>{{ $data->id_pemenang }}</td>
+                        <td>{{ $data->customer->nama_customer }}</td>
+                        <td>{{ $data->event->nama_event }}</td>
+                      </tr>
+                    @endforeach
                   </tbody>
                 </table>
               </div>

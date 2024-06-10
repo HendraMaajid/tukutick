@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AppsController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\EOController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\GachaController;
@@ -98,6 +99,11 @@ Route::get('/profile', function () {
 });
 Route::put('/profil/{id}', [CustomerController::class, 'update'])->name('profil.update');
 Route::resource('/profil', CustomerController::class);
+
+
+//route untuk EO / Event Organizer
+Route::resource('/EO', EOController::class);
+
 
 //url untuk menuju ke dashboard penyelenggara
 Route::get('/dashboard_penyelenggara', function () {

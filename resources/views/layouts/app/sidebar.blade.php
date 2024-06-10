@@ -11,7 +11,7 @@
               <a href=" @if(Auth::user()->role == 'admin')
          {{ url('admin') }}
       @elseif(Auth::user()->role == 'penyelenggara')
-     {{ url('dashboard_penyelenggara') }}
+     {{ route('EO.index') }}
   @endif
                         ">
                 <i class="fas fa-fire"></i><span>Dashboard</span></a>
@@ -32,16 +32,16 @@
             </li>
             @elseif(Auth::user()->role == 'penyelenggara')
             <li>
-              <a href="{{url('event')}}"><i class="fas fa-calendar-alt"></i><span>Events</span></a>
+              <a href="{{route('event.index')}}"><i class="fas fa-calendar-alt"></i><span>Events</span></a>
             </li>
             <li>
-              <a href="{{url('preorders')}}"><i class="fas fa-shopping-basket"></i><span>Pre-Orders</span></a>
+              <a href="{{route('preorder.index')}}"><i class="fas fa-shopping-basket"></i><span>Pre-Orders</span></a>
             </li>
             <li>
-              <a href="{{url('transactions')}}"><i class="fas fa-dollar-sign"></i><span>Transactions</span></a>
+              <a href="{{route('transaksi.index')}}"><i class="fas fa-dollar-sign"></i><span>Transactions</span></a>
             </li>
             <li>
-              <a href="{{url('winners')}}"><i class="fas fa-ticket-alt"></i><span>Winners</span></a>
+              <a href="{{route('pemenang.index')}}"><i class="fas fa-ticket-alt"></i><span>Winners</span></a>
             </li>
             <!-- <li>
       <a href="{{url('tiket')}}"><i class="fas fa-ticket-alt"></i><span>Tiket</span></a>

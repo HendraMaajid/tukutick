@@ -27,13 +27,20 @@
                       <th>Waktu Pembayaran</th>
                     </tr>
 
-                    <tr class="text-center">
+                    @php
+                      $nomor=1;
+                    @endphp
 
-                      <td>1</td>
-                      <td>12</td>
-                      <td>Budi</td>
-                      <td>20.000</td>
-                      <td>23-2-2023 12:00</td>
+                    @foreach ($transaksi as $data)
+                      <tr class="text-center">
+                        <td>{{ $nomor++ }}</td>
+                        <td>{{ $data->id_transaksi }}</td>
+                        <td>{{ $data->pemenang->customer->nama_customer }}</td>
+                        <td>{{ $data->jml_transaksi }}</td>
+                        <td>{{ $data->created_at->format('j-n-Y H.i') }}</td>
+                      </tr>  
+                    @endforeach
+                    
 
                   </tbody>
                 </table>
