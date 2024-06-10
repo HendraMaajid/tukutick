@@ -29,7 +29,7 @@
         </div>
       </div>
       <div class="carousel-item">
-        <img src="{{asset('assets/img/img_tukutick/miku.svgp')}}" class="d-block w-100">
+        <img src="{{asset('assets/img/img_tukutick/miku.svg')}}" class="d-block w-100">
         <div class="carousel-caption d-none d-md-block">
           <!-- <h5>Third slide label</h5>
           <p>Some representative placeholder content for the third slide.</p> -->
