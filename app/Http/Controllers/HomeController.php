@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
+use App\Models\Event;
 use App\Models\Pemenang;
 use App\Models\Transaksi;
 use Illuminate\Http\Request;
@@ -37,9 +38,12 @@ class HomeController extends Controller
         //dd($id_customer);
         $notifikasi = Pemenang::where('id_customer', $id_customer)->get();
 
+        $events = Event::all();
+       // return view('tukutick.landingpage', compact('events'));
 
 
-        return view('tukutick.home', compact('notifikasi', 'id_customer'));
+
+        return view('tukutick.home', compact('notifikasi', 'id_customer', 'events'));
     }
 
     public function myTicket()

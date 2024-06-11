@@ -82,6 +82,7 @@
 <section style="margin-top:-1.3rem;">
   <div class="search-form-container">
     <form class="search-form" action="" method="">
+      @csrf
       <div class="input-group">
         <label for="">Search Event</label>
         <input type="text" placeholder="Search Event" value="Konser pop">
@@ -104,11 +105,6 @@
 
 <!-- Section Upcoming Event -->
 
-@php
-  use App\Models\Event;
-
-  $events = Event::all();
-@endphp
 <section id="event" class="" style="background-color:#EEF7FF;margin-top:-4rem;">
   <div class="container" style="padding:7rem">
     <p class="h2 fw-bold mb-5">Upcoming Events</p>

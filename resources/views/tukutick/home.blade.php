@@ -104,11 +104,6 @@
 
 <!-- Section Upcoming Event -->
 
-@php
-  use App\Models\Event;
-
-  $events = Event::all();
-@endphp
 <section id="event" class="" style="background-color:#EEF7FF;margin-top:-4rem;">
   <div class="container" style="padding:7rem">
     <p class="h2 fw-bold mb-5">Upcoming Events</p>

@@ -208,4 +208,14 @@ class EventController extends Controller
 
         return redirect()->route('event.index')->with('success', 'Event deleted successfully.');
     }
+
+    public function home(){
+        $events = Event::all();
+        return view('tukutick.home', compact('events'));
+    }
+
+    public function landing(){
+        $events = Event::all();
+        return view('tukutick.landingpage', compact('events'));
+    }
 }

@@ -38,6 +38,8 @@ Route::post('/event/store', [EventController::class, 'store'])->name('event.stor
 Route::get('/event/{id}/edit', [EventController::class, 'edit'])->name('event.edit');
 Route::put('/event/update/{id}', [EventController::class, 'update'])->name('event.update');
 Route::delete('/event/destroy/{id}', [EventController::class, 'destroy'])->name('event.destroy');
+Route::get('/', [EventController::class, 'home'])->name('event.home');
+Route::get('/home', [EventController::class, 'landing'])->name('event.landing');
 
 Route::get('/kategori', [KategoriController::class, 'index'])->name('kategori.index');
 Route::get('/kategori/create', [KategoriController::class, 'create'])->name('kategori.create');
