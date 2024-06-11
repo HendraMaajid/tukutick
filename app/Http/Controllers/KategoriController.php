@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Event;
 use App\Models\Kategori;
 use Illuminate\Http\Request;
 
@@ -81,5 +82,12 @@ class KategoriController extends Controller
 
         return redirect()->route('kategori.index')
             ->with('success', 'Kategori berhasil dihapus.');
+    }
+
+    public function landing(){
+        $kategori = Kategori::all();
+        $events = Event::all();
+        return view('tukutick.landingpage', compact('kategori', 'events'));
+
     }
 }

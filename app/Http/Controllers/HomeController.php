@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Customer;
 use App\Models\Event;
+use App\Models\Kategori;
 use App\Models\Pemenang;
 use App\Models\Transaksi;
 use Illuminate\Http\Request;
@@ -40,10 +41,11 @@ class HomeController extends Controller
 
         $events = Event::all();
        // return view('tukutick.landingpage', compact('events'));
+       $kategori = Kategori::all();
 
 
 
-        return view('tukutick.home', compact('notifikasi', 'id_customer', 'events'));
+        return view('tukutick.home', compact('notifikasi', 'id_customer', 'events', 'kategori'));
     }
 
     public function myTicket()

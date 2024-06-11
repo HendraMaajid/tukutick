@@ -85,19 +85,20 @@
       @csrf
       <div class="input-group">
         <label for="">Search Event</label>
-        <input type="text" placeholder="Search Event" value="Konser pop">
+        <input type="text" placeholder="Search Event" value="Konser pop" name="nama_event">
       </div>
       <div class="input-group">
         <label for="">Category</label>
-        <select>
+        <select name="nama_kategori">
           <option value="All" selected>All</option>
+          @foreach ($kategori as $items)
+            <option value="{{ $items->id_kategori }}">{{ $items->nama_kategori }}</option>
+          @endforeach
         </select>
       </div>
       <div class="input-group">
         <label for="">Date</label>
-        <select>
-          <option value="Any date" selected>Any date</option>
-        </select>
+        <input type="date" value="" name="tgl_event">
       </div>
     </form>
   </div>

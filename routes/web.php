@@ -47,6 +47,7 @@ Route::post('/kategori/store', [KategoriController::class, 'store'])->name('kate
 Route::get('/kategori/{id}/edit', [KategoriController::class, 'edit'])->name('kategori.edit');
 Route::put('/kategori/update/{id}', [KategoriController::class, 'update'])->name('kategori.update');
 Route::delete('/kategori/destroy/{id}', [KategoriController::class, 'destroy'])->name('kategori.destroy');
+Route::get('/', [KategoriController::class, 'landing'])->name('kategori.landing');
 
 
 //routing untuk penyelenggara

@@ -90,13 +90,14 @@
         <label for="">Category</label>
         <select>
           <option value="All" selected>All</option>
+          @foreach ($kategori as $items)
+            <option value="{{ $items->id_kategori }}">{{ $items->nama_kategori }}</option>
+          @endforeach
         </select>
       </div>
       <div class="input-group">
         <label for="">Date</label>
-        <select>
-          <option value="Any date" selected>Any date</option>
-        </select>
+        <input type="date" value="">
       </div>
     </form>
   </div>
