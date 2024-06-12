@@ -1,10 +1,10 @@
 @extends('layouts.app2-detailEvent')
-@section('title', 'Pembayaran')
+@section('title', 'Profile')
 @section('style')
 @endsection
 
 @section('content')
-<div class="d-flex p-3" style="background-color: #094067;">
+<div class="d-flex p-3" style="background-color: #094067;">`
   <a href="{{route('home.index')}}" class="text-decoration-none btn-outline-white"
     style="padding: 0.75rem 2rem; font-size: 1rem;float-left">
     Back</a>
