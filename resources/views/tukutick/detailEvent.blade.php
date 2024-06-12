@@ -10,8 +10,8 @@
     Back</a>
   <p class=" h1 fw-bolder d-block mx-auto text-light">{{ $event->nama_event }}</p>
 </div>
-<section style="max-width: 100%; height: 100vh; overflow: hidden;">
-  <img src="{{ asset('storage/events/' . $event->gambar)}}" alt="">
+<section class="d-flex justify-content-center" style="overflow: hidden;">
+  <img class="w-full vh-100 object-cover" src="{{ asset('storage/events/' . $event->gambar)}}" alt="">
 </section>
 <div class="w-100 h-100 p-lg-5" style="margin-top:-1rem">
   <p class="h1 fw-bolder">{{ $event->nama_event }}</p>
@@ -63,7 +63,7 @@
   </div>
   <div class="mt-5">
     <p class="h3 fw-bold">Seat Map</p>
-    <img src="{{ asset('assets/img/img_tukutick/img_seat.svg') }}" alt="" class="mt-2">
+    <img class="w-full object-fit-cover" src="{{ asset('assets/img/img_tukutick/img_seat.svg') }}" alt="" class="mt-2">
   </div>
   <div class="mt-5">
     <p class="h3 fw-bold mt-3 mb-3">Tata Cara Pre-Order</p>

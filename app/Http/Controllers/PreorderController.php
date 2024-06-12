@@ -46,6 +46,6 @@ class PreorderController extends Controller
         //dd($data);
 
         Preorder::create($data);
-        return redirect()->route('home.index');
+        return redirect()->route('event.show', ['event' => $request->id_event])->with('success', 'Pre-order berhasil ditambahkan');
     }
 }
