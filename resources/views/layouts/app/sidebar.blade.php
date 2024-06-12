@@ -25,7 +25,7 @@
               <a href="{{url('kategori')}}"><i class="fas fa-list"></i><span>Categories</span></a>
             </li>
             <li>
-              <a href="{{url('customers')}}"><i class="fas fa-users"></i><span>Customers</span></a>
+              <a href="{{url('profil')}}"><i class="fas fa-users"></i><span>Customers</span></a>
             </li>
             <li>
               <a href="{{url('penyelenggara')}}"><i class="fas fa-user-tie"></i><span>Organizer</span></a>

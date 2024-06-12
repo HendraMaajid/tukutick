@@ -10,6 +10,13 @@ use Illuminate\Support\Facades\Storage;
 
 class CustomerController extends Controller
 {
+    function index(){
+        $customers = Customer::all();
+
+        return view('menu.customers', compact('customers'));
+    }
+
+
     public function edit(string $id)
     {
         $customer = Customer::findOrFail($id);

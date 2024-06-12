@@ -28,14 +28,21 @@
                       <th>Tanggal Lahir</th>
                       <th>No. Hp</th>
                     </tr>
-                    <tr class="text-center">
-                      <td>1</td>
-                      <td>12</td>
-                      <td>Budi</td>
-                      <td>Budigaming</td>
-                      <td>budi@gmail.com</td>
-                      <td>12-12-2012</td>
-                      <td>081234567890</td>
+
+                    @php
+                      $nomor=1;
+                    @endphp
+                    @foreach ($customers as $customer)
+                      <tr class="text-center">
+                        <td>{{ $nomor++ }}</td>
+                        <td>{{ $customer->id_customer }}</td>
+                        <td>{{ $customer->nama_customer }}</td>
+                        <td>{{ $customer->username }}</td>
+                        <td>{{ $customer->email_customer }}</td>
+                        <td>{{ \Carbon\Carbon::parse($customer->tgl_lahir)->format('j-n-Y') }}</td>
+                        <td>{{ $customer->no_hp_customer }}</td>
+                      </tr>
+                    @endforeach
                   </tbody>
                 </table>
               </div>
