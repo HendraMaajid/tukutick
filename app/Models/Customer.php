@@ -35,4 +35,9 @@ class Customer extends Model
     {
         return $this->belongsTo(User::class, 'username', 'username');
     }
+
+    public function preorder()
+    {
+        return $this->hasMany(Preorder::class, 'id_customer', 'id_customer');
+    }
 }

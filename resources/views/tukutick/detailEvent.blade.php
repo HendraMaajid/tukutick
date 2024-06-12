@@ -139,21 +139,33 @@
       <a href="{{route('pemenang.show', $event->id_event)}}" class="btn-outline-blue text-decoration-none">
       Pengumuman
       </a>
-      <form action="{{ route('preorder.store') }}" method="post">
-      @csrf
-      <input type="hidden" name="id_customer" value="{{ $customer->id_customer }}">
-      <input type="hidden" name="id_event" value="{{ $event->id_event }}">
-      <!-- Jika Anda memiliki lebih banyak input fields, tambahkan di sini -->
-      <button type="submit" class="btn-blue text-decoration-none" style="
-    border: none;
-    padding: 10px 20px;
-    text-decoration: none;
-    cursor: pointer;
-    width: 160px;
-    height: 45px;
-    border: 2px solid #007AFF;;  
-    ">Pre-Order</button>
-      </form>
+      @if (!$hasPreordered)
+        <form action="{{ route('preorder.store') }}" method="post">
+        @csrf
+        <input type="hidden" name="id_customer" value="{{ $customer->id_customer }}">
+        <input type="hidden" name="id_event" value="{{ $event->id_event }}">
+        <!-- Jika Anda memiliki lebih banyak input fields, tambahkan di sini -->
+        <button type="submit" class="btn-blue text-decoration-none" style="
+      border: none;
+      padding: 10px 20px;
+      text-decoration: none;
+      cursor: pointer;
+      width: 160px;
+      height: 45px;
+      border: 2px solid #007AFF;;  
+      ">Pre-Order</button>
+        </form>
+        @else
+        <button type="button" class="btn-blue text-decoration-none" style="
+      border: none;
+      padding: 10px 20px;
+      text-decoration: none;
+      cursor: not-allowed;
+      width: 160px;
+      height: 45px;
+      border: 2px solid #007AFF;;  
+      " disabled>Pre-Order</button>
+      @endif
     @endguest
     </div>
   </div>
