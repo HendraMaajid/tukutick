@@ -58,4 +58,55 @@ class HomeController extends Controller
 
         return view('tukutick.tiket', compact('tiketku'));
     }
+
+
+    public function search(Request $request)
+    {
+        // Validasi input
+        $request->validate([
+            'judul' => 'nullable|string|max:255',
+            'kategori' => 'nullable|integer|exists:kategori,id_kategori',
+            'tanggal' => 'nullable|date',
+        ]);
+
+        // Ambil data dari input form
+        $judul = $request->input('judul');
+        $kategori = $request->input('kategori');
+        $tanggal = $request->input('tanggal');
+
+        // Mulai query untuk mencari event
+        $query = Event::query();
+
+        if ($judul) {
+            $query->where('nama_event', 'like', '%' . $judul . '%');
+        }
+
+        if ($kategori) {
+            $query->where('id_kategori', $kategori);
+        }
+
+        if ($tanggal) {
+            $query->whereDate('tgl_event', $tanggal);
+        }
+
+        // Dapatkan hasil pencarian
+        $events = $query->get();
+
+
+        $user = Auth::user();
+        $username = $user->username;
+        //dd($username);
+        $customer = Customer::where('username', $username)->first();
+        //dd($customer);
+        $id_customer = $customer->id_customer;
+        //dd($id_customer);
+        $notifikasi = Pemenang::where('id_customer', $id_customer)->get();
+
+        // return view('tukutick.landingpage', compact('events'));
+        $kategori = Kategori::all();
+
+
+        // Kembalikan view dengan hasil pencarian
+        return view('tukutick.home', compact('events', 'kategori', 'notifikasi', 'id_customer'));
+    }
 }

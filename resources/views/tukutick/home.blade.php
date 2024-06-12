@@ -81,15 +81,16 @@
 <!-- section search -->
 <section style="margin-top:-1.3rem;">
   <div class="search-form-container">
-    <form class="search-form" action="" method="">
+    <form class="search-form" action="{{ route('home.search') }}" method="POST">
+      @csrf
       <div class="input-group">
         <label for="">Search Event</label>
-        <input type="text" placeholder="Search Event" value="Konser pop">
+        <input type="text" placeholder="Search Event" value="" name="judul">
       </div>
       <div class="input-group">
         <label for="">Category</label>
-        <select>
-          <option value="All" selected>All</option>
+        <select name="kategori">
+          <option value="" selected>All</option>
           @foreach ($kategori as $items)
             <option value="{{ $items->id_kategori }}">{{ $items->nama_kategori }}</option>
           @endforeach
@@ -97,7 +98,7 @@
       </div>
       <div class="input-group">
         <label for="">Date</label>
-        <input type="date" value="">
+        <input type="date" value="" name="tanggal">
       </div>
     </form>
   </div>

@@ -133,3 +133,7 @@ Route::get('/users', function () {
 Route::get('/customers', function () {
   return view('menu.customers');
 });
+
+
+//untuk fitur search saat sudah login 
+Route::post('/home/search', [HomeController::class, 'search'])->name('home.search');
