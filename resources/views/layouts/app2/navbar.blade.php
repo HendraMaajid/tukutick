@@ -65,7 +65,7 @@
           @endif
         </a>
         <ul class="dropdown-menu text-small">
-          <li><a class="dropdown-item" href="#">Change Password</a></li>
+          <li><a class="dropdown-item" href="{{ route('password.change') }}">Change Password</a></li>
           <li><a class="dropdown-item" href="{{route('profil.edit', ['profil' => $id_customer])}}">Profile</a></li>
           <li>
           <hr class="dropdown-divider">

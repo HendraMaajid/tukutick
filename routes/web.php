@@ -14,6 +14,7 @@ use App\Http\Controllers\PemenangController;
 use App\Http\Controllers\PreorderController;
 use App\Http\Controllers\TiketController;
 use App\Http\Controllers\TransaksiController;
+use App\Http\Controllers\PasswordController;
 use App\Models\Pemenang;
 use Illuminate\Support\Facades\Auth;
 
@@ -137,3 +138,7 @@ Route::get('/customers', function () {
 
 //untuk fitur search saat sudah login 
 Route::post('/home/search', [HomeController::class, 'search'])->name('home.search');
+
+//change password
+Route::get('change-password', [PasswordController::class, 'showChangePasswordForm'])->name('password.change');
+Route::post('change-password', [PasswordController::class, 'changePassword'])->name('password.update');
