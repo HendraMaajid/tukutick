@@ -74,7 +74,13 @@
               <p>Tickets: {{ $data->jml_ticket }}</p>
             </div>
             <div class="card-footer d-flex justify-content-center">
-              <a href="{{ route('gacha', ['id_event' => $data->id_event, 'jml_ticket' => $data->jml_ticket, 'jml_po' => $jml_po]) }}"> <button class="btn btn-primary">Gacha</button> </a>
+              @if ($data->jml_ticket > 0)
+                <a href="{{ route('gacha', ['id_event' => $data->id_event, 'jml_ticket' => $data->jml_ticket, 'jml_po' => $jml_po]) }}">
+                  <button class="btn btn-primary">Gacha</button>
+                </a>
+              @else
+                <button class="btn btn-primary" disabled>Gacha</button>
+              @endif
             </div>
           </div>
         </div>
