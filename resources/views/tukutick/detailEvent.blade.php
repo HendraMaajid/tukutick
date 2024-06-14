@@ -2,7 +2,6 @@
 
 @section('title', 'detail event')
 
-
 @section('content')
 <div class="d-flex p-3" style="background-color: #094067;">
   <a href="{{ Auth::guest() ? url('/') : route('home.index')}}" class="text-decoration-none btn-outline-white"
@@ -10,8 +9,8 @@
     Back</a>
   <p class=" h1 fw-bolder d-block mx-auto text-light">{{ $event->nama_event }}</p>
 </div>
-<section class="d-flex justify-content-center" style="overflow: hidden;">
-  <img class="w-full vh-100 object-cover" src="{{ asset('storage/events/' . $event->gambar)}}" alt="">
+<section class="d-flex justify-content-center object-fit-cover" style="overflow: hidden;">
+  <img class="w-full" src="{{ asset('storage/events/' . $event->gambar)}}" alt="">
 </section>
 <div class="w-100 h-100 p-lg-5" style="margin-top:-1rem">
   <p class="h1 fw-bolder">{{ $event->nama_event }}</p>
@@ -119,7 +118,7 @@
       </li>
       <li style="margin-top:-10px">
         <p class="fw-bold">8. Penerimaan E-Ticket</p>
-        <p style="margin-top:-15px">PTiket elektronik (e-ticket) dikirim ke email pengguna atau dapat diakses melalui
+        <p style="margin-top:-15px">Tiket elektronik (e-ticket) dikirim ke email pengguna atau dapat diakses melalui
           akun pengguna di aplikasi. Pengguna bisa melihat atau mendownload e-ticket dari dashboard akun mereka.
 
         </p>
@@ -140,12 +139,12 @@
       Pengumuman
       </a>
       @if (!$hasPreordered)
-        <form action="{{ route('preorder.store') }}" method="post">
-        @csrf
-        <input type="hidden" name="id_customer" value="{{ $customer->id_customer }}">
-        <input type="hidden" name="id_event" value="{{ $event->id_event }}">
-        <!-- Jika Anda memiliki lebih banyak input fields, tambahkan di sini -->
-        <button type="submit" class="btn-blue text-decoration-none" style="
+      <form action="{{ route('preorder.store') }}" method="post">
+      @csrf
+      <input type="hidden" name="id_customer" value="{{ $customer->id_customer }}">
+      <input type="hidden" name="id_event" value="{{ $event->id_event }}">
+      <!-- Jika Anda memiliki lebih banyak input fields, tambahkan di sini -->
+      <button type="submit" class="btn-blue text-decoration-none" style="
       border: none;
       padding: 10px 20px;
       text-decoration: none;
@@ -154,18 +153,18 @@
       height: 45px;
       border: 2px solid #007AFF;;  
       ">Pre-Order</button>
-        </form>
-        @else
-        <button type="button" class="btn-blue text-decoration-none" style="
+      </form>
+    @else
+      <button type="button" class="btn-blue text-decoration-none" style="
       border: none;
       padding: 10px 20px;
       text-decoration: none;
       cursor: not-allowed;
       width: 160px;
       height: 45px;
-      border: 2px solid #007AFF;;  
+      border: 2px solid #007AFF;
       " disabled>Pre-Order</button>
-      @endif
+    @endif
     @endguest
     </div>
   </div>

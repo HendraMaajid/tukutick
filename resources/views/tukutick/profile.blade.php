@@ -12,13 +12,14 @@
 </div>
 <div class="container w-full vh-100 p-5 mx-auto ">
   <div class="w-75 d-flex justify-content-between col img-thumbnail rounded-4 m-auto mt-5">
-    <div class="col-3">
+    <div class="col-3  object-fit-cover d-flex" style="height:300px;">
       <!-- Check if the user has a profile picture -->
       @if ($customer->user->profile_picture)
-        <img src="{{ asset('storage/profile_pictures/' . $customer->user->profile_picture) }}" class="rounded-start-4" width="300" alt="Profile Picture">
-      @else
-        <img src="{{ asset('assets/img/avatar/avatar-1.png') }}" class="rounded-start-4" width="300" alt="Default Avatar">
-      @endif
+      <img src="{{ asset('storage/profile_pictures/' . $customer->user->profile_picture) }}" class="rounded-start-4"
+      width="300" alt="Profile Picture">
+    @else
+      <img src="{{ asset('assets/img/avatar/avatar-1.png') }}" class="rounded-start-4" width="300" alt="Default Avatar">
+    @endif
     </div>
     <div class="col-8 p-3">
       <p class="fs-5 fw-bold">Halo {{ $customer->nama_customer }}</p>
@@ -35,7 +36,8 @@
       <div class="d-flex justify-content-start col">
         <p class="col-3 fs-5">Tanggal Lahir</p>
         <p class="me-3 fs-5">:</p>
-        <p class="col-4 fs-5">{{ \Carbon\Carbon::parse($customer->tgl_lahir)->locale('id')->isoFormat('D MMMM YYYY') }}</p>
+        <p class="col-4 fs-5">{{ \Carbon\Carbon::parse($customer->tgl_lahir)->locale('id')->isoFormat('D MMMM YYYY') }}
+        </p>
       </div>
       <div class="d-flex justify-content-start col">
         <p class="col-3 fs-5">Email</p>
@@ -65,16 +67,19 @@
         <!-- Modal Body dengan form -->
         <!-- Modal Body dengan form -->
         <div class="modal-body">
-          <form method="POST" action="{{ route('profil.update', ['profil' => $customer->id_customer]) }}" enctype="multipart/form-data">
+          <form method="POST" action="{{ route('profil.update', ['profil' => $customer->id_customer]) }}"
+            enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="form-group">
               <label for="nama">Nama :</label>
-              <input type="text" class="form-control" id="nama" name="nama_customer" value="{{ $customer->nama_customer }}">
+              <input type="text" class="form-control" id="nama" name="nama_customer"
+                value="{{ $customer->nama_customer }}">
             </div><br>
             <div class="form-group">
               <label for="username">Username :</label>
-              <input type="text" class="form-control" id="username" name="username" value="{{ $customer->username }}" disabled>
+              <input type="text" class="form-control" id="username" name="username" value="{{ $customer->username }}"
+                disabled>
               <input type="hidden" name="username" value="{{ $customer->username }}">
             </div><br>
             <div class="form-group">
@@ -83,11 +88,13 @@
             </div><br>
             <div class="form-group">
               <label for="tanggalLahir">Tanggal Lahir:</label>
-              <input type="date" class="form-control" id="tanggalLahir" name="tgl_lahir" value="{{ $customer->tgl_lahir }}">
+              <input type="date" class="form-control" id="tanggalLahir" name="tgl_lahir"
+                value="{{ $customer->tgl_lahir }}">
             </div><br>
             <div class="form-group">
               <label for="email">Email:</label>
-              <input type="email" class="form-control" id="email" name="email_customer" value="{{ $customer->email_customer }}">
+              <input type="email" class="form-control" id="email" name="email_customer"
+                value="{{ $customer->email_customer }}">
             </div>
             <div class="m-auto pt-5 d-flex justify-content-center">
               <button type="submit" class="btn btn-primary">Update</button>
