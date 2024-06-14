@@ -37,11 +37,13 @@ class HomeController extends Controller
         //dd($customer);
         $id_customer = $customer->id_customer;
         //dd($id_customer);
-        $notifikasi = Pemenang::where('id_customer', $id_customer)->get();
+        $notifikasi = Pemenang::where('id_customer', $id_customer)
+            ->where('status_transaksi', 'belum dibayar')
+            ->get();
 
         $events = Event::all();
-       // return view('tukutick.landingpage', compact('events'));
-       $kategori = Kategori::all();
+        // return view('tukutick.landingpage', compact('events'));
+        $kategori = Kategori::all();
 
 
 

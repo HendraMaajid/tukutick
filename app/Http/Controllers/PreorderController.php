@@ -9,9 +9,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class PreorderController extends Controller
-{   
+{
 
-    function index(){
+    function index()
+    {
         $user = Auth::user();
         $username = $user->username;
 
@@ -20,10 +21,10 @@ class PreorderController extends Controller
 
         if ($penyelenggara) {
             $id_penyelenggara = $penyelenggara->id_penyelenggara;
-            
+
             // Mendapatkan data event yang dibuat oleh penyelenggara terkait
             $events = Event::where('id_penyelenggara', $id_penyelenggara)->get();
-            
+
             // Mendapatkan semua pre-order dari event yang diselenggarakan oleh penyelenggara
             $preOrders = Preorder::whereIn('id_event', $events->pluck('id_event'))->get();
 
@@ -32,7 +33,7 @@ class PreorderController extends Controller
         } else {
             // Jika penyelenggara tidak ditemukan, kembali ke halaman sebelumnya dengan pesan error
             return redirect()->back()->withErrors(['error' => 'Penyelenggara tidak ditemukan']);
-        }    
+        }
     }
 
 
@@ -46,6 +47,6 @@ class PreorderController extends Controller
         //dd($data);
 
         Preorder::create($data);
-        return redirect()->route('event.show', ['event' => $request->id_event])->with('success', 'Pre-order berhasil ditambahkan');
+        return redirect()->route('event.show', ['event' => $request->id_event])->with('success', 'Pre-order berhasil!');
     }
 }

@@ -2,6 +2,58 @@
 
 @section('title', 'Tukutick')
 
+@section('style')
+<style>
+.img-card {
+  width: 100% !important;
+  height: 200px !important;
+  object-fit: cover !important;
+}
+
+/* Untuk Chrome, Safari, Edge */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(100%);
+  cursor: pointer;
+}
+
+/* Untuk Firefox */
+input[type="date"] {
+  filter: invert(0%);
+}
+
+
+.custom-select {
+  position: relative;
+  width: 100%;
+  max-width: 300px;
+  appearance: none;
+  background-color: #ffffff;
+  border: 1px solid #ced4da;
+  padding: 6px 12px;
+  cursor: pointer;
+  padding: 0px 10px !important;
+}
+
+.custom-select option {
+  color: #000000 !important;
+
+}
+
+.custom-select.opened {
+  color: #000000 !important;
+}
+
+.search-form .input-group input[type="text"] {
+  width: 300px;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 16px;
+  outline: none !important;
+  transition: border-color 0.3s ease-in-out;
+}
+</style>
+@endsection
+
 @section('content')
 <section id="home">
   <div id="carouselExampleCaptions" class="carousel slide">
@@ -89,10 +141,10 @@
       </div>
       <div class="input-group">
         <label for="">Category</label>
-        <select name="nama_kategori">
+        <select name="nama_kategori" class="custom-select">
           <option value="All" selected>All</option>
           @foreach ($kategori as $items)
-            <option value="{{ $items->id_kategori }}">{{ $items->nama_kategori }}</option>
+          <option value="{{ $items->id_kategori }}">{{ $items->nama_kategori }}</option>
           @endforeach
         </select>
       </div>
@@ -112,27 +164,27 @@
     <div class="row row-cols-1 row-cols-md-3 g-4">
       @foreach($events as $event)
       <a class="text-decoration-none" href="{{route('event.show', $event->id_event)}}">
-      <div class="col">
-        <div class="card h-100 rounded-4">
-        <img src="{{ asset('storage/events/' . $event->gambar) }}" class="card-img-top rounded-top-4"
-          alt="{{ $event->nama_event }}">
-        <div class="card-body row">
-          <div class="col-2">
-          <p class="fw-bold" style="color:#3D37F1">{{ \Carbon\Carbon::parse($event->tgl_event)->format('M') }}
-          </p>
-          <p class="h5 fw-bolder" style="margin-top:-1.2rem">
-            {{ \Carbon\Carbon::parse($event->tgl_event)->format('d') }}</p>
-          </div>
-          <div class="col-10">
-          <h5 class="card-title fw-bold">{{ $event->nama_event }}</h5>
-          <p id="card-description" class="card-text" data-full-text="{{ $event->deskripsi_event }}">
-            {!! \Illuminate\Support\Str::limit($event->deskripsi_event, 100) !!}</p>
+        <div class="col">
+          <div class="card h-100 rounded-4">
+            <img src="{{ asset('storage/events/' . $event->gambar) }}"
+              class="card-img-top rounded-top-4 img-fluid img-card" alt="{{ $event->nama_event }}">
+            <div class="card-body row">
+              <div class="col-2">
+                <p class="fw-bold" style="color:#3D37F1">{{ \Carbon\Carbon::parse($event->tgl_event)->format('M') }}
+                </p>
+                <p class="h5 fw-bolder" style="margin-top:-1.2rem">
+                  {{ \Carbon\Carbon::parse($event->tgl_event)->format('d') }}</p>
+              </div>
+              <div class="col-10">
+                <h5 class="card-title fw-bold">{{ $event->nama_event }}</h5>
+                <p id="card-description" class="card-text" data-full-text="{{ $event->deskripsi_event }}">
+                  {!! \Illuminate\Support\Str::limit($event->deskripsi_event, 100) !!}</p>
+              </div>
+            </div>
           </div>
         </div>
-        </div>
-      </div>
       </a>
-    @endforeach
+      @endforeach
     </div>
   </div>
 

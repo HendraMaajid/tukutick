@@ -58,35 +58,70 @@
 
       <h2 class="section-title">Gacha Tickets</h2>
 
-
       <div class="row">
         @foreach ($event as $data)
-        <div class="col-3">
-          <div class="card">
+          <div class="col-3">
+            <div class="card">
             <div class="card-header">
               <h4>{{ $data->nama_event }}</h4>
             </div>
             <div class="card-body">
               @php
-                $jml_po = \App\Models\Preorder::where('id_event', $data->id_event)->count();
-              @endphp
+        $jml_po = \App\Models\Preorder::where('id_event', $data->id_event)->count();
+        @endphp
               <p>Pre-Orders: {{ $jml_po }}</p>
               <p>Tickets: {{ $data->jml_ticket }}</p>
             </div>
             <div class="card-footer d-flex justify-content-center">
               @if ($data->jml_ticket > 0)
-                <a href="{{ route('gacha', ['id_event' => $data->id_event, 'jml_ticket' => $data->jml_ticket, 'jml_po' => $jml_po]) }}">
-                  <button class="btn btn-primary">Gacha</button>
-                </a>
-              @else
-                <button class="btn btn-primary" disabled>Gacha</button>
-              @endif
+          <button id="gacha-button" class="btn btn-primary"
+          data-url="{{ route('gacha', ['id_event' => $data->id_event, 'jml_ticket' => $data->jml_ticket, 'jml_po' => $jml_po]) }}">
+          Gacha
+          </button>
+        @else
+        <button class="btn btn-secondary pe-none" style="cursor:not-allowed" disabled>Gacha</button>
+      @endif
+            </div>
             </div>
           </div>
-        </div>
-        @endforeach
+    @endforeach
       </div>
     </div>
   </section>
 </div>
+@endsection
+
+@section('script')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const gachaButton = document.getElementById('gacha-button');
+
+  gachaButton.addEventListener('click', function() {
+    const gachaUrl = gachaButton.getAttribute('data-url');
+
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "Do you want to proceed with the gacha?",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          icon: 'success',
+          title: 'Gacha Successful',
+          text: 'You have successfully performed the gacha!',
+        }).then(() => {
+          // Redirect to the gacha URL
+          window.location.href = gachaUrl;
+        });
+      }
+    });
+  });
+});
+</script>
+
 @endsection

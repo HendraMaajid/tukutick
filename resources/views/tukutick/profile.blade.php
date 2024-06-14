@@ -67,8 +67,8 @@
         <!-- Modal Body dengan form -->
         <!-- Modal Body dengan form -->
         <div class="modal-body">
-          <form method="POST" action="{{ route('profil.update', ['profil' => $customer->id_customer]) }}"
-            enctype="multipart/form-data">
+          <form id="profile-form" method="POST"
+            action="{{ route('profil.update', ['profil' => $customer->id_customer]) }}" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="form-group">
@@ -97,7 +97,7 @@
                 value="{{ $customer->email_customer }}">
             </div>
             <div class="m-auto pt-5 d-flex justify-content-center">
-              <button type="submit" class="btn btn-primary">Update</button>
+              <button id="submit-button" type="submit" class="btn btn-primary">Update</button>
             </div>
           </form>
         </div>
@@ -114,6 +114,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
 // Fungsi untuk menampilkan modal popup
 function showProfileModal() {
@@ -137,5 +138,19 @@ function updateProfile() {
     $('#profileModal').modal('hide');
   }
 }
+</script>
+<script>
+document.getElementById('submit-button').addEventListener('click', function() {
+  Swal.fire({
+    icon: 'success',
+    title: 'Updated Successful',
+    text: 'Your profile has been updated!',
+    confirmButtonText: 'OK'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      document.getElementById('profile-form').submit();
+    }
+  });
+});
 </script>
 @endsection

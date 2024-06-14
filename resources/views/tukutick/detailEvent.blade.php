@@ -1,6 +1,28 @@
 @extends('layouts.app2-detailEvent')
 
 @section('title', 'detail event')
+@section('style')
+<style>
+.image-container {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  /* Sembunyikan bagian gambar yang melampaui container */
+  position: relative;
+}
+
+.responsive-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Menjaga rasio gambar dan mengisi container */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+</style>
+@endsection
 
 @section('content')
 <div class="d-flex p-3" style="background-color: #094067;">
@@ -9,8 +31,8 @@
     Back</a>
   <p class=" h1 fw-bolder d-block mx-auto text-light">{{ $event->nama_event }}</p>
 </div>
-<section class="d-flex justify-content-center object-fit-cover" style="overflow: hidden;">
-  <img class="w-full" src="{{ asset('storage/events/' . $event->gambar)}}" alt="">
+<section class="image-container">
+  <img class="responsive-image" src="{{ asset('storage/events/' . $event->gambar)}}" alt="">
 </section>
 <div class="w-100 h-100 p-lg-5" style="margin-top:-1rem">
   <p class="h1 fw-bolder">{{ $event->nama_event }}</p>
@@ -129,22 +151,22 @@
     <div class="container mt-5 d-flex justify-content-center gap-5 mb-5">
       @guest
       <a href="{{route('pemenang.show', $event->id_event)}}" class="btn-outline-blue text-decoration-none">
-      Pengumuman
+        Pengumuman
       </a>
       <a href="{{route('login')}}" class="btn-blue text-decoration-none">
-      Pre-Order
+        Pre-Order
       </a>
-    @else
+      @else
       <a href="{{route('pemenang.show', $event->id_event)}}" class="btn-outline-blue text-decoration-none">
-      Pengumuman
+        Pengumuman
       </a>
       @if (!$hasPreordered)
-      <form action="{{ route('preorder.store') }}" method="post">
-      @csrf
-      <input type="hidden" name="id_customer" value="{{ $customer->id_customer }}">
-      <input type="hidden" name="id_event" value="{{ $event->id_event }}">
-      <!-- Jika Anda memiliki lebih banyak input fields, tambahkan di sini -->
-      <button type="submit" class="btn-blue text-decoration-none" style="
+      <form id="preorder-form" action="{{ route('preorder.store') }}" method="post">
+        @csrf
+        <input type="hidden" name="id_customer" value="{{ $customer->id_customer }}">
+        <input type="hidden" name="id_event" value="{{ $event->id_event }}">
+        <!-- Jika Anda memiliki lebih banyak input fields, tambahkan di sini -->
+        <button type="submit" class="btn-blue text-decoration-none" style="
       border: none;
       padding: 10px 20px;
       text-decoration: none;
@@ -154,20 +176,63 @@
       border: 2px solid #007AFF;;  
       ">Pre-Order</button>
       </form>
-    @else
-      <button type="button" class="btn-blue text-decoration-none" style="
+      @else
+      <button type="button" id="preorder-info-button" class="btn-blue text-decoration-none" style="
       border: none;
       padding: 10px 20px;
       text-decoration: none;
-      cursor: not-allowed;
       width: 160px;
       height: 45px;
       border: 2px solid #007AFF;
-      " disabled>Pre-Order</button>
-    @endif
-    @endguest
+      ">Pre-Order</button>
+      @endif
+      @endguest
     </div>
   </div>
 </div>
+
+@endsection
+
+@section('script')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  @if(!$hasPreordered)
+  document.getElementById('preorder-button').addEventListener('click', function() {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "Do you want to proceed with the pre-order?",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, pre-order it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        document.getElementById('preorder-form').submit();
+      }
+    })
+  });
+  @else
+  document.getElementById('preorder-info-button').addEventListener('click', function() {
+    Swal.fire({
+      icon: 'info',
+      title: 'Pre-Order',
+      text: 'Anda telah melakukan pre-order',
+    });
+  });
+  @endif
+});
+</script>
+<script>
+@if(session('success'))
+Swal.fire({
+  icon: 'success',
+  title: 'Success',
+  text: '{{ session('
+  success ') }}',
+});
+@endif
+</script>
 
 @endsection

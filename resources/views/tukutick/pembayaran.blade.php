@@ -46,39 +46,28 @@
     </div>
     <p class="fs-3 fw-bold mb-5" style="color:#094067">Total: {{ $event->hrg_ticket }}</p>
     <div class="d-flex justify-content-center mt-5 mb-xxl-5">
-      <button type="submit" class="col-12 btn btn-primary rounded-pill">Bayar</button>
+      <button id="submit-btn" type="submit" class="col-12 btn btn-primary rounded-pill">Bayar</button>
     </div>
   </form>
-</div>
-
-<!-- Pop-up transaksi sukses -->
-<div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title text-center" id="successModalLabel">Transaksi Sukses</h5>
-      </div>
-      <div class="modal-body text-center">
-        <i class="fas fa-check-circle text-success fs-1 mb-3"></i>
-        <p>Transaksi Anda telah berhasil.</p>
-      </div>
-      <div class="modal-footer d-flex justify-content-center">
-        <a href="{{url('/home')}}"> <button type="button" class="btn btn-secondary"
-            data-bs-dismiss="modal">Tutup</button></a>
-
-      </div>
-    </div>
-  </div>
 </div>
 @endsection
 
 @section('script')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <script>
-// Menampilkan pop-up transaksi sukses saat tombol "Bayar" ditekan
-document.getElementById('payment-form').addEventListener('submit', function(event) {
-  event.preventDefault();
-  var myModal = new bootstrap.Modal(document.getElementById('successModal'));
-  myModal.show();
+document.getElementById('submit-btn').addEventListener('click', function() {
+  Swal.fire({
+    icon: 'success',
+    title: 'Payment Successful',
+    text: 'Your payment has been successful!',
+    confirmButtonText: 'OK'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      document.getElementById('payment-form').submit();
+    }
+  });
 });
 </script>
+
 @endsection
