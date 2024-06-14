@@ -28,7 +28,7 @@ class PasswordController extends Controller
         ]);
 
         if (!Hash::check($request->current_password, Auth::user()->password)) {
-            return back()->withErrors(['current_password' => 'Password saat ini salah']);
+            return back()->withErrors(['current_password' => 'Password yang anda masukkan saat ini salah']);
         }
 
         Auth::user()->update([
