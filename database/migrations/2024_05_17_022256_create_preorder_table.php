@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('preorder', function (Blueprint $table) {
             $table->id('id_preorder');
             $table->unsignedBigInteger('id_customer'); //foreign key dari tabel customer
-            $table->foreign('id_customer')->references('id_customer')->on('customer');
+            $table->foreign('id_customer')->references('id_customer')->on('customer')->onDelete('cascade');
             $table->unsignedBigInteger('id_event'); //foreign key dari tabel event
-            $table->foreign('id_event')->references('id_event')->on('event');
+            $table->foreign('id_event')->references('id_event')->on('event')->onDelete('cascade');
             $table->timestamps();
         });
     }
