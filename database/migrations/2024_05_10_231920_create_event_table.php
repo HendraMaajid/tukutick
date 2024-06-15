@@ -23,9 +23,9 @@ return new class extends Migration
             $table->float('hrg_ticket');
             $table->string('status');
             $table->unsignedBigInteger('id_kategori'); //foreign key dari tabel kategori
-            $table->foreign('id_kategori')->references('id_kategori')->on('kategori');
+            $table->foreign('id_kategori')->references('id_kategori')->on('kategori')->onDelete('cascade');
             $table->unsignedBigInteger('id_penyelenggara'); //foreign key dari tabel penyelenggara
-            $table->foreign('id_penyelenggara')->references('id_penyelenggara')->on('penyelenggara');
+            $table->foreign('id_penyelenggara')->references('id_penyelenggara')->on('penyelenggara')->onDelete('cascade');
             $table->timestamps();
         });
     }

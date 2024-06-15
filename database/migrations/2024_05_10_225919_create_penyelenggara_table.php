@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('kontak');
             $table->string('lisensi')->nullable();
             $table->string('username'); //ini foreign key dari tabel users
-            $table->foreign('username')->references('username')->on('users');
+            $table->foreign('username')->references('username')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
