@@ -133,24 +133,24 @@ input[type="date"] {
 <!-- section search -->
 <section style="margin-top:-1.3rem;">
   <div class="search-form-container">
-    <form class="search-form" action="" method="">
+    <form class="search-form" action="{{ route('home.search') }}" method="POST">
       @csrf
       <div class="input-group">
         <label for="">Search Event</label>
-        <input type="text" placeholder="Search Event" value="Konser pop" name="nama_event">
+        <input type="text" placeholder="Search Event" value="" name="judul">
       </div>
       <div class="input-group">
         <label for="">Category</label>
-        <select name="nama_kategori" class="custom-select">
-          <option value="All" selected>All</option>
+        <select name="kategori" class="custom-select">
+          <option value="" selected>All</option>
           @foreach ($kategori as $items)
-          <option value="{{ $items->id_kategori }}">{{ $items->nama_kategori }}</option>
-          @endforeach
+        <option value="{{ $items->id_kategori }}">{{ $items->nama_kategori }}</option>
+      @endforeach
         </select>
       </div>
       <div class="input-group">
         <label for="">Date</label>
-        <input type="date" value="" name="tgl_event">
+        <input type="date" value="" name="tanggal" class="custom-date-input">
       </div>
     </form>
   </div>

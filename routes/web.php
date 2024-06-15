@@ -10,6 +10,7 @@ use App\Http\Controllers\GachaController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\PenyelenggaraController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LandingController;
 use App\Http\Controllers\PemenangController;
 use App\Http\Controllers\PreorderController;
 use App\Http\Controllers\TiketController;
@@ -138,6 +139,7 @@ Route::get('/customers', function () {
 
 //untuk fitur search saat sudah login 
 Route::post('/home/search', [HomeController::class, 'search'])->name('home.search');
+Route::post('/landing/search', [LandingController::class, 'search'])->name('home.search');
 
 //change password
 Route::get('change-password', [PasswordController::class, 'showChangePasswordForm'])->name('password.change');

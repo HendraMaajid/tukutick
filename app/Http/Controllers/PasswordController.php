@@ -15,10 +15,6 @@ class PasswordController extends Controller
         $this->middleware('auth');
     }
 
-    public function showChangePasswordForm()
-    {
-        return view('tukutick.changePassword');
-    }
 
     public function changePassword(Request $request)
     {
@@ -34,8 +30,30 @@ class PasswordController extends Controller
         Auth::user()->update([
             'password' => Hash::make($request->new_password),
         ]);
+        
+         if (Auth::user()->role == 'admin') {
+            session(['url.intended' => url('/admin')]);
+        } elseif (Auth::user()->role == 'penyelenggara') {
+            session(['url.intended' => route('EO.index')]);
+        } else {
+            session(['url.intended' => url('/home')]);
+        }
 
         return redirect()->route('password.change')->with('status', 'Password berhasil diubah');
+
     }
+
+    public function showChangePasswordForm()
+    {
+         if (Auth::user()->role == 'admin') {
+            session(['url.intended' => url('/admin')]);
+        } elseif (Auth::user()->role == 'penyelenggara') {
+            session(['url.intended' => route('EO.index')]);
+        } else {
+            session(['url.intended' => url('/home')]);
+        }
+        return view('tukutick.changePassword');
+    }
+
 }
 

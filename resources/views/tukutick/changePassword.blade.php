@@ -56,13 +56,16 @@
             </div>
         </div>
 
-        <div class="mb-0">
+        <div class="mb-4">
             <div class="col-12">
                 <button type="submit" class="col-11 btn btn-primary fw-bold">
                     {{ __('Change Password') }}
                 </button>
             </div>
         </div>
+        <a href="{{ session('url.intended') }}" class="text-decoration-none pt-3">
+            &nbsp;<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M10.8284 12.0007L15.7782 16.9504L14.364 18.3646L8 12.0007L14.364 5.63672L15.7782 7.05093L10.8284 12.0007Z"></path></svg>back&nbsp;
+        </a>
     </form>
 </div>
 @endsection
