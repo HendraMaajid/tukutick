@@ -19,7 +19,7 @@
                 <h4>Events</h4>
               </div>
               <div class="card-body">
-                {{ $event->count() }}
+                {{ $events->count() }}
               </div>
             </div>
           </div>
@@ -59,7 +59,7 @@
       <h2 class="section-title">Gacha Tickets</h2>
 
       <div class="row">
-        @foreach ($event as $data)
+        @foreach ($events as $data)
           <div class="col-3">
             <div class="card">
             <div class="card-header">
