@@ -23,6 +23,19 @@
   </div>
   @include('layouts.app.script')
   @yield('script')
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Add event listener to all forms
+        document.querySelectorAll('form').forEach(function(form) {
+            form.addEventListener('submit', function(event) {
+                // Disable all submit buttons within the form
+                form.querySelectorAll('.btn').forEach(function(button) {
+                    button.disabled = true;
+                });
+            });
+        });
+    });
+  </script>
 </body>
 
 </html>

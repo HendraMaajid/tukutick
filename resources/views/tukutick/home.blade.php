@@ -1,3 +1,4 @@
+
 @extends('layouts.app2')
 
 @section('title', 'Tukutick')
@@ -207,4 +208,19 @@ document.addEventListener("DOMContentLoaded", function() {
   })
 });
 </script>
+@if(session('scrollToEvent'))
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(function() {
+            const eventSection = document.getElementById('event');
+            if (eventSection) {
+                const yOffset = eventSection.getBoundingClientRect().top + window.pageYOffset;
+                window.scrollTo({top: yOffset, behavior: 'smooth'});
+            } else {
+                console.error('Element with id "event" not found');
+            }
+        }, 100);
+    });
+</script>
+@endif
 @endsection

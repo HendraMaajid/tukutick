@@ -100,38 +100,24 @@ class EventController extends Controller
      */
     public function show(string $id)
     {
+        $event = Event::find($id);
+        $event->tgl_event = Carbon::parse($event->tgl_event);
+        $event->jam_event = Carbon::parse($event->jam_event);
+
+        $hasPreordered = false;
+        $customer = null;
+
         if (!Auth::guest()) {
-            //mengambil data user yang sedang login
             $user = Auth::user();
             $username = $user->username;
             $customer = Customer::where('username', $username)->first();
-            //dd($customer->id_customer);
-            //mengambil data event yang dipilih
-            $event = Event::find($id);
 
-            //mengubah tgl dan jam ke format carbon
-            $event->tgl_event = Carbon::parse($event->tgl_event);
-            $event->jam_event = Carbon::parse($event->jam_event);
-            
-            //mengecek sudah pernah melakukan pre-order atau belum
-            $hasPreordered = false;
             if ($customer) {
                 $hasPreordered = $customer->preorder()->where('id_event', $id)->exists();
             }
-
-
-            //dd($hasPreordered);
-
-            return view('tukutick.detailEvent', compact('event', 'customer', 'hasPreordered'));
-        } else {
-            //mengambil data event yang dipilih
-            $event = Event::find($id);
-
-            //mengubah tgl dan jam ke format carbon
-            $event->tgl_event = Carbon::parse($event->tgl_event);
-            $event->jam_event = Carbon::parse($event->jam_event);
-            return view('tukutick.detailEvent', compact('event'));
         }
+
+        return view('tukutick.detailEvent', compact('event', 'customer', 'hasPreordered'));
     }
 
     /**

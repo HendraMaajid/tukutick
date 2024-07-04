@@ -109,6 +109,6 @@ class HomeController extends Controller
 
 
         // Kembalikan view dengan hasil pencarian
-        return view('tukutick.home', compact('events', 'kategori', 'notifikasi', 'id_customer'));
+        return view('tukutick.home', compact('events', 'kategori', 'notifikasi', 'id_customer'))->with('scrollToEvent', true);
     }
 }

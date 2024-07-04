@@ -14,11 +14,11 @@
       <a class="nav-link" href="#event">Event</a>
       <a class="nav-link" href="#contact">Contact</a>
     @else
-    <a class="nav-link" href="{{route('home.index')}}">Home</a>
-    <a class="nav-link" href="#about">About</a>
-    <a class="nav-link" href="#event">Event</a>
+    <a class="nav-link" href="{{ route('home.index') }}">Home</a>
+    <a class="nav-link" href="{{ route('home.index') }}#about">About</a>
+    <a class="nav-link" href="{{ route('home.index') }}#event">Event</a>
     <a class="nav-link" href="#contact">Contact</a>
-    <a class="nav-link" href="{{route('tiket.index', ['id' => $id_customer])}}">My Ticket</a>
+    <a class="nav-link" href="{{ route('tiket.index', ['id' => $id_customer]) }}">My Ticket</a>
   @endguest
       </div>
       <div class="d-flex gap-3">
@@ -62,30 +62,28 @@
       </div>
       </div>
       <!-- notif end -->
-      <div class="dropdown text-end pt-0">
-      <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle"
-        data-bs-toggle="dropdown" aria-expanded="false">
-        @if ($user && $user->profile_picture)
-      <img src="{{ asset('storage/profile_pictures/' . $user->profile_picture) }}" alt="Profile Picture"
-      width="32" height="32" class="rounded-circle">
-    @else
-    <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
-  @endif
-      </a>
-      <ul class="dropdown-menu text-small">
-        <li><a class="dropdown-item" href="{{ route('password.change') }}">Change Password</a></li>
-        <li><a class="dropdown-item" href="{{route('profil.edit', ['profil' => $id_customer])}}">Profile</a></li>
-        <li>
-        <hr class="dropdown-divider">
-        </li>
-        <li><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-     document.getElementById('logout-form').submit();">
-          {{ __('Logout') }}</a>
-        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-          @csrf
-        </form>
-        </li>
-      </ul>
+      <div class="dropdown">
+        <a href="#" class="dropdown-toggle text-decoration-none link-body-emphasis" data-bs-toggle="dropdown" aria-expanded="false">
+          @if ($user && $user->profile_picture)
+            <img src="{{ asset('storage/profile_pictures/' . $user->profile_picture) }}" alt="Profile Picture"
+            width="32" height="32" class="rounded-circle">
+          @else
+            <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
+          @endif
+        </a>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="{{ route('password.change') }}">Change Password</a></li>
+          <li><a class="dropdown-item" href="{{route('profil.edit', ['profil' => $id_customer])}}">Profile</a></li>
+          <li>
+            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+              document.getElementById('logout-form').submit();">
+              {{ __('Logout') }}
+            </a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+              @csrf
+            </form>
+          </li>
+        </ul>
       </div>
     </div>
   @endguest

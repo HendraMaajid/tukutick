@@ -41,8 +41,8 @@
                     <tr class="text-center">
                       <td>{{ ($event->currentPage() - 1) * $event->perPage() + $loop->iteration }}</td>
                       <td>{{ $item->nama_event }}</td>
-                      <td class="description-cell" data-full-text="{{ $item->deskripsi_event }}">
-                        {{ \Illuminate\Support\Str::limit($item->deskripsi_event, 10) }}
+                      <td class="description-cell" data-full-text="{{ strip_tags($item->deskripsi_event) }}">
+                        {{ \Illuminate\Support\Str::limit(strip_tags($item->deskripsi_event), 10) }}
                       </td>
                       <td><img src="{{ asset('storage/events/' . $item->gambar) }}" alt="{{ $item->nama_event }}"
                           width="100"></td>

@@ -74,7 +74,7 @@
             </div>
             <div class="card-footer d-flex justify-content-center">
               @if ($data->jml_ticket > 0)
-          <button id="gacha-button" class="btn btn-primary"
+          <button class="btn btn-primary gacha-button"
           data-url="{{ route('gacha', ['id_event' => $data->id_event, 'jml_ticket' => $data->jml_ticket, 'jml_po' => $jml_po]) }}">
           Gacha
           </button>
@@ -95,33 +95,34 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
 document.addEventListener("DOMContentLoaded", function() {
-  const gachaButton = document.getElementById('gacha-button');
+  const gachaButtons = document.querySelectorAll('.gacha-button');
 
-  gachaButton.addEventListener('click', function() {
-    const gachaUrl = gachaButton.getAttribute('data-url');
+  gachaButtons.forEach(button => {
+    button.addEventListener('click', function() {
+      const gachaUrl = button.getAttribute('data-url');
 
-    Swal.fire({
-      title: 'Are you sure?',
-      text: "Do you want to proceed with the gacha?",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire({
-          icon: 'success',
-          title: 'Gacha Successful',
-          text: 'You have successfully performed the gacha!',
-        }).then(() => {
-          // Redirect to the gacha URL
-          window.location.href = gachaUrl;
-        });
-      }
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "Do you want to proceed with the gacha?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire({
+            icon: 'success',
+            title: 'Gacha Successful',
+            text: 'You have successfully performed the gacha!',
+          }).then(() => {
+            // Redirect to the gacha URL
+            window.location.href = gachaUrl;
+          });
+        }
+      });
     });
   });
 });
 </script>
-
 @endsection

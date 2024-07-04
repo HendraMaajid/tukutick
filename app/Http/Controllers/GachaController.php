@@ -27,8 +27,7 @@ class GachaController extends Controller
         // Hitung jumlah tiket yang tersisa
         $tiket_tersisa = $event->jml_ticket - count($hasilGatcha);
 
-        // Update jumlah tiket pada event
-        $event->update(['jml_ticket' => $tiket_tersisa]);
+       
 
         // Simpan data pemenang ke dalam tabel pemenangModel
         foreach ($hasilGatcha as $gatcha) {
@@ -43,6 +42,9 @@ class GachaController extends Controller
             Pemenang::create($data);
         }
 
-        return redirect()->route('EO.index');
+         // Update jumlah tiket pada event
+        $event->update(['jml_ticket' => $tiket_tersisa]);
+
+        return redirect()->route('pemenang.index');
     }
 }

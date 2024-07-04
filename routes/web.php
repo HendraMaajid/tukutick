@@ -139,7 +139,7 @@ Route::get('/customers', function () {
 
 //untuk fitur search saat sudah login 
 Route::post('/home/search', [HomeController::class, 'search'])->name('home.search');
-Route::post('/landing/search', [LandingController::class, 'search'])->name('home.search');
+Route::post('/landing/search', [LandingController::class, 'search'])->name('landing.search');
 
 //change password
 Route::get('change-password', [PasswordController::class, 'showChangePasswordForm'])->name('password.change');

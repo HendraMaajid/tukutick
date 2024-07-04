@@ -133,7 +133,7 @@ input[type="date"] {
 <!-- section search -->
 <section style="margin-top:-1.3rem;">
   <div class="search-form-container">
-    <form class="search-form" action="{{ route('home.search') }}" method="POST">
+    <form class="search-form" action="{{ route('landing.search') }}" method="POST">
       @csrf
       <div class="input-group">
         <label for="">Search Event</label>

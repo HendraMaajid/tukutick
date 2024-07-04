@@ -16,7 +16,7 @@
         <h4>Formulir Tambah Kategori</h4>
       </div>
       <div class="card-body">
-        <form action="{{ route('event.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('event.store') }}" method="POST" enctype="multipart/form-data" id="eventForm">
           @csrf
           <div class="form-group row mb-4">
             <label for="nama_event" class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Nama
@@ -97,7 +97,7 @@
           <div class="form-group row mb-4">
             <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3"></label>
             <div class="col-sm-12 col-md-7">
-              <button type="submit" class="btn btn-primary">Create</button>
+              <button type="submit" class="btn btn-primary" id="createButton">Create</button>
             </div>
           </div>
         </form>
@@ -124,5 +124,6 @@ tinymce.init({
     },
   ],
 });
+
 </script>
 @endsection
