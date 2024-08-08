@@ -46,7 +46,8 @@
     </div>
     <p class="fs-3 fw-bold mb-5" style="color:#094067">Total: {{ $event->hrg_ticket }}</p>
     <div class="d-flex justify-content-center mt-5 mb-xxl-5">
-      <button id="submit-btn" type="submit" class="col-12 btn btn-primary rounded-pill">Bayar</button>
+      <input type="hidden" name="snap_token" id="snap_token">
+      <button id="pay-button" type="button" class="col-12 btn btn-primary rounded-pill">Bayar</button>
     </div>
   </form>
 </div>
@@ -55,18 +56,53 @@
 @section('script')
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ env('MIDTRANS_CLIENT_KEY') }}"></script>
 <script>
-document.getElementById('submit-btn').addEventListener('click', function() {
-  Swal.fire({
-    icon: 'success',
-    title: 'Payment Successful',
-    text: 'Your payment has been successful!',
-    confirmButtonText: 'OK'
-  }).then((result) => {
-    if (result.isConfirmed) {
-      document.getElementById('payment-form').submit();
-    }
-  });
+$(document).ready(function() {
+    $('#pay-button').click(function(e) {
+        e.preventDefault();
+        
+        // Mengambil data dari form
+        var formData = $('#payment-form').serialize();
+        
+        // Meminta snap token
+        $.ajax({
+            url: '{{ route("generate.snap.token") }}',
+            type: 'POST',
+            data: formData,
+            dataType: 'json',
+            success: function(response) {
+                var snapToken = response.snap_token;
+                $('#snap_token').val(snapToken);
+                
+                // Memulai transaksi Midtrans
+                snap.pay(snapToken, {
+                    onSuccess: function(result) {
+                        console.log('success');
+                        console.log(result);
+                        $('#payment-form').submit(); // Submit form setelah pembayaran berhasil
+                    },
+                    onPending: function(result) {
+                        console.log('pending');
+                        console.log(result);
+                        $('#payment-form').submit(); // Submit form jika pembayaran pending
+                    },
+                    onError: function(result) {
+                        console.log('error');
+                        console.log(result);
+                    },
+                    onClose: function() {
+                        console.log('customer closed the popup without finishing the payment');
+                    }
+                });
+            },
+            error: function(xhr, status, error) {
+              console.error('Error:', xhr.responseText);
+              alert('An error occurred while processing your request. Please try again.');
+          }
+        });
+    });
 });
 </script>
 

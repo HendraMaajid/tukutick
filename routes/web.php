@@ -144,3 +144,5 @@ Route::post('/landing/search', [LandingController::class, 'search'])->name('land
 //change password
 Route::get('change-password', [PasswordController::class, 'showChangePasswordForm'])->name('password.change');
 Route::post('change-password', [PasswordController::class, 'changePassword'])->name('password.update');
+
+Route::post('/generate-snap-token', [TransaksiController::class, 'generateSnapToken'])->name('generate.snap.token');

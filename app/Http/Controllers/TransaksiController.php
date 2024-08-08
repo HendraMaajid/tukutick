@@ -70,30 +70,45 @@ class TransaksiController extends Controller
     }
 
 
+    public function generateSnapToken(Request $request)
+    {
+        // Set your Merchant Server Key
+        \Midtrans\Config::$serverKey = config('midtrans.server_key');
+        \Midtrans\Config::$isProduction = false;
+        \Midtrans\Config::$isSanitized = true;
+        \Midtrans\Config::$is3ds = true;
+
+        $params = array(
+            'transaction_details' => array(
+                'order_id' => rand(),
+                'gross_amount' => $request->input('jml_transaksi'),
+            ),
+        );
+
+        $snapToken = \Midtrans\Snap::getSnapToken($params);
+
+        return response()->json(['snap_token' => $snapToken]);
+    }
+
     public function store(Request $request)
     {
         $request->validate([
             'metode_pembayaran' => 'required',
             'id_pemenang' => 'required',
-            'jml_transaksi' => 'required'
+            'jml_transaksi' => 'required',
+            'snap_token' => 'required'
         ]);
 
         $data = [
             'metode_pembayaran' => $request->input('metode_pembayaran'),
             'id_pemenang' => $request->input('id_pemenang'),
-            'jml_transaksi' => $request->input('jml_transaksi')
+            'jml_transaksi' => $request->input('jml_transaksi'),
+            'snap_token' => $request->input('snap_token')
         ];
 
-        //dd($data); // Anda bisa menggunakan dd untuk mengecek nilai $data
-
-        // Jika validasi berhasil, lanjutkan dengan membuat transaksi
         Transaksi::create($data);
 
-
-         // Mengambil objek Pemenang yang sesuai
         $pemenang = Pemenang::find($request->input('id_pemenang'));
-
-        // Meng-update kolom status_pembayaran menjadi "sudah dibayar"
         $pemenang->update(['status_transaksi' => 'sudah dibayar']);
         
         return redirect()->route('home.index');

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('id_pemenang'); //foreign key dari tabel pemenang
             $table->foreign('id_pemenang')->references('id_pemenang')->on('pemenang')->onDelete('cascade');
             $table->unsignedInteger('metode_pembayaran'); // Tambahkan kolom untuk metode_pembayaran yang bertipe integer
+            $table->string('snap_token')->nullable();
             $table->timestamps();
         });
     }
