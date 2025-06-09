@@ -41,7 +41,6 @@ Route::get('/event/{id}/edit', [EventController::class, 'edit'])->name('event.ed
 Route::put('/event/update/{id}', [EventController::class, 'update'])->name('event.update');
 Route::delete('/event/destroy/{id}', [EventController::class, 'destroy'])->name('event.destroy');
 Route::get('/', [EventController::class, 'home'])->name('event.home');
-Route::get('/home', [EventController::class, 'landing'])->name('event.landing');
 
 Route::get('/kategori', [KategoriController::class, 'index'])->name('kategori.index');
 Route::get('/kategori/create', [KategoriController::class, 'create'])->name('kategori.create');
@@ -49,7 +48,6 @@ Route::post('/kategori/store', [KategoriController::class, 'store'])->name('kate
 Route::get('/kategori/{id}/edit', [KategoriController::class, 'edit'])->name('kategori.edit');
 Route::put('/kategori/update/{id}', [KategoriController::class, 'update'])->name('kategori.update');
 Route::delete('/kategori/destroy/{id}', [KategoriController::class, 'destroy'])->name('kategori.destroy');
-Route::get('/', [KategoriController::class, 'landing'])->name('kategori.landing');
 
 
 //routing untuk penyelenggara
@@ -58,9 +56,8 @@ Route::resource('/penyelenggara', PenyelenggaraController::class);
 //routing untuk admin
 Route::resource('/admin', AdminController::class);
 
+// Authentication routes
 Auth::routes();
-
-Route::resource('/home', HomeController::class);
 
 //routing untuk ghaca
 Route::get('gacha/{id_event}/{jml_ticket}/{jml_po}', [GachaController::class, 'store'])->name('gacha');
@@ -138,8 +135,20 @@ Route::get('/customers', function () {
 
 
 //untuk fitur search saat sudah login 
-Route::post('/home/search', [HomeController::class, 'search'])->name('home.search');
-Route::post('/landing/search', [LandingController::class, 'search'])->name('landing.search');
+// Main route for both landing page (guests) and home page (authenticated users)
+Route::get('/', [HomeController::class, 'index'])->name('home.index');
+
+// Search functionality (works for both authenticated and guest users)
+Route::post('/search', [HomeController::class, 'search'])->name('home.search');
+
+// Get all events (AJAX endpoint)
+Route::get('/events', [HomeController::class, 'getAllEvents'])->name('home.events');
+
+// My tickets route (only for authenticated users)
+Route::get('/my-tickets', [HomeController::class, 'myTicket'])->name('my.tickets');
+
+// Keep the original /home route for backward compatibility (optional)
+Route::get('/home', [HomeController::class, 'index']);
 
 //change password
 Route::get('change-password', [PasswordController::class, 'showChangePasswordForm'])->name('password.change');

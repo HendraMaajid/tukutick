@@ -492,78 +492,106 @@
 .airlineslip {
   left: 455px;
 }
+
+/* TAMBAHAN CSS UNTUK FIX FOOTER */
+.ticket-main-container {
+  min-height: calc(100vh - 150px);
+  padding-bottom: 120px; /* Space untuk footer */
+}
+
+.ticket-wrapper {
+  margin-bottom: 40px;
+}
+
+.ticket-wrapper:last-child {
+  margin-bottom: 100px; /* Extra space untuk tiket terakhir */
+}
+
+/* Responsive adjustment */
+@media (max-width: 768px) {
+  .ticket-main-container {
+    padding-bottom: 150px;
+  }
+  
+  .ticket-wrapper:last-child {
+    margin-bottom: 120px;
+  }
+}
+
+
 </style>
 @endsection
 @section('content')
-<div class="w-full vh-100 p-5">
-  <p class="fs-4 fw-bold text-end me-5" style="color:#094067">Total: {{ count($tiketku) }}</p>
-  <!-- Ticket -->
-  @foreach ($tiketku as $tiket)
-  <div class="d-flex justify-content-center p-3">
+  <div class="ticket-main-container w-full p-5">
+    <p class="fs-4 fw-bold text-end me-5" style="color:#094067">Total: {{ count($tiketku) }}</p>
+    <!-- Ticket -->
+    @foreach ($tiketku as $tiket)
+    <div class="d-flex justify-content-center p-3">
     <a href="{{ route('tiket.show', ['tiket' => $tiket->id_pemenang]) }}">
       <div class="box">
-        <ul class="left">
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-        </ul>
+      <ul class="left">
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      </ul>
 
-        <ul class="right">
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-        </ul>
-        <div class="ticket">
-          <span class="airline">TukuTick</span>
-          <span class="airline airlineslip">TukuTick</span>
-          <span class="boarding">Event Ticket</span>
-          <div class="content">
-            <span class="jfk">{{ $tiket->event->nama_event }}</span>
+      <ul class="right">
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      </ul>
+      <div class="ticket">
+      <span class="airline">TukuTick</span>
+      <span class="airline airlineslip">TukuTick</span>
+      <span class="boarding">Event Ticket</span>
+      <div class="content">
+      <span class="jfk">{!! \Illuminate\Support\Str::limit(strip_tags($tiket->event->nama_event), 25) !!}</span>
 
-            <span class="jfk jfkslip">{{ $tiket->event->nama_event }}</span>
-            <div class="sub-content">
-              <span class="watermark">TukuTick</span>
-              <span class="name">ID TICKET<br><span>{{ $tiket->id_pemenang }}</span></span>
-              <span class="flight">TIME<br><span>{{ \Carbon\Carbon::parse($tiket->event->jam_event)->format('H.i') }}</span></span>
-              <span class="gate">LOCATION<br><span>{{ $tiket->event->lokasi }}</span></span>
-              <span class="boardingtime">DATE<br><span>{{ \Carbon\Carbon::parse($tiket->event->tanggal_event)->format('d F Y') }}</span></span>
+      <span class="jfk jfkslip">{!! \Illuminate\Support\Str::limit(strip_tags($tiket->event->nama_event), 15) !!}</span>
+      <div class="sub-content">
+        <span class="watermark">TukuTick</span>
+        <span class="name">ID TICKET<br><span>{{ $tiket->id_pemenang }}</span></span>
+        <span class="flight">TIME<br><span>{{ \Carbon\Carbon::parse($tiket->event->jam_event)->format('H.i') }}</span></span>
+        <span class="gate">LOCATION<br><span>{{ \Illuminate\Support\Str::limit($tiket->event->lokasi, 15, '...') }}</span></span>
+        <span class="boardingtime">DATE<br><span>{{ \Carbon\Carbon::parse($tiket->event->tanggal_event)->format('d F Y') }}</span></span>
 
-              <span class="flight flightslip">ID TICKET<br><span>0001</span></span>
-              <span class="seat seatslip">TIME<br><span>{{ \Carbon\Carbon::parse($tiket->event->jam_event)->format('H.i') }}</span></span>
-              <span class="name nameslip">LOCATION<br><span>{{ $tiket->event->lokasi }}</span></span>
-            </div>
-          </div>
-          <div class="barcode"></div>
-          <div class="barcode slip"></div>
-        </div>
+        <span class="flight flightslip">ID TICKET<br><span>{{ $tiket->id_pemenang }}</span></span>
+        <span class="seat seatslip">TIME<br><span>{{ \Carbon\Carbon::parse($tiket->event->jam_event)->format('H.i') }}</span></span>
+        <span class="name nameslip">LOCATION<br><span>{{ \Illuminate\Support\Str::limit($tiket->event->lokasi, 25, '...') }}</span></span>
+      </div>
+      </div>
+      <div class="barcode"></div>
+      <div class="barcode slip"></div>
+      </div>
       </div>
     </a>
 
+    </div>
+    @endforeach
+    
+    <!-- End Ticket -->
+
   </div>
-  @endforeach
-  <!-- End Ticket -->
-  
-</div>
 @endsection

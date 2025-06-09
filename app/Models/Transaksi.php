@@ -13,7 +13,7 @@ class Transaksi extends Model
     protected $fillable = [
         'jml_transaksi',
         'id_pemenang',
-        'metode_pembayaran'
+        'snap_token'
     ];
 
     public function pemenang()

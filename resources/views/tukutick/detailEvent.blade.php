@@ -83,10 +83,6 @@
     </div>
   </div>
   <div class="mt-5">
-    <p class="h3 fw-bold">Seat Map</p>
-    <img class="w-full object-fit-cover" src="{{ asset('assets/img/img_tukutick/img_seat.svg') }}" alt="" class="mt-2">
-  </div>
-  <div class="mt-5">
     <p class="h3 fw-bold mt-3 mb-3">Tata Cara Pre-Order</p>
     <ul style="list-style: none;margin-left: -30px;">
       <li>

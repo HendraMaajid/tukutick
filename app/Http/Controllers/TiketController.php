@@ -15,8 +15,16 @@ class TiketController extends Controller
         $username = $user->username;
         $customer = Customer::where('username', $username)->first();
         $id_customer = $customer->id_customer;
-        $notifikasi = Pemenang::where('id_customer', $id_customer)->get();
-        $tiketku = Pemenang::where('id_customer', $id_customer)->where('status_transaksi', 'sudah dibayar')->get();
+        
+        // Ambil tiket yang sudah dibayar
+        $tiketku = Pemenang::where('id_customer', $id_customer)
+                          ->where('status_transaksi', 'sudah dibayar')
+                          ->get();
+
+        // Ambil notifikasi untuk navbar (yang belum dibayar)
+        $notifikasi = Pemenang::where('id_customer', $id_customer)
+                             ->where('status_transaksi', 'belum dibayar')
+                             ->get();
 
         return view('tukutick.tiket', compact('notifikasi', 'id_customer','tiketku'));
     }

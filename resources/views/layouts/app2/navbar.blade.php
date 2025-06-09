@@ -1,3 +1,4 @@
+
 @php
   $user = Auth::user();
 @endphp
@@ -12,12 +13,12 @@
       <a class="nav-link" href="#home">Home</a>
       <a class="nav-link" href="#about">About</a>
       <a class="nav-link" href="#event">Event</a>
-      <a class="nav-link" href="#contact">Contact</a>
+      <a class="nav-link" href="#footer">Contact</a>
     @else
     <a class="nav-link" href="{{ route('home.index') }}">Home</a>
     <a class="nav-link" href="{{ route('home.index') }}#about">About</a>
     <a class="nav-link" href="{{ route('home.index') }}#event">Event</a>
-    <a class="nav-link" href="#contact">Contact</a>
+    <a class="nav-link" href="#footer">Contact</a>
     <a class="nav-link" href="{{ route('tiket.index', ['id' => $id_customer]) }}">My Ticket</a>
   @endguest
       </div>
@@ -33,33 +34,35 @@
     <div class="navbar-nav d-flex flex-row gap-4 pt-1" style="margin-left: -20px">
       <!-- notification -->
       <div class="dropdown">
-      <i class="fa-solid fa-bell fs-2" id="bellIcon"></i>
-      <div class="dropdown-content" id="dropdownContent">
-        <div class="notification-header">Notifications</div>
-        <div class="notification-content">
-        <div class="notification-item">
-          @forelse ($notifikasi as $notif)
-        <a href="{{ route('transaksi.show', ['transaksi' => $notif->id_pemenang]) }}"
-        class="text-decoration-none text-dark">
-        <p class="fw-bold">[Sistem]</p>
-        <div>
-        <p>Selamat anda berhasil memenangkan tiket {{ $notif->event->nama_event }}</p>
-        <span>{{ $notif->created_at->diffForHumans() }}</span>
+        <div class="notification-bell-container">
+          <i class="fa-solid fa-bell fs-2" id="bellIcon"></i>
+          @if ($notifikasi->count() > 0)
+            <span class="notification-badge">{{ $notifikasi->count() }}</span>
+          @endif
         </div>
-        </a>
-        <!-- Tambahkan elemen tanda merah di sini jika ada notifikasi -->
-        @if (!$loop->last)
-      <hr> <!-- Tambahkan garis pemisah jika bukan notifikasi terakhir -->
-    @endif
-      @empty
-      <p class="text-center">No message</p>
-    @endforelse
-          @if ($notifikasi->isNotEmpty())
-        <div class="notification-indicator"></div>
+        <div class="dropdown-content" id="dropdownContent">
+          <div class="notification-header">Notifications</div>
+          <div class="notification-content">
+          <div class="notification-item">
+            @forelse ($notifikasi as $notif)
+          <a href="{{ route('transaksi.show', ['transaksi' => $notif->id_pemenang]) }}"
+          class="text-decoration-none text-dark">
+          <p class="fw-bold">[Sistem]</p>
+          <div>
+          <p>Selamat anda berhasil memenangkan tiket {{ $notif->event->nama_event }}</p>
+          <span>{{ $notif->created_at->diffForHumans() }}</span>
+          </div>
+          </a>
+          <!-- Tambahkan elemen tanda merah di sini jika ada notifikasi -->
+          @if (!$loop->last)
+        <hr> <!-- Tambahkan garis pemisah jika bukan notifikasi terakhir -->
       @endif
+        @empty
+        <p class="text-center">No message</p>
+      @endforelse
+          </div>
+          </div>
         </div>
-        </div>
-      </div>
       </div>
       <!-- notif end -->
       <div class="dropdown">
@@ -68,7 +71,7 @@
             <img src="{{ asset('storage/profile_pictures/' . $user->profile_picture) }}" alt="Profile Picture"
             width="32" height="32" class="rounded-circle">
           @else
-            <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
+            <img src="{{ asset('assets/img/avatar/avatar-1.png') }}" alt="mdo" width="32" height="32" class="rounded-circle">
           @endif
         </a>
         <ul class="dropdown-menu">
@@ -97,16 +100,17 @@
 document.addEventListener('DOMContentLoaded', (event) => {
   const bellIcon = document.getElementById('bellIcon');
   const dropdownContent = document.getElementById('dropdownContent');
+  const bellContainer = bellIcon.closest('.notification-bell-container');
 
-  // Toggle dropdown visibility when bell icon is clicked
-  bellIcon.addEventListener('click', (event) => {
+  // Toggle dropdown visibility when bell container is clicked
+  bellContainer.addEventListener('click', (event) => {
     event.stopPropagation();
     dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
   });
 
   // Close the dropdown when clicking outside of it
   document.addEventListener('click', (event) => {
-    if (event.target !== bellIcon && !dropdownContent.contains(event.target)) {
+    if (!bellContainer.contains(event.target) && !dropdownContent.contains(event.target)) {
       dropdownContent.style.display = 'none';
     }
   });

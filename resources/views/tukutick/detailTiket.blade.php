@@ -73,68 +73,81 @@
 </style>
 @endsection
 @section('content')
-<div class="d-flex p-3" style="background-color: #094067;">
-  <a href="javascript:window.history.back();" class="text-decoration-none btn-outline-white"
+  <div class="d-flex p-3" style="background-color: #094067;">
+    <a href="javascript:window.history.back();" class="text-decoration-none btn-outline-white"
     style="padding: 0.75rem 2rem; font-size: 1rem; float-left">
     Back
-  </a>
-  <h1 class="h1 fw-bolder d-block mx-auto text-light">Ticket Detail</h1>
-</div>
+    </a>
+    <h1 class="h1 fw-bolder d-block mx-auto text-light">Ticket Detail</h1>
+  </div>
 
-<div class="container w-full p-5">
-  <div class="ticket">
-    <div class="logoArea">
+  <div class="container w-full p-5">
+    <div class="ticket">
+      <div class="logoArea">
       <p class="navbar-brand fs-2">TukuTick</p>
-    </div>
+      </div>
 
-    <div class="qrcodeArea">
+      <div class="qrcodeArea">
       <!--<h3>QR Code:</h3> -->
-      <br> <img class="logo" src="{{asset('assets/img/img_tukutick/barcode.jpg')}}"><br><br>
+      <br>
+      {{-- Replace static barcode with generated one --}}
+      @php
+        // Format data untuk QR code: dapat menampung lebih banyak informasi
+        $qrData = "ID: " . $tiket->id_pemenang . "\n" .
+        "Event: " . $tiket->event->nama_event . "\n" .
+        "Tanggal: " . \Carbon\Carbon::parse($tiket->event->tanggal_event)->format('d F Y') . "\n" .
+        "Jam: " . \Carbon\Carbon::parse($tiket->event->jam_event)->format('H.i') . "\n" .
+        "Lokasi: " . $tiket->event->lokasi . "\n" .
+        "Customer: " . $tiket->customer->nama_customer;
+      @endphp
+      {{-- Alternatively, use QR code --}}
+      <div class="d-flex justify-content-center align-items-center mb-3">{!! DNS2D::getBarcodeHTML(strval($qrData), 'QRCODE', 4, 4) !!}</div>
+      <br><br>
       <p>Ticket ID: <b>{{ $tiket->id_pemenang }}</b></p>
       <p>Ticket Price: {{ $tiket->event->hrg_ticket }}</p>
-    </div>
+      </div>
 
-    <div class="attendeeTable">
-      <table style="width:100%">
-        <tr>
-          <td style="width:70%"><b>{{ $tiket->customer->nama_customer }}</b></td>
-          <td>ID: {{ $tiket->customer->id_customer }}</td>
-        </tr>
-      </table>
-    </div>
-
-    <div class="separator"></div>
-
-    <div class="titleArea">
-      <div class="eventTable">
+      <div class="attendeeTable">
         <table style="width:100%">
           <tr>
-            <td style="width:50%" " font-size: 30px">Date: <br><b>{{ \Carbon\Carbon::parse($tiket->event->tanggal_event)->format('d F Y') }}</b></td>
-            <td style="width:50%">Time: <br><b>{{ \Carbon\Carbon::parse($tiket->event->jam_event)->format('H.i') }}</b></td>
+            <td style="width:70%"><b>{{ $tiket->customer->nama_customer }}</b></td>
+            <td>ID: {{ $tiket->customer->id_customer }}</td>
           </tr>
         </table>
-      </div><br>
+      </div>
+
+      <div class="separator"></div>
+
+      <div class="titleArea">
+        <div class="eventTable">
+          <table style="width:100%">
+            <tr>
+              <td style="width:50%" " font-size: 30px">Date: <br><b>{{ \Carbon\Carbon::parse($tiket->event->tanggal_event)->format('d F Y') }}</b></td>
+              <td style="width:50%">Time: <br><b>{{ \Carbon\Carbon::parse($tiket->event->jam_event)->format('H.i') }}</b></td>
+            </tr>
+          </table>
+        </div><br>
       <h2>{{ $tiket->event->nama_event }}</h2>
       <p>Location: {{ $tiket->event->lokasi }}</p>
-    </div>
+      </div>
 
-    <div class="separator"></div>
+      <div class="separator"></div>
 
-    <div class="organizerArea">
-      <h3>Organizer Information:</h3>
-      <p>Organizer: {{ $tiket->event->penyelenggara->nama_penyelenggara }}</p>
-      <p>Email: <a href="mailto:[organizer_email]">{{ $tiket->event->penyelenggara->email_penyelenggara }}</a></p>
-    </div>
+      <div class="organizerArea">
+        <h3>Organizer Information:</h3>
+        <p>Organizer: {{ $tiket->event->penyelenggara->nama_penyelenggara }}</p>
+        <p>Email: <a href="mailto:[organizer_email]">{{ $tiket->event->penyelenggara->email_penyelenggara }}</a></p>
+      </div>
 
-    <div class="separator1"></div>
+      <div class="separator1"></div>
 
-    <div class="cutArea">
-      <h3>{{ $tiket->event->nama_event }}</h3>
-      <p>Ticket ID: {{ $tiket->id_pemenang }}</p>
-      <p>{{ \Carbon\Carbon::parse($tiket->event->tanggal_event)->format('d F Y') }}/{{ \Carbon\Carbon::parse($tiket->event->jam_event)->format('H.i') }}</p>
+      <div class="cutArea">
+        <h3>{{ $tiket->event->nama_event }}</h3>
+        <p>Ticket ID: {{ $tiket->id_pemenang }}</p>
+        <p>{{ \Carbon\Carbon::parse($tiket->event->tanggal_event)->format('d F Y') }}/{{ \Carbon\Carbon::parse($tiket->event->jam_event)->format('H.i') }}</p>
+      </div>
     </div>
   </div>
-</div>
 
 
 @endsection

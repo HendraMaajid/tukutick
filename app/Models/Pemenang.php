@@ -15,6 +15,7 @@ class Pemenang extends Model
         'status_transaksi',
         'id_customer',
         'id_event',
+        'id_transaksi'
     ];
 
     //relasi ke model customer, satu id_pemenang hanya dimiliki oleh satu customer

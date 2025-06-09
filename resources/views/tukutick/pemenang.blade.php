@@ -9,9 +9,11 @@
 @section('content')
 <div class="d-flex p-3" style="background-color: #094067;">
 
-  <a href="{{ Auth::guest() ? url('/') : route('home.index')}}" class="text-decoration-none btn-outline-white"
-    style="padding: 0.75rem 2rem; font-size: 1rem;float-left">
-    Back</a>
+<a href="{{ url()->previous() }}" 
+   class="text-decoration-none btn-outline-white"
+   style="padding: 0.75rem 2rem; font-size: 1rem;float-left">
+    Back
+</a>
 
 
   <p class=" h1 fw-bolder d-block mx-auto text-light">Pemenang</p>

@@ -90,27 +90,30 @@ class TransaksiController extends Controller
         return response()->json(['snap_token' => $snapToken]);
     }
 
-    public function store(Request $request)
+    public function store(Request $request) 
     {
         $request->validate([
-            'metode_pembayaran' => 'required',
             'id_pemenang' => 'required',
             'jml_transaksi' => 'required',
             'snap_token' => 'required'
         ]);
 
         $data = [
-            'metode_pembayaran' => $request->input('metode_pembayaran'),
             'id_pemenang' => $request->input('id_pemenang'),
             'jml_transaksi' => $request->input('jml_transaksi'),
             'snap_token' => $request->input('snap_token')
         ];
 
-        Transaksi::create($data);
+        // Simpan transaksi dan dapatkan instance yang baru dibuat
+        $transaksi = Transaksi::create($data);
 
+        // Update pemenang dengan id_transaksi yang pasti benar
         $pemenang = Pemenang::find($request->input('id_pemenang'));
-        $pemenang->update(['status_transaksi' => 'sudah dibayar']);
-        
+        $pemenang->update([
+            'status_transaksi' => 'sudah dibayar',
+            'id_transaksi' => $transaksi->id_transaksi  // Gunakan id dari instance yang baru dibuat
+        ]);
+
         return redirect()->route('home.index');
     }
 }

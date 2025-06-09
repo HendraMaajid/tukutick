@@ -253,4 +253,243 @@ body {
   background: #094067;
   border-radius: 10px;
 }
+
+.footer-gradient {
+    background: linear-gradient(135deg, #094067 0%, #175b8f 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.footer-gradient::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1.5" fill="rgba(255,255,255,0.08)"/><circle cx="40" cy="80" r="1" fill="rgba(255,255,255,0.06)"/><circle cx="90" cy="20" r="1" fill="rgba(255,255,255,0.05)"/><circle cx="10" cy="60" r="1.5" fill="rgba(255,255,255,0.07)"/></svg>') repeat;
+    opacity: 0.3;
+}
+
+.footer-content {
+    position: relative;
+    z-index: 2;
+}
+
+.brand-logo {
+    font-size: 2.5rem;
+    font-weight: 800;
+    background: linear-gradient(45deg, #fff, #90e0ef);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.footer-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.footer-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+}
+
+.section-title {
+    color: #90e0ef;
+    font-weight: 700;
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 30px;
+    height: 3px;
+    background: linear-gradient(90deg, #90e0ef, #3da9fc);
+    border-radius: 2px;
+}
+
+.footer-link {
+    color: rgba(255, 255, 255, 0.8) !important;
+    transition: all 0.3s ease;
+    padding: 0.5rem 0 !important;
+    position: relative;
+    text-decoration: none;
+}
+
+.footer-link:hover {
+    color: #90e0ef !important;
+    transform: translateX(5px);
+}
+
+.footer-link::before {
+    content: '';
+    position: absolute;
+    left: -15px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 2px;
+    background: #90e0ef;
+    transition: width 0.3s ease;
+}
+
+
+.footer-link:hover::before {
+    width: 10px;
+}
+
+.social-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+    border-radius: 15px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.social-btn:hover {
+    background: rgba(144, 224, 239, 0.3);
+    color: white;
+    transform: translateY(-3px) scale(1.1);
+    box-shadow: 0 8px 25px rgba(144, 224, 239, 0.3);
+}
+
+.copyright-section {
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.description-text {
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.6;
+    font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+    .footer-card {
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .brand-logo {
+        font-size: 2rem;
+    }
+}
+
+.pulse-animation {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.7; }
+    100% { opacity: 1; }
+}
+.notification-bell-container {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.notification-badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background-color: #dc3545;
+  color: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 1;
+  min-width: 20px;
+  text-align: center;
+}
+
+/* Untuk angka lebih dari 9, buat badge sedikit lebih lebar */
+.notification-badge:has-text {
+  min-width: 22px;
+  padding: 0 2px;
+}
+
+/* Animasi bounce untuk menarik perhatian */
+.notification-badge {
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-5px);
+  }
+  60% {
+    transform: translateY(-3px);
+  }
+}
+
+/* Hover effect untuk bell icon */
+.notification-bell-container:hover .fa-bell {
+  color: #007bff;
+  transition: color 0.3s ease;
+}
+
+/* Existing dropdown styles */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 300px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  right: 0;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+.notification-header {
+  padding: 12px 16px;
+  background-color: #f8f9fa;
+  font-weight: bold;
+  border-bottom: 1px solid #ddd;
+  border-radius: 8px 8px 0 0;
+}
+
+.notification-content {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.notification-item {
+  padding: 12px 16px;
+}
+
+.notification-item:hover {
+  background-color: #f8f9fa;
+}
 </style>

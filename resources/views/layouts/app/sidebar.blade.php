@@ -1,9 +1,9 @@
         <aside id="sidebar-wrapper">
           <div class="sidebar-brand">
-            <a href="{{url('/')}}">TukuTick</a>
+            <a href="">TukuTick</a>
           </div>
           <div class="sidebar-brand sidebar-brand-sm">
-            <a href="{{url('/')}}">St</a>
+            <a href="">TT</a>
           </div>
           <ul class="sidebar-menu">
             <li class="menu-header">Dashboard</li>

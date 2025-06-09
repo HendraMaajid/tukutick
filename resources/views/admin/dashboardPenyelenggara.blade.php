@@ -73,13 +73,20 @@
               <p>Tickets: {{ $data->jml_ticket }}</p>
             </div>
             <div class="card-footer d-flex justify-content-center">
-              @if ($data->jml_ticket > 0)
+              @if ($data->jml_ticket > 0 && $jml_po > 0)
           <button class="btn btn-primary gacha-button"
-          data-url="{{ route('gacha', ['id_event' => $data->id_event, 'jml_ticket' => $data->jml_ticket, 'jml_po' => $jml_po]) }}">
+          data-url="{{ route('gacha', ['id_event' => $data->id_event, 'jml_ticket' => $data->jml_ticket, 'jml_po' => $jml_po]) }}"
+          data-preorder-count="{{ $jml_po }}">
           Gacha
           </button>
+        @elseif ($data->jml_ticket == 0)
+        <button class="btn btn-secondary pe-none" style="cursor:not-allowed" disabled>
+          No Tickets
+        </button>
         @else
-        <button class="btn btn-secondary pe-none" style="cursor:not-allowed" disabled>Gacha</button>
+        <button class="btn btn-warning pe-none" style="cursor:not-allowed" disabled>
+          No Preorders
+        </button>
       @endif
             </div>
             </div>
@@ -100,10 +107,21 @@ document.addEventListener("DOMContentLoaded", function() {
   gachaButtons.forEach(button => {
     button.addEventListener('click', function() {
       const gachaUrl = button.getAttribute('data-url');
+      const preorderCount = parseInt(button.getAttribute('data-preorder-count'));
+
+      // Cek apakah ada preorder
+      if (preorderCount === 0) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Tidak Ada Preorder',
+          text: 'Belum ada yang melakukan preorder untuk event ini.',
+        });
+        return;
+      }
 
       Swal.fire({
         title: 'Are you sure?',
-        text: "Do you want to proceed with the gacha?",
+        text: `Do you want to proceed with the gacha? (${preorderCount} preorders available)`,
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
