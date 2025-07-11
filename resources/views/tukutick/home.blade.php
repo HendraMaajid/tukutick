@@ -212,7 +212,7 @@
           "Welcome to Tukutick – Your Ultimate Destination to Discover and Preorder Concert Tickets with Ease. Say Goodbye to
           Scalpers and Hello to Secure, Fair-Priced Tickets!"
           </p>
-          <a href="{{ route('event.index') }}" class="btn btn-primary w-25 fw-bold" style="background-color: #094067; border-color: #094067;">Explore Events</a>
+          <a href="#event" class="btn btn-primary w-25 fw-bold" style="background-color: #094067; border-color: #094067;">Explore Events</a>
         </div>
       </div>
     {{-- <div id="carouselExampleCaptions" class="carousel slide">

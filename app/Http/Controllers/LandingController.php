@@ -17,13 +17,6 @@ class LandingController extends Controller
             ->take(5)  // Limit to 5 featured events
             ->get();
 
-        // If no featured events, use the nearest upcoming events
-        if ($featuredEvents->isEmpty()) {
-            $featuredEvents = Event::where('tgl_event', '>=', now())
-                ->orderBy('tgl_event', 'asc')
-                ->take(3)
-                ->get();
-        }
         return view('tukutick.landingpage', compact('kategori', 'events', 'featuredEvents'));
 
     }

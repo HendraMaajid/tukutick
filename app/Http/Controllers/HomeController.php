@@ -24,13 +24,6 @@ class HomeController extends Controller
             ->take(5)
             ->get();
 
-        // If no featured events, use the nearest upcoming events
-        if ($featuredEvents->isEmpty()) {
-            $featuredEvents = Event::where('tgl_event', '>=', now())
-                ->orderBy('tgl_event', 'asc')
-                ->take(3)
-                ->get();
-        }
 
         // Prepare data for authenticated users
         $notifikasi = collect(); // Empty collection as default
